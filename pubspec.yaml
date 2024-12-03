@@ -13,9 +13,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.19.0
+  intl: ^0.20.1
   cupertino_icons: ^1.0.8
-  equatable: ^2.0.7
   get_it: ^8.0.2
   injectable: ^2.5.0
   dartz: ^0.10.1
@@ -39,13 +38,13 @@ flutter:
   fonts:
     - family: Open Sans
       fonts:
-        - asset: assets/fonts/OpenSans_Condensed-Regular.ttf
+        - asset: assets/fonts/OpenSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/OpenSans_Condensed-Light.ttf
+        - asset: assets/fonts/OpenSans-Light.ttf
           weight: 300
-        - asset: assets/fonts/OpenSans_Condensed-Medium.ttf
+        - asset: assets/fonts/OpenSans-Medium.ttf
           weight: 500
-        - asset: assets/fonts/OpenSans_Condensed-SemiBold.ttf
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/OpenSans_Condensed-Bold.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
           weight: 700
