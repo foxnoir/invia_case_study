@@ -16,44 +16,7 @@ ThemeData _theme(ColorScheme colorScheme) {
     brightness: colorScheme.brightness,
 
     textTheme: TextTheme(
-      headlineLarge: TextStyle(
-        fontSize: FontSize.xLarge,
-        fontWeight: FontWeights.medium,
-        color: colorScheme.secondary,
-      ),
-      headlineMedium: TextStyle(
-        fontSize: FontSize.large,
-        fontWeight: FontWeights.bold,
-        color: colorScheme.secondary,
-      ),
-      headlineSmall: TextStyle(
-        fontSize: FontSize.medium,
-        fontWeight: FontWeights.bold,
-        color: colorScheme.secondary,
-      ),
-      titleLarge: const TextStyle(
-        fontSize: FontSize.large,
-        fontWeight: FontWeights.light,
-      ),
-      titleMedium: TextStyle(
-        fontSize: FontSize.large,
-        fontWeight: FontWeights.medium,
-        color: colorScheme.secondary,
-      ),
-      titleSmall: TextStyle(
-        color: colorScheme.tertiary,
-        fontSize: FontSize.tiny,
-        fontWeight: FontWeights.medium,
-      ),
-      bodyLarge: const TextStyle(
-        fontSize: FontSize.large,
-        fontWeight: FontWeights.medium,
-      ),
-      bodyMedium: const TextStyle(
-        fontSize: FontSize.medium,
-        fontWeight: FontWeights.medium,
-      ),
-      labelLarge: TextStyle(
+      labelSmall: TextStyle(
         fontSize: FontSize.large,
         fontWeight: FontWeights.medium,
         color: colorScheme.tertiary,
@@ -67,11 +30,22 @@ ThemeData _theme(ColorScheme colorScheme) {
       color: colorScheme.primary,
       elevation: 0,
       titleTextStyle: TextStyle(
-        fontSize: FontSize.large,
+        fontSize: FontSize.xLarge,
         fontWeight: FontWeights.bold,
         color: colorScheme.onPrimary,
       ),
     ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedIconTheme: IconThemeData(
+          color: colorScheme.primary,
+          size: 35,
+        ),
+        selectedLabelStyle: TextStyle(
+          color: Colors.pink,
+          fontSize: FontSize.xLarge,
+        ),
+        unselectedItemColor: colorScheme.tertiary),
 
     // BottomNavigationBar Theme
     // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
