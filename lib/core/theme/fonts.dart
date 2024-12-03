@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Font {
-  static const String fontFamily = 'Avenir LT Pro';
+  static const String fontFamily = 'Open Sans';
 }
 
 class FontWeights {
