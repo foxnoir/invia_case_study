@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Colours {
-  // basics
-  static Color white_0 = HexColor.fromHex('#FFFFFF');
-  static Color black_0 = HexColor.fromHex('#000000');
-  static Color dark_blue = HexColor.fromHex('#002873');
-  static Color light_green = HexColor.fromHex('#85BC39');
-  static Color orange = HexColor.fromHex('#FF8F16');
-  static Color dark_grey = HexColor.fromHex('#595959');
-  static Color light_grey = HexColor.fromHex('#E9E9E9');
+// Get width depending on the device
+double getWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
-  // error
-  static Color error = const Color.fromARGB(255, 176, 0, 32);
-}
+// Get height depending on the device
+double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
 
-// converts a Color into a HexColor
 class HexColor extends Color {
   HexColor(String hexColor) : super(_getColorFromHex(hexColor));
 

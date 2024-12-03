@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invia_case_study/core/theme/colours.dart';
-import 'package:invia_case_study/core/theme/fonts.dart';
+import 'package:invia_case_study/core/theme/consts.dart';
 
 ThemeData getLightTheme() {
   return _theme(_getColorScheme(Brightness.light));
