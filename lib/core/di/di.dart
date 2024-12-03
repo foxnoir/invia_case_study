@@ -4,7 +4,7 @@ import 'package:invia_case_study/core/di/di.config.dart';
 
 // Method used to initialized the dependency injection. Called in main.
 @InjectableInit(ignoreUnregisteredTypes: [])
-GetIt configureInjection(String env) => DI.getIt.init();
+Future<GetIt> configureInjection(String env) => DI.getIt.init();
 
 // Class to use GetIt for dependency injection.
 

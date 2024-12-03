@@ -19,14 +19,18 @@ dependencies:
   get_it: ^8.0.2
   injectable: ^2.5.0
   dartz: ^0.10.1
+  shared_preferences: ^2.3.3
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   very_good_analysis: ^6.0.0
-  flutter_lints: ^4.0.0
-  build_runner: ^2.4.9
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
   injectable_generator: ^2.6.2
+  hive_generator: ^2.0.1
 
 flutter:
   generate: true
@@ -35,13 +39,13 @@ flutter:
   fonts:
     - family: Open Sans
       fonts:
-        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans_Condensed-Regular.ttf
           weight: 400
-        - asset: assets/fonts/OpenSans-Light.ttf
+        - asset: assets/fonts/OpenSans_Condensed-Light.ttf
           weight: 300
-        - asset: assets/fonts/OpenSans-Medium.ttf
+        - asset: assets/fonts/OpenSans_Condensed-Medium.ttf
           weight: 500
-        - asset: assets/fonts/OpenSans-SemiBold.ttf
+        - asset: assets/fonts/OpenSans_Condensed-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans_Condensed-Bold.ttf
           weight: 700
