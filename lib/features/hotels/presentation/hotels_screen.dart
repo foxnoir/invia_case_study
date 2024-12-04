@@ -3,25 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/features/hotels/presentation/bloc/hotels_bloc.dart';
-import 'package:invia_case_study/features/router/app_router.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
 @RoutePage()
 class HotelsScreen extends StatelessWidget {
   const HotelsScreen({super.key});
 
-  static MaterialPage<void> page() {
-    return const MaterialPage(
-      name: HotelsRoute.name,
-      key: ValueKey(HotelsRoute.name),
-      child: HotelsScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HotelsBloc()..add(InitStateEvent()),
+      create: (_) => HotelsBloc()..add(const FetchHotelsEvent()),
       child: const HotelsView(),
     );
   }
@@ -30,39 +22,27 @@ class HotelsScreen extends StatelessWidget {
 class HotelsView extends StatelessWidget {
   const HotelsView({super.key});
 
+  Future<void> _handleRefresh(BuildContext context) async {
+    context.read<HotelsBloc>().add(const FetchHotelsEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:
-            Text(AppLocalizations.of(context)?.hotels ?? FallBackString.hotels),
-      ),
-      body: BlocBuilder<HotelsBloc, HotelsState>(
-        builder: (context, state) {
-          if (state is HotelsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is HotelsLoaded) {
-            return ListView.builder(
-              itemCount: state.hotels.length,
-              itemBuilder: (context, index) {
-                final hotel = state.hotels[index];
-                return ListTile(
-                  title: Text(hotel.name),
-                  subtitle: Text(hotel.destination),
-                );
-              },
-            );
-          } else if (state is HotelsError) {
-            return Center(child: Text('Error: ${state.message}'));
-          }
-          return const Center(child: Text('Start by fetching hotels'));
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            context.read<HotelsBloc>().add(const FetchHotelsEvent()),
-        child: const Icon(Icons.refresh),
-      ),
+    return BlocBuilder<HotelsBloc, HotelsState>(
+      builder: (context, state) {
+        final hasError = state is HotelsError;
+        final hasLoaded = state is HotelsLoaded;
+
+        return AppScaffold(
+          title: AppLocalizations.of(context)?.hotels ?? FallBackString.hotels,
+          isLoading: state is HotelsLoading,
+          isLoaded: state is HotelsLoaded,
+          hasError: hasError,
+          errorMessage: hasError ? state.message : 'eheysehvrhervh',
+          hotels: hasLoaded ? state.hotels : [],
+          onRefresh: () => _handleRefresh(context),
+        );
+      },
     );
   }
 }

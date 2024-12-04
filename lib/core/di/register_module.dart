@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
-import 'package:invia_case_study/features/hotels/data/data_sources/hotel_data_source.dart';
-import 'package:invia_case_study/features/hotels/data/repositories/hotel_repo_implementation.dart';
-import 'package:invia_case_study/features/hotels/domain/repositories/hotel_repository.dart';
+import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
+import 'package:invia_case_study/features/hotels/data/repositories/hotels_repo_implementation.dart';
+import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

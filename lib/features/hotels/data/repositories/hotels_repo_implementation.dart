@@ -2,9 +2,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:invia_case_study/core/di/di.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
-import 'package:invia_case_study/features/hotels/data/data_sources/hotel_data_source.dart';
+import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
-import 'package:invia_case_study/features/hotels/domain/repositories/hotel_repository.dart';
+import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 
