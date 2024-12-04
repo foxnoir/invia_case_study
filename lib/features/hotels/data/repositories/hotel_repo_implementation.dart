@@ -31,7 +31,7 @@ class HotelRepoImplementation implements HotelRepository {
   ResultFuture<List<Hotel>> getHotels() async {
     try {
       final result = await _hotelDataSource.getHotels();
-      return Right(result);
+      return Right(result.map((model) => model.toEntity()).toList());
     } on ApiException catch (e) {
       return Left(ApiFailure.fromException(e));
     }

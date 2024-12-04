@@ -9,47 +9,39 @@ class HotelModel extends Hotel {
     required super.longitude,
     required super.category,
     required super.destination,
-    required BestOfferModel bestOffer,
-    required RatingInfoModel ratingInfo,
+    required super.bestOffer,
+    required super.ratingInfo,
+    required super.analytics,
+    required super.badges,
+    required super.categoryType,
+    required super.hotelId,
     List<HotelImageModel> images = const [],
-  }) : super(
-          bestOffer: bestOffer,
-          ratingInfo: ratingInfo,
-          images: images,
-        );
-
-  const HotelModel.empty()
-      : this(
-          id: '',
-          name: '',
-          latitude: 0,
-          longitude: 0,
-          category: 0,
-          destination: '',
-          images: const [],
-          bestOffer: const BestOfferModel.empty(),
-          ratingInfo: const RatingInfoModel.empty(),
-        );
+  }) : super(images: images);
 
   factory HotelModel.fromMap(DataMap map) {
     return HotelModel(
-      id: map['hotel-id'] as String,
-      name: map['name'] as String,
-      latitude: (map['latitude'] as num).toDouble(),
-      longitude: (map['longitude'] as num).toDouble(),
-      category: map['category'] as int,
-      destination: map['destination'] as String,
-      images: (map['images'] as List)
-          .map((image) => HotelImageModel.fromMap(image as DataMap))
-          .toList(),
-      bestOffer: BestOfferModel.fromMap(map['best-offer'] as DataMap),
-      ratingInfo: RatingInfoModel.fromMap(map['rating-info'] as DataMap),
+      id: map['hotel-id'] as String? ?? '',
+      name: map['name'] as String? ?? '',
+      latitude: (map['latitude'] as num?)?.toDouble() ?? 0.0,
+      longitude: (map['longitude'] as num?)?.toDouble() ?? 0.0,
+      category: map['category'] as int? ?? 0,
+      destination: map['destination'] as String? ?? '',
+      images: (map['images'] as List<dynamic>?)
+              ?.map((image) => HotelImageModel.fromMap(image as DataMap))
+              .toList() ??
+          const [],
+      bestOffer: BestOfferModel.fromMap(map['best-offer'] as DataMap? ?? {}),
+      ratingInfo: RatingInfoModel.fromMap(map['rating-info'] as DataMap? ?? {}),
+      analytics: AnalyticsModel.fromMap(map['analytics'] as DataMap? ?? {}),
+      badges: (map['badges'] as List<dynamic>?)?.cast<String>() ?? const [],
+      categoryType: map['category-type'] as String? ?? '',
+      hotelId: map['hotel-id'] as String? ?? '',
     );
   }
 
   DataMap toMap() {
     return {
-      'hotel-id': id,
+      'hotel-id': hotelId,
       'name': name,
       'latitude': latitude,
       'longitude': longitude,
@@ -60,34 +52,77 @@ class HotelModel extends Hotel {
           .toList(),
       'best-offer': (bestOffer as BestOfferModel).toMap(),
       'rating-info': (ratingInfo as RatingInfoModel).toMap(),
+      'analytics': (analytics as AnalyticsModel).toMap(),
+      'badges': badges,
+      'category-type': categoryType,
     };
   }
 
-  HotelModel copyWith({
-    String? id,
-    String? name,
-    double? latitude,
-    double? longitude,
-    int? category,
-    String? destination,
-    List<HotelImageModel>? images,
-    BestOfferModel? bestOffer,
-    RatingInfoModel? ratingInfo,
-  }) {
-    return HotelModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
-      category: category ?? this.category,
-      destination: destination ?? this.destination,
-      images: images ?? this.images.cast<HotelImageModel>(),
-      bestOffer: bestOffer ?? this.bestOffer as BestOfferModel,
-      ratingInfo: ratingInfo ?? this.ratingInfo as RatingInfoModel,
+  Hotel toEntity() {
+    return Hotel(
+      id: id,
+      name: name,
+      latitude: latitude,
+      longitude: longitude,
+      category: category,
+      destination: destination,
+      images: images,
+      bestOffer: bestOffer,
+      ratingInfo: ratingInfo,
+      analytics: analytics,
+      badges: badges,
+      categoryType: categoryType,
+      hotelId: hotelId,
     );
   }
 }
 
+class AnalyticsModel extends Analytics {
+  const AnalyticsModel({
+    required super.currency,
+    required super.itemCategory,
+    required super.itemCategory2,
+    required super.itemId,
+    required super.itemListName,
+    required super.itemName,
+    required super.itemRooms,
+    required super.price,
+    required super.quantity,
+  });
+
+  factory AnalyticsModel.fromMap(DataMap map) {
+    final selectItem = map['select_item.item.0'] as DataMap? ?? {};
+    return AnalyticsModel(
+      currency: selectItem['currency'] as String? ?? '',
+      itemCategory: selectItem['itemCategory'] as String? ?? '',
+      itemCategory2: selectItem['itemCategory2'] as String? ?? '',
+      itemId: selectItem['itemId'] as String? ?? '',
+      itemListName: selectItem['itemListName'] as String? ?? '',
+      itemName: selectItem['itemName'] as String? ?? '',
+      itemRooms: selectItem['itemRooms'] as String? ?? '',
+      price: selectItem['price'] as String? ?? '',
+      quantity: int.tryParse(selectItem['quantity'] as String? ?? '0') ?? 0,
+    );
+  }
+
+  DataMap toMap() {
+    return {
+      'select_item.item.0': {
+        'currency': currency,
+        'itemCategory': itemCategory,
+        'itemCategory2': itemCategory2,
+        'itemId': itemId,
+        'itemListName': itemListName,
+        'itemName': itemName,
+        'itemRooms': itemRooms,
+        'price': price,
+        'quantity': quantity.toString(),
+      },
+    };
+  }
+}
+
+// Supporting BestOffer Model
 class BestOfferModel extends BestOffer {
   const BestOfferModel({
     required super.total,
@@ -96,14 +131,12 @@ class BestOfferModel extends BestOffer {
     required super.travelDate,
   });
 
-  const BestOfferModel.empty() : super.empty();
-
   factory BestOfferModel.fromMap(DataMap map) {
     return BestOfferModel(
-      total: map['total'] as int,
-      travelPrice: map['travel-price'] as int,
-      flightIncluded: map['flight-included'] as bool,
-      travelDate: TravelDateModel.fromMap(map['travel-date'] as DataMap),
+      total: map['total'] as int? ?? 0,
+      travelPrice: map['travel-price'] as int? ?? 0,
+      flightIncluded: map['flight-included'] as bool? ?? false,
+      travelDate: TravelDateModel.fromMap(map['travel-date'] as DataMap? ?? {}),
     );
   }
 
@@ -117,6 +150,7 @@ class BestOfferModel extends BestOffer {
   }
 }
 
+// Supporting TravelDate Model
 class TravelDateModel extends TravelDate {
   const TravelDateModel({
     required super.days,
@@ -129,10 +163,10 @@ class TravelDateModel extends TravelDate {
 
   factory TravelDateModel.fromMap(DataMap map) {
     return TravelDateModel(
-      days: map['days'] as int,
-      departureDate: map['departure-date'] as String,
-      nights: map['nights'] as int,
-      returnDate: map['return-date'] as String,
+      days: map['days'] as int? ?? 0,
+      departureDate: map['departure-date'] as String? ?? '',
+      nights: map['nights'] as int? ?? 0,
+      returnDate: map['return-date'] as String? ?? '',
     );
   }
 
@@ -146,6 +180,7 @@ class TravelDateModel extends TravelDate {
   }
 }
 
+// Supporting RatingInfo Model
 class RatingInfoModel extends RatingInfo {
   const RatingInfoModel({
     required super.score,
@@ -157,9 +192,9 @@ class RatingInfoModel extends RatingInfo {
 
   factory RatingInfoModel.fromMap(DataMap map) {
     return RatingInfoModel(
-      score: (map['score'] as num).toDouble(),
-      scoreDescription: map['score-description'] as String,
-      reviewsCount: map['reviews-count'] as int,
+      score: (map['score'] as num?)?.toDouble() ?? 0.0,
+      scoreDescription: map['score-description'] as String? ?? '',
+      reviewsCount: map['reviews-count'] as int? ?? 0,
     );
   }
 
@@ -172,6 +207,7 @@ class RatingInfoModel extends RatingInfo {
   }
 }
 
+// Supporting HotelImage Model
 class HotelImageModel extends HotelImage {
   const HotelImageModel({
     required super.large,
@@ -182,8 +218,8 @@ class HotelImageModel extends HotelImage {
 
   factory HotelImageModel.fromMap(DataMap map) {
     return HotelImageModel(
-      large: map['large'] as String,
-      small: map['small'] as String,
+      large: map['large'] as String? ?? '',
+      small: map['small'] as String? ?? '',
     );
   }
 

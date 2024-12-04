@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:equatable/equatable.dart';
 
 class Hotel extends Equatable {
@@ -10,21 +11,12 @@ class Hotel extends Equatable {
     required this.destination,
     required this.bestOffer,
     required this.ratingInfo,
+    required this.analytics,
+    required this.badges,
+    required this.categoryType,
+    required this.hotelId,
     this.images = const [],
   });
-
-  const Hotel.empty()
-      : this(
-          id: '',
-          name: '',
-          latitude: 0,
-          longitude: 0,
-          category: 0,
-          destination: '',
-          images: const [],
-          bestOffer: const BestOffer.empty(),
-          ratingInfo: const RatingInfo.empty(),
-        );
 
   final String id;
   final String name;
@@ -35,6 +27,10 @@ class Hotel extends Equatable {
   final List<HotelImage> images;
   final BestOffer bestOffer;
   final RatingInfo ratingInfo;
+  final Analytics analytics;
+  final List<String> badges;
+  final String categoryType;
+  final String hotelId;
 
   @override
   List<Object?> get props => [
@@ -44,15 +40,73 @@ class Hotel extends Equatable {
         longitude,
         category,
         destination,
-        images.length,
+        images,
         bestOffer,
         ratingInfo,
+        analytics,
+        badges,
+        categoryType,
+        hotelId,
+      ];
+}
+
+// Submodels like Analytics, BestOffer, etc. follow the same structure.
+
+class Analytics extends Equatable {
+  const Analytics({
+    required this.currency,
+    required this.itemCategory,
+    required this.itemCategory2,
+    required this.itemId,
+    required this.itemListName,
+    required this.itemName,
+    required this.itemRooms,
+    required this.price,
+    required this.quantity,
+  });
+
+  const Analytics.empty()
+      : this(
+          currency: '',
+          itemCategory: '',
+          itemCategory2: '',
+          itemId: '',
+          itemListName: '',
+          itemName: '',
+          itemRooms: '',
+          price: '',
+          quantity: 0,
+        );
+
+  final String currency;
+  final String itemCategory;
+  final String itemCategory2;
+  final String itemId;
+  final String itemListName;
+  final String itemName;
+  final String itemRooms;
+  final String price;
+  final int quantity;
+
+  @override
+  List<Object?> get props => [
+        currency,
+        itemCategory,
+        itemCategory2,
+        itemId,
+        itemListName,
+        itemName,
+        itemRooms,
+        price,
+        quantity,
       ];
 
   @override
   String toString() {
-    return 'Hotel{id: $id, name: $name, destination: $destination, '
-        'latitude: $latitude, longitude: $longitude, category: $category}';
+    return 'Analytics{currency: $currency, itemCategory: $itemCategory, '
+        'itemCategory2: $itemCategory2, itemId: $itemId, '
+        'itemListName: $itemListName, itemName: $itemName, itemRooms: $itemRooms, '
+        'price: $price, quantity: $quantity}';
   }
 }
 

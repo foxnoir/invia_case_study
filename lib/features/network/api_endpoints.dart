@@ -1,4 +1,4 @@
 class ApiEndpoints {
-  static const String baseURL = 'inviacasestudy.free.beeceptor.com';
-  static const String hotels = '/hotels';
+  static const String baseURL = 'dkndmolrswy7b.cloudfront.net';
+  static const String hotels = '/hotels.json';
 }

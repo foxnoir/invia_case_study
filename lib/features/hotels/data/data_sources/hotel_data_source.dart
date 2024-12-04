@@ -3,11 +3,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/core/di/di.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
-import 'package:invia_case_study/features/network/api_endpoints.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 
 abstract class HotelDataSource {
@@ -21,23 +19,25 @@ class HotelDataSourceImpl implements HotelDataSource {
 
   @override
   Future<List<HotelModel>> getHotels() async {
-    try {
-      final response = await _client
-          .get(Uri.https(ApiEndpoints.baseURL, ApiEndpoints.hotels));
+    final response = await _client.get(
+      Uri.https('dkndmolrswy7b.cloudfront.net', '/hotels.json'),
+    );
 
-      if (response.statusCode != 200) {
-        throw ApiException(
-          message: response.body,
-          statusCode: response.statusCode,
-        );
-      }
-      return List<DataMap>.from(jsonDecode(response.body) as List)
-          .map(HotelModel.fromMap)
+    if (response.statusCode != 200) {
+      throw ApiException(
+        message: response.body,
+        statusCode: response.statusCode,
+      );
+    }
+
+    try {
+      final decodedJson = jsonDecode(response.body) as DataMap;
+      final hotelsList = decodedJson['hotels']! as List<dynamic>;
+      return hotelsList
+          .map((json) => HotelModel.fromMap(json as DataMap))
           .toList();
-    } on ApiException {
-      rethrow;
     } catch (e) {
-      throw ApiException(message: e.toString(), statusCode: 505);
+      throw ApiException(message: 'Error parsing hotels: $e', statusCode: 500);
     }
   }
 }
