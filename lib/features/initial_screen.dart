@@ -35,48 +35,48 @@ class InitialScreen extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: AppIcon(
-                assetPath: SvgIcons.overview,
+                assetPath: SvgIcon.overview,
                 color: theme.colorScheme.tertiary,
               ),
               activeIcon: AppIcon(
                 iconSize: Consts.acticveNavIconSize,
-                assetPath: SvgIcons.overview,
+                assetPath: SvgIcon.overview,
                 color: theme.colorScheme.primary,
               ),
               label: appLocalizations?.overview ?? FallBackString.overview,
             ),
             BottomNavigationBarItem(
               icon: AppIcon(
-                assetPath: SvgIcons.hotel,
+                assetPath: SvgIcon.hotel,
                 color: theme.colorScheme.tertiary,
               ),
               activeIcon: AppIcon(
                 iconSize: Consts.acticveNavIconSize,
-                assetPath: SvgIcons.hotel,
+                assetPath: SvgIcon.hotel,
                 color: theme.colorScheme.primary,
               ),
               label: appLocalizations?.hotels ?? FallBackString.hotels,
             ),
             BottomNavigationBarItem(
               icon: AppIcon(
-                assetPath: SvgIcons.favorite,
+                assetPath: SvgIcon.favorite,
                 color: theme.colorScheme.tertiary,
               ),
               activeIcon: AppIcon(
                 iconSize: Consts.acticveNavIconSize,
-                assetPath: SvgIcons.favorite,
+                assetPath: SvgIcon.favorite,
                 color: theme.colorScheme.primary,
               ),
               label: appLocalizations?.favorites ?? FallBackString.favorites,
             ),
             BottomNavigationBarItem(
               icon: AppIcon(
-                assetPath: SvgIcons.account,
+                assetPath: SvgIcon.account,
                 color: theme.colorScheme.tertiary,
               ),
               activeIcon: AppIcon(
                 iconSize: Consts.acticveNavIconSize,
-                assetPath: SvgIcons.account,
+                assetPath: SvgIcon.account,
                 color: theme.colorScheme.primary,
               ),
               label: appLocalizations?.account ?? FallBackString.account,

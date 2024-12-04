@@ -6,6 +6,26 @@ ThemeData getLightTheme() {
 }
 
 ThemeData _theme(ColorScheme colorScheme) {
+  final textTheme = TextTheme(
+    // hotel names
+    headlineLarge: TextStyle(
+      fontSize: AppFontSize.xLarge,
+      fontWeight: AppFontWeight.bold,
+      color: colorScheme.onSurface,
+    ),
+    // nav bar
+    headlineMedium: TextStyle(
+      fontSize: AppFontSize.large,
+      fontWeight: AppFontWeight.bold,
+      color: colorScheme.onPrimary,
+    ),
+    // bottom nav
+    labelSmall: TextStyle(
+      fontSize: AppFontSize.small,
+      fontWeight: AppFontWeight.medium,
+      color: colorScheme.tertiary,
+    ),
+  );
   final themeData = ThemeData(
     fontFamily: AppFont.fontFamily,
     primaryColor: colorScheme.primary,
@@ -15,13 +35,7 @@ ThemeData _theme(ColorScheme colorScheme) {
     colorScheme: colorScheme,
     brightness: colorScheme.brightness,
 
-    textTheme: TextTheme(
-      labelSmall: TextStyle(
-        fontSize: AppFontSize.large,
-        fontWeight: AppFontWeight.medium,
-        color: colorScheme.tertiary,
-      ),
-    ),
+    textTheme: textTheme,
     iconTheme: IconThemeData(
       color: colorScheme.onSurface,
     ),
@@ -31,33 +45,18 @@ ThemeData _theme(ColorScheme colorScheme) {
       centerTitle: true,
       color: colorScheme.primary,
       elevation: 0,
-      titleTextStyle: TextStyle(
-        fontSize: AppFontSize.xLarge,
-        fontWeight: AppFontWeight.bold,
-        color: colorScheme.onPrimary,
-      ),
+      titleTextStyle: textTheme.headlineMedium,
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedLabelStyle: const TextStyle(
-        fontSize: AppFontSize.small,
+      selectedLabelStyle: textTheme.labelSmall?.copyWith(
+        color: colorScheme.primary,
       ),
       selectedItemColor: colorScheme.primary,
       showUnselectedLabels: true,
       unselectedItemColor: colorScheme.tertiary,
-      unselectedLabelStyle: const TextStyle(
-        fontSize: AppFontSize.small,
-      ),
+      unselectedLabelStyle: textTheme.labelSmall,
     ),
-
-    // BottomNavigationBar Theme
-    // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    //   elevation: Consts.bottomNavBarElevation,
-    //   selectedLabelStyle:
-    //       TextStyle(fontSize: AppFontSize.tiny, fontWeight: AppFontWeight.bold),
-    //   unselectedLabelStyle:
-    //       TextStyle(fontSize: AppFontSize.tiny, fontWeight: AppFontWeight.medium),
-    // ),
 
     // TextButton Theme
     // textButtonTheme: TextButtonThemeData(
@@ -109,17 +108,6 @@ ThemeData _theme(ColorScheme colorScheme) {
       endIndent: 0,
     ),
 
-    // Scrollbar Theme
-    // scrollbarTheme: ScrollbarThemeData(
-    //   thumbColor: WidgetStateProperty.all(
-    //     AppColor.grey_300,
-    //   ), // Appize the thumb color
-    //   trackColor: WidgetStateProperty.all(
-    //     AppColor.grey_100,
-    //   ), // Appize the track color
-    //   radius: const Radius.circular(Consts.radius),
-    // ),
-
     // Dialog Theme
     // dialogTheme: DialogTheme(
     //   surfaceTintColor: colorScheme.tertiary,
@@ -130,12 +118,6 @@ ThemeData _theme(ColorScheme colorScheme) {
     //   shape: const RoundedRectangleBorder(
     //     borderRadius: BorderRadius.all(Radius.circular(Consts.radius)),
     //   ),
-    // ),
-
-    // bottomSheetTheme: BottomSheetThemeData(
-    //   modalBarrierColor: Colors.transparent,
-    //   backgroundColor: AppColor.white_0,
-    //   modalBackgroundColor: Colors.transparent,
     // ),
 
     // cardTheme: CardTheme(
@@ -193,6 +175,7 @@ ColorScheme _getColorScheme(Brightness brightness) {
     error: AppColor.error,
     outline: AppColor.light_grey,
     onPrimary: AppColor.white_0,
+    onSurface: AppColor.grey,
   );
   return lightColorScheme;
 }

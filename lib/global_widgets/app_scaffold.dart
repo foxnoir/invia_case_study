@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:invia_case_study/core/theme/consts.dart';
+import 'package:invia_case_study/core/theme/theme_helpers.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -45,7 +47,27 @@ class AppScaffold extends StatelessWidget {
               )
             else if (hasError)
               SliverFillRemaining(
-                child: Center(child: Text(errorMessage)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        AppImg.sadPalm,
+                        height: getHeight(context) * .4,
+                      ),
+                      const SizedBox(height: 35),
+                      Text(
+                        errorMessage,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          color: theme.colorScheme.secondary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
               )
             else
               SliverList(

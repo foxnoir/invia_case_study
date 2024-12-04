@@ -13,6 +13,7 @@ class AppColor {
   static Color light_green = HexColor.fromHex('#85BC39');
   static Color orange = HexColor.fromHex('#FF8F16');
   static Color dark_grey = HexColor.fromHex('#595959');
+  static Color grey = HexColor.fromHex('#222222');
   static Color light_grey = HexColor.fromHex('#E9E9E9');
   static Color error = HexColor.fromHex('#E60000');
 }
@@ -29,18 +30,22 @@ class AppFontWeight {
 }
 
 class AppFontSize {
-  static const double tiny = 11;
+  // bottom nav
   static const double small = 12;
+  // hotels
   static const double medium = 14;
   static const double large = 16;
   static const double xLarge = 20;
-  static const double xxLarge = 22;
 }
 
-class SvgIcons {
+class SvgIcon {
   static const String account = 'assets/icons/account.svg';
   static const String favorite = 'assets/icons/favorite.svg';
   static const String favoriteFilled = 'assets/icons/favorite_filled.svg';
   static const String overview = 'assets/icons/overview.svg';
   static const String hotel = 'assets/icons/hotel.svg';
+}
+
+class AppImg {
+  static const String sadPalm = 'assets/img/sad_palm.png';
 }

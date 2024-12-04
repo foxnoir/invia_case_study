@@ -3,5 +3,7 @@
   "overview": "Overview",
   "hotels": "Hotels",
   "favorites": "Favorites",
-  "account": "Account"
+  "account": "Account",
+  "error": "Something went wrong. Please try again later.",
+  "noInternet": "You don't have an internet connection."
 }

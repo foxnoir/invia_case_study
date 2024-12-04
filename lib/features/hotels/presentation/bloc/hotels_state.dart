@@ -24,9 +24,10 @@ class HotelsLoaded extends HotelsState {
 }
 
 class HotelsError extends HotelsState {
-  const HotelsError({required this.message});
-  final String message;
+  const HotelsError({required this.failure});
+
+  final Failure failure;
 
   @override
-  List<Object?> get props => [message];
+  List<Object> get props => [failure];
 }

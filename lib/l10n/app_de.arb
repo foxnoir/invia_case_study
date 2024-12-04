@@ -3,5 +3,7 @@
   "overview": "Überblick",
   "hotels": "Hotels",
   "favorites": "Favoriten",
-  "account": "Account"
+  "account": "Account",
+  "error": "Es ist etwas schief gelaufen. Bitte versuch es später erneut.",
+  "noInternet": "Du hast keine Internetverbindung."
 }

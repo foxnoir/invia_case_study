@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 class ApiException extends Equatable implements Exception {
@@ -5,6 +6,19 @@ class ApiException extends Equatable implements Exception {
 
   final String message;
   final int statusCode;
+
+  @override
+  List<Object> get props => [message, statusCode];
+}
+
+class NoConnectivityException extends DioException with EquatableMixin {
+  NoConnectivityException(RequestOptions requestOptions)
+      : super(requestOptions: requestOptions, error: 'NoConnectivityException');
+
+  @override
+  String get message => 'No internet connection.';
+
+  final int statusCode = 0;
 
   @override
   List<Object> get props => [message, statusCode];
