@@ -19,7 +19,7 @@ class HotelDataSourceImpl implements HotelDataSource {
   @override
   Future<List<HotelModel>> getHotels() async {
     final response = await _client.get(
-      Uri.https('dkndmolrswy7b.cloudfront.net', '/hotels.json'),
+      Uri.https('dkndmolrswy7b.cldddddoudfront.net', '/hotels.json'),
     );
 
     if (response.statusCode != 200) {
