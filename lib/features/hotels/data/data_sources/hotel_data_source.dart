@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:invia_case_study/core/di/di.dart';
+import 'package:invia_case_study/core/log/logger.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
@@ -13,8 +14,6 @@ abstract class HotelDataSource {
 }
 
 class HotelDataSourceImpl implements HotelDataSource {
-  HotelDataSourceImpl();
-
   final http.Client _client = DI.getIt<http.Client>();
 
   @override
@@ -37,6 +36,7 @@ class HotelDataSourceImpl implements HotelDataSource {
           .map((json) => HotelModel.fromMap(json as DataMap))
           .toList();
     } catch (e) {
+      logger.i('fetching hotels failed');
       throw ApiException(message: 'Error parsing hotels: $e', statusCode: 500);
     }
   }

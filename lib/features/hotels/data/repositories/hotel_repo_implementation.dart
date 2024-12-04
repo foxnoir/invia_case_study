@@ -1,6 +1,5 @@
 // for every func in here we have a module in in the usecase folder
 import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/core/di/di.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/data/data_sources/hotel_data_source.dart';
@@ -21,10 +20,7 @@ import 'package:invia_case_study/features/network/errors/failure.dart';
 // otherwise:
 // check if when remoteDataSource throws exception, we return a failure
 
-@lazySingleton
 class HotelRepoImplementation implements HotelRepository {
-  HotelRepoImplementation();
-
   final HotelDataSource _hotelDataSource = DI.getIt<HotelDataSource>();
 
   @override
