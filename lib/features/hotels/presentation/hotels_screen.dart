@@ -13,7 +13,7 @@ class HotelsScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)?.hotels ?? ''),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         children: [
           Image.network('https://picsum.photos/200/300'),
         ],

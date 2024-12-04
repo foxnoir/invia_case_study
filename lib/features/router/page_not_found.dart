@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:invia_case_study/core/theme/theme_helpers.dart';
 
 class PageNotFound extends StatelessWidget {
-  PageNotFound({
+  const PageNotFound({
+    super.key,
     this.isTesting = false,
-  }) : super();
+  });
   final bool isTesting;
 
   static const ValueKey pageNotFoundKey = ValueKey('pageNotFoundKey');
@@ -13,7 +14,7 @@ class PageNotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text(''),
       ),
       body: Padding(
         padding: EdgeInsets.only(bottom: getHeight(context) / 6),

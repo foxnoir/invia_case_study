@@ -13,7 +13,7 @@ class FavoritesScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)?.favorites ?? ''),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         children: [
           ListTile(
             title: const Text('Setting 1'),

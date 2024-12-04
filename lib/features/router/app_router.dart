@@ -1,13 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:invia_case_study/features/account/presentaion/account_screen.dart';
-import 'package:invia_case_study/features/favorites/presentaion/favorites_screen.dart';
-import 'package:invia_case_study/features/hotels/presentaion/hotels_screen.dart';
+import 'package:injectable/injectable.dart';
+import 'package:invia_case_study/features/account/presentation/account_screen.dart';
+import 'package:invia_case_study/features/favorites/presentation/favorites_screen.dart';
+import 'package:invia_case_study/features/hotels/presentation/hotels_screen.dart';
 import 'package:invia_case_study/features/inital_screen.dart';
-import 'package:invia_case_study/features/overview/presentaion/overview_screen.dart';
+import 'package:invia_case_study/features/overview/presentation/overview_screen.dart';
 import 'package:invia_case_study/features/router/app_router_consts.dart';
 
 part 'app_router.gr.dart';
 
+@lazySingleton
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
   @override

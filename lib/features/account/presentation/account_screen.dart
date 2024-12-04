@@ -13,7 +13,7 @@ class AccountScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)?.account ?? ''),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         children: [
           ListTile(
             title: const Text('Setting 1'),

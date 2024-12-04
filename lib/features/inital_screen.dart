@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/features/router/app_router.dart';
+import 'package:invia_case_study/global_widgets/app_icon.dart';
+import 'package:invia_case_study/l10n/de_fallback.dart';
 
 @RoutePage()
 class InitialScreen extends StatelessWidget {
@@ -10,6 +14,8 @@ class InitialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+
     return AutoTabsScaffold(
       routes: const [
         OverviewRoute(),
@@ -23,20 +29,52 @@ class InitialScreen extends StatelessWidget {
           onTap: tabsRouter.setActiveIndex,
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              label: appLocalizations?.overview ?? '',
+              icon: AppIcon(
+                assetPath: SvgIcons.overview,
+                color: theme.colorScheme.tertiary,
+              ),
+              activeIcon: AppIcon(
+                iconSize: Consts.acticveNavIconSize,
+                assetPath: SvgIcons.overview,
+                color: theme.colorScheme.primary,
+              ),
+              label: appLocalizations?.overview ?? FallBackString.overview,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.hotel),
-              label: appLocalizations?.hotels ?? '',
+              icon: AppIcon(
+                assetPath: SvgIcons.hotel,
+                color: theme.colorScheme.tertiary,
+              ),
+              activeIcon: AppIcon(
+                iconSize: Consts.acticveNavIconSize,
+                assetPath: SvgIcons.hotel,
+                color: theme.colorScheme.primary,
+              ),
+              label: appLocalizations?.hotels ?? FallBackString.hotel,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.favorite),
-              label: appLocalizations?.favorites ?? '',
+              icon: AppIcon(
+                assetPath: SvgIcons.favorite,
+                color: theme.colorScheme.tertiary,
+              ),
+              activeIcon: AppIcon(
+                iconSize: Consts.acticveNavIconSize,
+                assetPath: SvgIcons.favorite,
+                color: theme.colorScheme.primary,
+              ),
+              label: appLocalizations?.favorites ?? FallBackString.favorites,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.account_circle),
-              label: appLocalizations?.account ?? '',
+              icon: AppIcon(
+                assetPath: SvgIcons.account,
+                color: theme.colorScheme.tertiary,
+              ),
+              activeIcon: AppIcon(
+                iconSize: Consts.acticveNavIconSize,
+                assetPath: SvgIcons.account,
+                color: theme.colorScheme.primary,
+              ),
+              label: appLocalizations?.account ?? FallBackString.account,
             ),
           ],
         );

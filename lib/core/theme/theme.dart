@@ -7,22 +7,24 @@ ThemeData getLightTheme() {
 
 ThemeData _theme(ColorScheme colorScheme) {
   final themeData = ThemeData(
-    fontFamily: Font.fontFamily,
+    fontFamily: AppFont.fontFamily,
     primaryColor: colorScheme.primary,
     secondaryHeaderColor: colorScheme.secondary,
-    disabledColor: Colours.dark_grey,
+    disabledColor: AppColor.dark_grey,
     scaffoldBackgroundColor: colorScheme.surface,
     colorScheme: colorScheme,
     brightness: colorScheme.brightness,
 
     textTheme: TextTheme(
       labelSmall: TextStyle(
-        fontSize: FontSize.large,
-        fontWeight: FontWeights.medium,
+        fontSize: AppFontSize.large,
+        fontWeight: AppFontWeight.medium,
         color: colorScheme.tertiary,
       ),
     ),
-    iconTheme: IconThemeData(color: colorScheme.onSurface),
+    iconTheme: IconThemeData(
+      color: colorScheme.onSurface,
+    ),
 
     // AppBar Theme
     appBarTheme: AppBarTheme(
@@ -30,29 +32,21 @@ ThemeData _theme(ColorScheme colorScheme) {
       color: colorScheme.primary,
       elevation: 0,
       titleTextStyle: TextStyle(
-        fontSize: FontSize.xLarge,
-        fontWeight: FontWeights.bold,
+        fontSize: AppFontSize.xLarge,
+        fontWeight: AppFontWeight.bold,
         color: colorScheme.onPrimary,
       ),
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(
-        color: colorScheme.primary,
-        size: 35,
+      selectedLabelStyle: const TextStyle(
+        fontSize: AppFontSize.small,
       ),
       selectedItemColor: colorScheme.primary,
-      selectedLabelStyle: const TextStyle(
-        fontSize: FontSize.small,
-      ),
-      unselectedIconTheme: IconThemeData(
-        color: colorScheme.tertiary,
-        size: 35,
-      ),
       showUnselectedLabels: true,
       unselectedItemColor: colorScheme.tertiary,
       unselectedLabelStyle: const TextStyle(
-        fontSize: FontSize.small,
+        fontSize: AppFontSize.small,
       ),
     ),
 
@@ -60,9 +54,9 @@ ThemeData _theme(ColorScheme colorScheme) {
     // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     //   elevation: Consts.bottomNavBarElevation,
     //   selectedLabelStyle:
-    //       TextStyle(fontSize: FontSize.tiny, fontWeight: FontWeights.bold),
+    //       TextStyle(fontSize: AppFontSize.tiny, fontWeight: AppFontWeight.bold),
     //   unselectedLabelStyle:
-    //       TextStyle(fontSize: FontSize.tiny, fontWeight: FontWeights.medium),
+    //       TextStyle(fontSize: AppFontSize.tiny, fontWeight: AppFontWeight.medium),
     // ),
 
     // TextButton Theme
@@ -109,7 +103,7 @@ ThemeData _theme(ColorScheme colorScheme) {
 
     // Divider Theme
     dividerTheme: DividerThemeData(
-      color: Colours.light_grey,
+      color: AppColor.light_grey,
       thickness: 1,
       indent: 0,
       endIndent: 0,
@@ -118,18 +112,18 @@ ThemeData _theme(ColorScheme colorScheme) {
     // Scrollbar Theme
     // scrollbarTheme: ScrollbarThemeData(
     //   thumbColor: WidgetStateProperty.all(
-    //     Colours.grey_300,
-    //   ), // Customize the thumb color
+    //     AppColor.grey_300,
+    //   ), // Appize the thumb color
     //   trackColor: WidgetStateProperty.all(
-    //     Colours.grey_100,
-    //   ), // Customize the track color
+    //     AppColor.grey_100,
+    //   ), // Appize the track color
     //   radius: const Radius.circular(Consts.radius),
     // ),
 
     // Dialog Theme
     // dialogTheme: DialogTheme(
     //   surfaceTintColor: colorScheme.tertiary,
-    //   shadowColor: Colours.grey_100,
+    //   shadowColor: AppColor.grey_100,
     //   titleTextStyle: Consts.dialogTitleTextStyle,
     //   contentTextStyle: Consts.dialogContentTextStyle,
     //   elevation: Consts.elevation,
@@ -140,14 +134,14 @@ ThemeData _theme(ColorScheme colorScheme) {
 
     // bottomSheetTheme: BottomSheetThemeData(
     //   modalBarrierColor: Colors.transparent,
-    //   backgroundColor: Colours.white_0,
+    //   backgroundColor: AppColor.white_0,
     //   modalBackgroundColor: Colors.transparent,
     // ),
 
     // cardTheme: CardTheme(
-    //   color: Colours.white_0,
-    //   surfaceTintColor: Colours.white_0,
-    //   shadowColor: Colours.grey_100,
+    //   color: AppColor.white_0,
+    //   surfaceTintColor: AppColor.white_0,
+    //   shadowColor: AppColor.grey_100,
     //   elevation: Consts.elevation,
     // ),
 
@@ -155,34 +149,34 @@ ThemeData _theme(ColorScheme colorScheme) {
     //   contentPadding: const EdgeInsets.all(Consts.globalContentPaddingS),
     //   fillColor: Colors.transparent,
     //   hintStyle: TextStyle(
-    //     fontWeight: FontWeights.medium,
-    //     fontSize: FontSize.medium,
-    //     color: Colours.grey_300,
+    //     fontWeight: AppFontWeight.medium,
+    //     fontSize: AppFontSize.medium,
+    //     color: AppColor.grey_300,
     //   ),
     //   labelStyle: TextStyle(
-    //     fontWeight: FontWeights.medium,
-    //     fontSize: FontSize.large,
-    //     color: Colours.magenta,
+    //     fontWeight: AppFontWeight.medium,
+    //     fontSize: AppFontSize.large,
+    //     color: AppColor.magenta,
     //   ),
     //   errorStyle: TextStyle(
-    //     fontWeight: FontWeights.medium,
-    //     fontSize: FontSize.medium,
-    //     color: Colours.red,
+    //     fontWeight: AppFontWeight.medium,
+    //     fontSize: AppFontSize.medium,
+    //     color: AppColor.red,
     //   ),
     //   enabledBorder: OutlineInputBorder(
-    //     borderSide: BorderSide(color: Colours.grey_300),
+    //     borderSide: BorderSide(color: AppColor.grey_300),
     //     borderRadius: const BorderRadius.all(Radius.circular(Consts.radius)),
     //   ),
     //   focusedBorder: OutlineInputBorder(
-    //     borderSide: BorderSide(color: Colours.magenta),
+    //     borderSide: BorderSide(color: AppColor.magenta),
     //     borderRadius: const BorderRadius.all(Radius.circular(Consts.radius)),
     //   ),
     //   errorBorder: OutlineInputBorder(
-    //     borderSide: BorderSide(color: Colours.red),
+    //     borderSide: BorderSide(color: AppColor.red),
     //     borderRadius: const BorderRadius.all(Radius.circular(Consts.radius)),
     //   ),
     //   focusedErrorBorder: OutlineInputBorder(
-    //     borderSide: BorderSide(color: Colours.magenta),
+    //     borderSide: BorderSide(color: AppColor.magenta),
     //     borderRadius: const BorderRadius.all(Radius.circular(Consts.radius)),
     //   ),
     // ),
@@ -192,13 +186,13 @@ ThemeData _theme(ColorScheme colorScheme) {
 
 ColorScheme _getColorScheme(Brightness brightness) {
   final lightColorScheme = ColorScheme.light(
-    primary: Colours.dark_blue,
-    secondary: Colours.orange,
-    tertiary: Colours.dark_grey,
-    surface: Colours.white_0,
-    error: Colours.error,
-    outline: Colours.light_grey,
-    onPrimary: Colours.white_0,
+    primary: AppColor.dark_blue,
+    secondary: AppColor.orange,
+    tertiary: AppColor.dark_grey,
+    surface: AppColor.white_0,
+    error: AppColor.error,
+    outline: AppColor.light_grey,
+    onPrimary: AppColor.white_0,
   );
   return lightColorScheme;
 }
