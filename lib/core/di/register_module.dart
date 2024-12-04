@@ -27,13 +27,13 @@ abstract class RegisterModule {
     }
   }
 
-  @LazySingleton(as: HotelDataSource)
-  HotelDataSourceImpl provideHotelDataSource() {
-    return HotelDataSourceImpl();
+  @LazySingleton(as: HotelsDataSource)
+  HotelsDataSourceImpl provideHotelsDataSource() {
+    return HotelsDataSourceImpl();
   }
 
-  @LazySingleton(as: HotelRepository)
-  HotelRepoImplementation provideHotelRepository() {
+  @LazySingleton(as: HotelsRepository)
+  HotelRepoImplementation provideHotelsRepository() {
     return HotelRepoImplementation();
   }
 }

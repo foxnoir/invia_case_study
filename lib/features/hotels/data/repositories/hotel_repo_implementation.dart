@@ -20,13 +20,13 @@ import 'package:invia_case_study/features/network/errors/failure.dart';
 // otherwise:
 // check if when remoteDataSource throws exception, we return a failure
 
-class HotelRepoImplementation implements HotelRepository {
-  final HotelDataSource _hotelDataSource = DI.getIt<HotelDataSource>();
+class HotelRepoImplementation implements HotelsRepository {
+  final HotelsDataSource _hotelsDataSource = DI.getIt<HotelsDataSource>();
 
   @override
   ResultFuture<List<Hotel>> getHotels() async {
     try {
-      final result = await _hotelDataSource.getHotels();
+      final result = await _hotelsDataSource.getHotels();
       return Right(result.map((model) => model.toEntity()).toList());
     } on ApiException catch (e) {
       return Left(ApiFailure.fromException(e));

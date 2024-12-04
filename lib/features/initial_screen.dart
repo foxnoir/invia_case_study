@@ -55,7 +55,7 @@ class InitialScreen extends StatelessWidget {
                 assetPath: SvgIcons.hotel,
                 color: theme.colorScheme.primary,
               ),
-              label: appLocalizations?.hotels ?? FallBackString.hotel,
+              label: appLocalizations?.hotels ?? FallBackString.hotels,
             ),
             BottomNavigationBarItem(
               icon: AppIcon(

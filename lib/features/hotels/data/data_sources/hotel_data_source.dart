@@ -9,17 +9,17 @@ import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 
-abstract class HotelDataSource {
+abstract class HotelsDataSource {
   Future<List<HotelModel>> getHotels();
 }
 
-class HotelDataSourceImpl implements HotelDataSource {
+class HotelsDataSourceImpl implements HotelsDataSource {
   final http.Client _client = DI.getIt<http.Client>();
 
   @override
   Future<List<HotelModel>> getHotels() async {
     final response = await _client.get(
-      Uri.https('dkndmolrswy7b.cldddddoudfront.net', '/hotels.json'),
+      Uri.https('dkndmolrswy7b.cloudfront.net', '/hotels.json'),
     );
 
     if (response.statusCode != 200) {
