@@ -4,6 +4,7 @@ import 'package:invia_case_study/features/favorites/presentaion/favorites_screen
 import 'package:invia_case_study/features/hotels/presentaion/hotels_screen.dart';
 import 'package:invia_case_study/features/inital_screen.dart';
 import 'package:invia_case_study/features/overview/presentaion/overview_screen.dart';
+import 'package:invia_case_study/features/router/app_router_consts.dart';
 
 part 'app_router.gr.dart';
 
@@ -13,23 +14,23 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           path: '/',
-          page: InitialRoute.page, // Die InitialScreen ist korrekt verknüpft
+          page: InitialRoute.page,
           initial: true,
           children: [
             AutoRoute(
-              path: 'overview',
-              page: OverviewRoute.page, // Kinder-Routen korrekt verknüpft
+              path: AppRouterPaths.overview,
+              page: OverviewRoute.page,
             ),
             AutoRoute(
-              path: 'hotels',
+              path: AppRouterPaths.hotels,
               page: HotelsRoute.page,
             ),
             AutoRoute(
-              path: 'favorites',
+              path: AppRouterPaths.favorites,
               page: FavoritesRoute.page,
             ),
             AutoRoute(
-              path: 'account',
+              path: AppRouterPaths.account,
               page: AccountRoute.page,
             ),
           ],

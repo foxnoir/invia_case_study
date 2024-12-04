@@ -37,15 +37,24 @@ ThemeData _theme(ColorScheme colorScheme) {
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedIconTheme: IconThemeData(
-          color: colorScheme.primary,
-          size: 35,
-        ),
-        selectedLabelStyle: TextStyle(
-          color: Colors.pink,
-          fontSize: FontSize.xLarge,
-        ),
-        unselectedItemColor: colorScheme.tertiary),
+      selectedIconTheme: IconThemeData(
+        color: colorScheme.primary,
+        size: 35,
+      ),
+      selectedItemColor: colorScheme.primary,
+      selectedLabelStyle: const TextStyle(
+        fontSize: FontSize.small,
+      ),
+      unselectedIconTheme: IconThemeData(
+        color: colorScheme.tertiary,
+        size: 35,
+      ),
+      showUnselectedLabels: true,
+      unselectedItemColor: colorScheme.tertiary,
+      unselectedLabelStyle: const TextStyle(
+        fontSize: FontSize.small,
+      ),
+    ),
 
     // BottomNavigationBar Theme
     // bottomNavigationBarTheme: const BottomNavigationBarThemeData(

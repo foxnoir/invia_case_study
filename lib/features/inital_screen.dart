@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:invia_case_study/features/router/app_router.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/features/router/app_router.dart';
 
 @RoutePage()
@@ -11,6 +9,7 @@ class InitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context);
     return AutoTabsScaffold(
       routes: const [
         OverviewRoute(),
@@ -22,22 +21,22 @@ class InitialScreen extends StatelessWidget {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Overview',
+              icon: const Icon(Icons.home),
+              label: appLocalizations?.overview ?? '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.hotel),
-              label: 'Hotels',
+              icon: const Icon(Icons.hotel),
+              label: appLocalizations?.hotels ?? '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favorites',
+              icon: const Icon(Icons.favorite),
+              label: appLocalizations?.favorites ?? '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: 'Account',
+              icon: const Icon(Icons.account_circle),
+              label: appLocalizations?.account ?? '',
             ),
           ],
         );

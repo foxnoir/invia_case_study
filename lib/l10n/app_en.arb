@@ -1,5 +1,7 @@
 {
   "@@locale": "en",
-  "hello": "Hello!",
-  "welcome": "Welcome to our app!"
+  "overview": "Overview",
+  "hotels": "Hotels",
+  "favorites": "Favorites",
+  "account": "Account"
 }
