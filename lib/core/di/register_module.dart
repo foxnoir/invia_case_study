@@ -1,32 +1,39 @@
-// import 'dart:async';
-// import 'dart:io';
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-// import 'package:injectable/injectable.dart';
-// import 'package:juwelo/features/storages/drift_local_database/database_native.dart';
-// import 'package:juwelo/features/storages/drift_local_database/local_database.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 
-// // Module used for register third party dependencies.
-// // Used to inject [SharedPreferences], [SecureStorage] and [LocalDataBase] into our app.
-// // preResolve: to pre-await the future and register it's resolved value
-// @module
-// abstract class RegisterfModule {
-//   @preResolve
-//   @lazySingleton
-//   Future<SharedPreferences> get sharedPreferences =>
-//       SharedPreferences.getInstance();
+import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
+import 'package:invia_case_study/features/hotels/data/data_sources/hotel_data_source.dart';
+import 'package:invia_case_study/features/hotels/data/repositories/hotel_repo_implementation.dart';
+import 'package:invia_case_study/features/hotels/domain/repositories/hotel_repository.dart';
+import 'package:invia_case_study/features/storage/local_database.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-//   // Register flutter_secure_storage with GetIt
-//   @lazySingleton
-//   FlutterSecureStorage get secureStorage => const FlutterSecureStorage();
+@module
+abstract class RegisterModule {
+  @preResolve
+  Future<SharedPreferences> get sharedPreferences =>
+      SharedPreferences.getInstance();
 
-//   // Register the LocalDatabase with GetIt
-//   @LazySingleton(dispose: disposeDatabase)
-//   LocalDatabase appDb() => Platform.environment.containsKey('FLUTTER_TEST')
-//       ? constructTestDb()
-//       : constructDb();
-// }
+  @lazySingleton
+  http.Client get httpClient => http.Client();
 
-// FutureOr disposeDatabase(LocalDatabase instance) async {
-//   await instance.close();
-// }
+  @LazySingleton(dispose: disposeDatabase)
+  LocalDatabase appDb() {
+    const isTest = bool.fromEnvironment('FLUTTER_TEST');
+    if (isTest) {
+      return constructTestDb();
+    } else {
+      return constructProdDb();
+    }
+  }
+
+  @LazySingleton(as: HotelDataSource)
+  HotelDataSourceImpl provideHotelDataSource() {
+    return HotelDataSourceImpl();
+  }
+
+  @LazySingleton(as: HotelRepository)
+  HotelRepoImplementation provideHotelRepository() {
+    return HotelRepoImplementation();
+  }
+}
