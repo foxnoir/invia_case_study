@@ -17,6 +17,7 @@ class Favorite extends Equatable {
     required this.categoryType,
     required this.favoriteId,
     this.images = const [],
+    this.isFavorite = true,
   });
 
   final String id;
@@ -32,6 +33,7 @@ class Favorite extends Equatable {
   final List<String> badges;
   final String categoryType;
   final String favoriteId;
+  final bool isFavorite;
 
   @override
   List<Object?> get props => [
@@ -48,6 +50,7 @@ class Favorite extends Equatable {
         badges,
         categoryType,
         favoriteId,
+        isFavorite,
       ];
 }
 

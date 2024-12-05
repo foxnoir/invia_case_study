@@ -6,6 +6,8 @@
   "account": "Account",
   "error": "Es ist etwas schief gelaufen. Bitte versuch es später erneut.",
   "noInternet": "Du hast keine Internetverbindung.",
-  "toTheOffers": "Zu den Angeboten",
-  "hotelFor": "Hotels für"
+  "toOffers": "Zu den Angeboten",
+  "hotelFor": "Hotels für",
+  "toHotel": "Zum Hotel",
+  "noFavorites": "Du hast noch keine Favoriten."
 }

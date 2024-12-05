@@ -32,4 +32,15 @@ class HotelRepoImpl implements HotelsRepository {
       return Left(DatabaseFailure(message: 'Failed to add favorite hotel: $e'));
     }
   }
+
+  @override
+  ResultSync<List<String>> getFavoriteHotelIds() {
+    try {
+      return Right(_localDatabase.getAllFavoriteHotelIds());
+    } on ApiException catch (e) {
+      return Left(
+        DatabaseFailure(message: 'Failed to add fetch hotel ids: $e'),
+      );
+    }
+  }
 }

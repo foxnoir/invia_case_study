@@ -53,5 +53,6 @@ class SvgIcon {
 
 class AppImg {
   static const String sadPalm = 'assets/img/sad_palm.png';
-  static const String placeHolder = 'assets/img/placeholder.png';
+  static const String placeholder = 'assets/img/placeholder.png';
+  static const String noFavorites = 'assets/img/no_favorites.png';
 }

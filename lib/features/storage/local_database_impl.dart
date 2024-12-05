@@ -94,7 +94,7 @@ class LocalDatabaseImpl implements LocalDatabase {
   }
 
   @override
-  Future<void> deleteFavoriteHotelById({required String id}) async {
+  Future<void> removeFavoriteHotelById({required String id}) async {
     try {
       final hotelKey = _favoriteHotelBox.keys.firstWhere(
         (key) => _favoriteHotelBox.get(key)?.id == id,
@@ -114,8 +114,13 @@ class LocalDatabaseImpl implements LocalDatabase {
   }
 
   @override
-  List<FavoriteHotel> getllFavoriteHotels() {
+  List<FavoriteHotel> getallFavoriteHotels() {
     return _favoriteHotelBox.values.toList();
+  }
+
+  @override
+  List<String> getAllFavoriteHotelIds() {
+    return _favoriteHotelBox.values.map((hotel) => hotel.id).toList();
   }
 
   @override

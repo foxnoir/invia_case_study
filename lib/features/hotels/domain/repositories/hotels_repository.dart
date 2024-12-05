@@ -9,4 +9,6 @@ abstract class HotelsRepository {
   ResultFuture<List<Hotel>> getHotels();
 
   ResultFuture<void> addFavoriteHotel({required Hotel hotel});
+
+  ResultSync<List<String>> getFavoriteHotelIds();
 }

@@ -20,6 +20,7 @@ class AppBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     ScreenSize.init(context);
+
     return Stack(
       children: [
         Align(

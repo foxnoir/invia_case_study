@@ -55,7 +55,7 @@ class HotelsView extends StatelessWidget {
               : FallBackString.error,
           hotelList: hasLoaded ? state.hotels : [],
           onRefresh: () => _handleRefresh(context),
-          buttonText: localizations?.toTheOffers ?? FallBackString.toTheOffers,
+          buttonText: localizations?.toOffers ?? FallBackString.toOffers,
           location: hasLoaded ? state.location : '',
         );
       },

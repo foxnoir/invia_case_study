@@ -12,9 +12,11 @@ abstract class LocalDatabase {
 
   Future<void> flush();
 
-  List<FavoriteHotel> getllFavoriteHotels();
+  List<FavoriteHotel> getallFavoriteHotels();
 
-  Future<void> deleteFavoriteHotelById({required String id});
+  List<String> getAllFavoriteHotelIds();
+
+  Future<void> removeFavoriteHotelById({required String id});
 
   Future<void> addFavoriteHotel({
     required FavoriteHotel favoriteHotel,

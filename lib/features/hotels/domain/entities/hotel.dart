@@ -17,6 +17,7 @@ class Hotel extends Equatable {
     required this.categoryType,
     required this.hotelId,
     this.images = const [],
+    this.isFavorite = false,
   });
 
   final String id;
@@ -32,6 +33,7 @@ class Hotel extends Equatable {
   final List<String> badges;
   final String categoryType;
   final String hotelId;
+  final bool isFavorite;
 
   @override
   List<Object?> get props => [
@@ -48,6 +50,7 @@ class Hotel extends Equatable {
         badges,
         categoryType,
         hotelId,
+        isFavorite,
       ];
 }
 

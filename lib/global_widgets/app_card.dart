@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invia_case_study/core/log/logger.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_icon.dart';
 
 class AppCard extends StatelessWidget {
@@ -10,6 +11,7 @@ class AppCard extends StatelessWidget {
     required this.buttonText,
     required this.onButtonPressed,
     required this.onFavoritePressed,
+    required this.hotel,
     super.key,
   });
 
@@ -18,6 +20,7 @@ class AppCard extends StatelessWidget {
   final String buttonText;
   final VoidCallback onButtonPressed;
   final VoidCallback onFavoritePressed;
+  final Hotel hotel;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +38,13 @@ class AppCard extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 16 / 9,
                 child: Image.network(
-                  imgUrl.isNotEmpty ? imgUrl : AppImg.placeHolder,
+                  imgUrl.isNotEmpty ? imgUrl : AppImg.placeholder,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     logger.i(error.toString());
                     return const Image(
-                      fit: BoxFit.cover,
-                      image: AssetImage(AppImg.placeHolder),
+                      fit: BoxFit.fitHeight,
+                      image: AssetImage(AppImg.placeholder),
                     );
                   },
                 ),
@@ -65,7 +68,9 @@ class AppCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(2),
                         child: AppIcon(
-                          assetPath: SvgIcon.favorite,
+                          assetPath: hotel.isFavorite
+                              ? SvgIcon.favoriteFilled
+                              : SvgIcon.favorite,
                           color: theme.colorScheme.tertiary,
                         ),
                       ),

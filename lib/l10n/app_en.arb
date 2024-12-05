@@ -6,6 +6,8 @@
   "account": "Account",
   "error": "Something went wrong. Please try again later.",
   "noInternet": "You don't have an internet connection.",
-  "toTheOffers": "To the offers",
-  "hotelFor": "Hotels for"
+  "toOffers": "To Offers",
+  "hotelFor": "Hotels for",
+  "toHotel": "To Hotel",
+  "noFavorites": "You don't have any favorites yet."
 }

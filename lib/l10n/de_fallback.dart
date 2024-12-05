@@ -6,6 +6,8 @@ class FallBackString {
   static const String error =
       'Es ist etwas schief gelaufen. Bitte versuch es später erneut.';
   static const String noInternet = 'Du hast keine Internetverbindung.';
-  static const String toTheOffers = 'Zu den Angeboten';
+  static const String toOffers = 'Zu den Angeboten';
   static const String hotelsFor = 'Hotels für';
+  static const String toHotel = 'Zum Hotel';
+  static const String noFavorites = 'Du hast noch keine Favoriten,';
 }

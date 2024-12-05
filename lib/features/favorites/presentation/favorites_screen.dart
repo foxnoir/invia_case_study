@@ -55,7 +55,7 @@ class FavoritesView extends StatelessWidget {
               : FallBackString.error,
           hotelList: hasLoaded ? state.favorites : [],
           onRefresh: () => _handleRefresh(context),
-          buttonText: localizations?.toTheOffers ?? FallBackString.toTheOffers,
+          buttonText: localizations?.toOffers ?? FallBackString.toOffers,
         );
       },
     );

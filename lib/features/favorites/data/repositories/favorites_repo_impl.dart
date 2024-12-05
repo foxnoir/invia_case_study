@@ -28,7 +28,7 @@ class FavoriteRepoImpl implements FavoritesRepository {
   @override
   ResultSync<List<Hotel>> getFavorites() {
     try {
-      final result = _localDatabase.getllFavoriteHotels();
+      final result = _localDatabase.getallFavoriteHotels();
       return Right(result.map((model) => model.toHotel()).toList());
     } on ApiException catch (e) {
       return Left(DatabaseFailure(message: 'Failed to add fetch hotel: $e'));
