@@ -5,7 +5,7 @@ import 'package:invia_case_study/features/favorites/presentation/favorites_scree
 import 'package:invia_case_study/features/hotels/presentation/hotels_screen.dart';
 import 'package:invia_case_study/features/initial_screen.dart';
 import 'package:invia_case_study/features/overview/presentation/overview_screen.dart';
-import 'package:invia_case_study/features/router/app_router_consts.dart';
+import 'package:invia_case_study/features/router/app_router_paths.dart';
 
 part 'app_router.gr.dart';
 

@@ -53,6 +53,7 @@ class SvgIcon {
   static const String hotel = 'assets/icons/hotel.svg';
   static const String help = 'assets/icons/help.svg';
   static const String star = 'assets/icons/star.svg';
+  static const String smile = 'assets/icons/smile.svg';
 }
 
 class AppImg {

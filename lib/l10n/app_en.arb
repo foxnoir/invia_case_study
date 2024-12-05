@@ -10,5 +10,11 @@
   "hotelFor": "Hotels for",
   "toHotel": "To Hotel",
   "noFavorites": "You don't have any favorites yet.",
-  "editAccount": "Edit Account"
+  "editAccount": "Edit Account",
+  "rating": "Rat.",
+  "ratingHighlySatisfied": "Outstanding",
+  "ratingVerySatisfied": "Very good",
+  "ratingSatisfied": "Good",
+  "ratingDissatisfied": "Dissatisfied",
+  "ratingVeryDissatisfied": "Very dissatisfied"
 }

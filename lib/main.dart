@@ -44,6 +44,7 @@ class InviaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenSize.init(context);
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(

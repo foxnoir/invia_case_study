@@ -41,6 +41,12 @@ ThemeData _theme(ColorScheme colorScheme) {
       fontWeight: AppFontWeight.medium,
       color: colorScheme.tertiary,
     ),
+    // small card Text
+    bodySmall: TextStyle(
+      fontSize: AppFontSize.s12,
+      fontWeight: AppFontWeight.medium,
+      color: colorScheme.tertiary,
+    ),
   );
   final themeData = ThemeData(
     fontFamily: AppFont.fontFamily,

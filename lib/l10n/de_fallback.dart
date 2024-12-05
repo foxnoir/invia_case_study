@@ -9,6 +9,12 @@ class FallBackString {
   static const String toOffers = 'Zu den Angeboten';
   static const String hotelsFor = 'Hotels für';
   static const String toHotel = 'Zum Hotel';
-  static const String noFavorites = 'Du hast noch keine Favoriten,';
+  static const String noFavorites = 'Du hast noch keine Favoriten.';
   static const String editAccount = 'Account bearbeiten';
+  static const String rating = 'Bew.';
+  static const String ratingHighlySatisfied = 'Hervorragend';
+  static const String ratingVerySatisfied = 'Sehr gut';
+  static const String ratingSatisfied = 'Gut';
+  static const String ratingDissatisfied = 'Unzufrieden';
+  static const String ratingVeryDissatisfied = 'Sehr unzufrieden';
 }

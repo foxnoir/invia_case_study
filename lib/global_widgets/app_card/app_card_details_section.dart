@@ -23,7 +23,7 @@ class AppCardDetailsSection extends StatelessWidget {
           Row(
             children: [
               StarRating(
-                rating: hotel.ratingInfo.score,
+                category: hotel.category,
               ),
               const SizedBox(
                 width: 8,
@@ -61,17 +61,17 @@ class AppCardDetailsSection extends StatelessWidget {
 
 class StarRating extends StatelessWidget {
   const StarRating({
-    required this.rating,
+    required this.category,
     super.key,
   });
-  final double rating;
+  final int category;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(5, (index) {
-        final starValue = rating - index;
+        final starValue = category - index;
         Color starColor;
 
         if (starValue >= 1) {

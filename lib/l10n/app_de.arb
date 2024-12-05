@@ -10,5 +10,11 @@
   "hotelFor": "Hotels für",
   "toHotel": "Zum Hotel",
   "noFavorites": "Du hast noch keine Favoriten.",
-  "editAccount": "Account bearbeiten"
+  "editAccount": "Account bearbeiten",
+  "rating": "Bew.",
+  "ratingHighlySatisfied": "Hervorragend",
+  "ratingVerySatisfied": "Sehr gut",
+  "ratingSatisfied": "Gut",
+  "ratingDissatisfied": "Unzufrieden",
+  "ratingVeryDissatisfied": "Sehr unzufrieden"
 }
