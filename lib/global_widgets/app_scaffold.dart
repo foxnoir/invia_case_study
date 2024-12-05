@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/core/theme/theme_helpers.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/global_widgets/app_card.dart';
+import 'package:invia_case_study/l10n/de_fallback.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
@@ -12,6 +15,8 @@ class AppScaffold extends StatelessWidget {
     required this.hotels,
     required this.errorMessage,
     required this.onRefresh,
+    required this.buttonText,
+    required this.location,
     super.key,
   });
 
@@ -22,10 +27,13 @@ class AppScaffold extends StatelessWidget {
   final List<Hotel> hotels;
   final String errorMessage;
   final Future<void> Function() onRefresh;
+  final String buttonText;
+  final String location;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: onRefresh,
@@ -70,22 +78,82 @@ class AppScaffold extends StatelessWidget {
                 ),
               )
             else
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final hotel = hotels[index];
-                    return ListTile(
-                      title: Text(hotel.name),
-                      subtitle: Text(hotel.destination),
-                      leading: const Icon(Icons.hotel),
-                      onTap: () {},
-                    );
-                  },
-                  childCount: hotels.length,
-                ),
+              AppSliverList(
+                buttonText: buttonText,
+                hotels: hotels,
+                location: location,
               ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AppSliverList extends StatelessWidget {
+  const AppSliverList({
+    required this.hotels,
+    required this.buttonText,
+    required this.location,
+    super.key,
+  });
+
+  final List<Hotel> hotels;
+  final String buttonText;
+  final String location;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final localizations = AppLocalizations.of(context);
+    final hotelsFor = localizations?.hotelFor ?? FallBackString.hotelsFor;
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+      sliver: SliverList(
+        delegate: SliverChildListDelegate([
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+            ),
+            child: Text(
+              '${hotels.length} $hotelsFor $location',
+              style: theme.textTheme.headlineMedium,
+            ),
+          ),
+          ...hotels.map((hotel) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: AppCard(
+                imgUrl: hotel.images.isNotEmpty ? hotel.images.first.large : '',
+                onButtonPressed: () {},
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      hotel.destination,
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '${hotel.bestOffer.travelDate.days} Tage | ${hotel.bestOffer.travelDate.nights} Nächte',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.secondary,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'ab ${hotel.bestOffer.total / 100} €',
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                buttonText: buttonText,
+              ),
+            );
+          }),
+        ]),
       ),
     );
   }

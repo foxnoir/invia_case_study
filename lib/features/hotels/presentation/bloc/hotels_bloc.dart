@@ -23,7 +23,15 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     final result = await hotelsRepository.getHotels();
     result.fold(
       (failure) => emit(HotelsError(failure: failure)),
-      (hotels) => emit(HotelsLoaded(hotels: hotels)),
+      (hotels) {
+        final location = _filterLocation(hotels.first.destination);
+        emit(HotelsLoaded(hotels: hotels, location: location));
+      },
     );
+  }
+
+  String _filterLocation(String location) {
+    final parts = location.split(',');
+    return parts.length > 1 ? parts[1].trim() : '';
   }
 }

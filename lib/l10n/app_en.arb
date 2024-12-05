@@ -5,5 +5,7 @@
   "favorites": "Favorites",
   "account": "Account",
   "error": "Something went wrong. Please try again later.",
-  "noInternet": "You don't have an internet connection."
+  "noInternet": "You don't have an internet connection.",
+  "toTheOffers": "To the offers",
+  "hotelFor": "Hotels for"
 }

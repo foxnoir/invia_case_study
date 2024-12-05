@@ -20,7 +20,7 @@ class HotelsDataSourceImpl implements HotelsDataSource {
   Future<List<HotelModel>> getHotels() async {
     try {
       final response = await _httpClient.dioClient.get<Map<String, dynamic>>(
-        ApiEndpoints.hotels,
+        ApiEndpoints.baseURL + ApiEndpoints.hotels,
         options: Options(
           responseType: ResponseType.json,
         ),

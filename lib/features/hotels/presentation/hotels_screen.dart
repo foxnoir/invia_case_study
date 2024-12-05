@@ -23,19 +23,20 @@ class HotelsScreen extends StatelessWidget {
 class HotelsView extends StatelessWidget {
   const HotelsView({super.key});
 
-  Future<void> _handleRefresh(BuildContext context) async {
+  Future<void> _handleRefresh({required BuildContext context}) async {
     context.read<HotelsBloc>().add(const FetchHotelsEvent());
   }
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
     return BlocBuilder<HotelsBloc, HotelsState>(
       builder: (context, state) {
         final hasError = state is HotelsError;
         final hasLoaded = state is HotelsLoaded;
 
         return AppScaffold(
-          title: AppLocalizations.of(context)?.hotels ?? FallBackString.hotels,
+          title: localizations?.hotels ?? FallBackString.hotels,
           isLoading: state is HotelsLoading,
           isLoaded: state is HotelsLoaded,
           hasError: hasError,
@@ -43,7 +44,9 @@ class HotelsView extends StatelessWidget {
               ? _handleErrorMessage(state.failure, context)
               : FallBackString.error,
           hotels: hasLoaded ? state.hotels : [],
-          onRefresh: () => _handleRefresh(context),
+          onRefresh: () => _handleRefresh(context: context),
+          buttonText: localizations?.toTheOffers ?? FallBackString.toTheOffers,
+          location: hasLoaded ? state.location : '',
         );
       },
     );

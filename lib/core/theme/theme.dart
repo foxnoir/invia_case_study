@@ -7,23 +7,34 @@ ThemeData getLightTheme() {
 
 ThemeData _theme(ColorScheme colorScheme) {
   final textTheme = TextTheme(
-    // hotel names
     headlineLarge: TextStyle(
       fontSize: AppFontSize.xLarge,
       fontWeight: AppFontWeight.bold,
       color: colorScheme.onSurface,
     ),
-    // nav bar
+    // hotel count
     headlineMedium: TextStyle(
-      fontSize: AppFontSize.large,
+      fontSize: AppFontSize.s19,
+      fontWeight: AppFontWeight.bold,
+      color: AppColor.grey,
+    ),
+    // app bar
+    headlineSmall: TextStyle(
+      fontSize: AppFontSize.s17,
       fontWeight: AppFontWeight.bold,
       color: colorScheme.onPrimary,
     ),
     // bottom nav
     labelSmall: TextStyle(
-      fontSize: AppFontSize.small,
+      fontSize: AppFontSize.s12,
       fontWeight: AppFontWeight.medium,
       color: colorScheme.tertiary,
+    ),
+    // buttons
+    labelMedium: TextStyle(
+      fontSize: AppFontSize.s16,
+      fontWeight: AppFontWeight.bold,
+      color: colorScheme.onPrimary,
     ),
   );
   final themeData = ThemeData(
@@ -34,7 +45,6 @@ ThemeData _theme(ColorScheme colorScheme) {
     scaffoldBackgroundColor: colorScheme.surface,
     colorScheme: colorScheme,
     brightness: colorScheme.brightness,
-
     textTheme: textTheme,
     iconTheme: IconThemeData(
       color: colorScheme.onSurface,
@@ -45,9 +55,8 @@ ThemeData _theme(ColorScheme colorScheme) {
       centerTitle: true,
       color: colorScheme.primary,
       elevation: 0,
-      titleTextStyle: textTheme.headlineMedium,
+      titleTextStyle: textTheme.headlineSmall,
     ),
-
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedLabelStyle: textTheme.labelSmall?.copyWith(
         color: colorScheme.primary,
@@ -120,12 +129,27 @@ ThemeData _theme(ColorScheme colorScheme) {
     //   ),
     // ),
 
-    // cardTheme: CardTheme(
-    //   color: AppColor.white_0,
-    //   surfaceTintColor: AppColor.white_0,
-    //   shadowColor: AppColor.grey_100,
-    //   elevation: Consts.elevation,
-    // ),
+    cardTheme: CardTheme(
+      color: colorScheme.surface,
+      surfaceTintColor: colorScheme.surface,
+      shadowColor: colorScheme.shadow,
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: colorScheme.secondary,
+        foregroundColor: colorScheme.surface,
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        textStyle: textTheme.labelMedium,
+      ),
+    ),
 
     // inputDecorationTheme: InputDecorationTheme(
     //   contentPadding: const EdgeInsets.all(Consts.globalContentPaddingS),

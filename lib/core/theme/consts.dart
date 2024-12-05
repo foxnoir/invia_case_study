@@ -31,11 +31,14 @@ class AppFontWeight {
 
 class AppFontSize {
   // bottom nav
-  static const double small = 12;
+  static const double s12 = 12;
+  // button
+  static const double s16 = 16;
   // hotels
-  static const double medium = 14;
-  static const double large = 16;
-  static const double xLarge = 20;
+  static const double s17 = 17;
+  // hotel count
+  static const double s19 = 19;
+  static const double xLarge = 21;
 }
 
 class SvgIcon {
@@ -48,4 +51,5 @@ class SvgIcon {
 
 class AppImg {
   static const String sadPalm = 'assets/img/sad_palm.png';
+  static const String placeHolder = 'assets/img/placeholder.png';
 }

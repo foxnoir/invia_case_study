@@ -16,11 +16,13 @@ class HotelsLoading extends HotelsState {
 }
 
 class HotelsLoaded extends HotelsState {
-  const HotelsLoaded({required this.hotels});
+  const HotelsLoaded({required this.hotels, required this.location});
+
   final List<Hotel> hotels;
+  final String location;
 
   @override
-  List<Object?> get props => [hotels];
+  List<Object?> get props => [hotels, location];
 }
 
 class HotelsError extends HotelsState {
