@@ -1,5 +1,6 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:equatable/equatable.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/storage/hive_models/favorite_hotel.dart';
 
 class Favorite extends Equatable {
   const Favorite({
@@ -25,9 +26,9 @@ class Favorite extends Equatable {
   final int category;
   final String destination;
   final List<FavoriteImage> images;
-  final BestOffer bestOffer;
-  final RatingInfo ratingInfo;
-  final Analytics analytics;
+  final FavoriteBestOffer bestOffer;
+  final FavoriteRatingInfo ratingInfo;
+  final FavoriteAnalytics analytics;
   final List<String> badges;
   final String categoryType;
   final String favoriteId;
@@ -50,10 +51,8 @@ class Favorite extends Equatable {
       ];
 }
 
-// Submodels like Analytics, BestOffer, etc. follow the same structure.
-
-class Analytics extends Equatable {
-  const Analytics({
+class FavoriteAnalytics extends Equatable {
+  const FavoriteAnalytics({
     required this.currency,
     required this.itemCategory,
     required this.itemCategory2,
@@ -65,7 +64,7 @@ class Analytics extends Equatable {
     required this.quantity,
   });
 
-  const Analytics.empty()
+  const FavoriteAnalytics.empty()
       : this(
           currency: '',
           itemCategory: '',
@@ -100,14 +99,6 @@ class Analytics extends Equatable {
         price,
         quantity,
       ];
-
-  @override
-  String toString() {
-    return 'Analytics{currency: $currency, itemCategory: $itemCategory, '
-        'itemCategory2: $itemCategory2, itemId: $itemId, '
-        'itemListName: $itemListName, itemName: $itemName, itemRooms: $itemRooms, '
-        'price: $price, quantity: $quantity}';
-  }
 }
 
 class FavoriteImage extends Equatable {
@@ -127,33 +118,28 @@ class FavoriteImage extends Equatable {
 
   @override
   List<Object?> get props => [large, small];
-
-  @override
-  String toString() {
-    return 'FavoriteImage{large: $large, small: $small}';
-  }
 }
 
-class BestOffer extends Equatable {
-  const BestOffer({
+class FavoriteBestOffer extends Equatable {
+  const FavoriteBestOffer({
     required this.total,
     required this.travelPrice,
     required this.flightIncluded,
     required this.travelDate,
   });
 
-  const BestOffer.empty()
+  const FavoriteBestOffer.empty()
       : this(
           total: 0,
           travelPrice: 0,
           flightIncluded: false,
-          travelDate: const TravelDate.empty(),
+          travelDate: const FavoriteTravelDate.empty(),
         );
 
   final int total;
   final int travelPrice;
   final bool flightIncluded;
-  final TravelDate travelDate;
+  final FavoriteTravelDate travelDate;
 
   @override
   List<Object?> get props => [
@@ -162,23 +148,17 @@ class BestOffer extends Equatable {
         flightIncluded,
         travelDate,
       ];
-
-  @override
-  String toString() {
-    return 'BestOffer{total: $total, travelPrice: $travelPrice, '
-        'flightIncluded: $flightIncluded, travelDate: $travelDate}';
-  }
 }
 
-class TravelDate extends Equatable {
-  const TravelDate({
+class FavoriteTravelDate extends Equatable {
+  const FavoriteTravelDate({
     required this.days,
     required this.departureDate,
     required this.nights,
     required this.returnDate,
   });
 
-  const TravelDate.empty()
+  const FavoriteTravelDate.empty()
       : this(
           days: 0,
           departureDate: '',
@@ -198,22 +178,16 @@ class TravelDate extends Equatable {
         nights,
         returnDate,
       ];
-
-  @override
-  String toString() {
-    return 'TravelDate{days: $days, departureDate: $departureDate, '
-        'nights: $nights, returnDate: $returnDate}';
-  }
 }
 
-class RatingInfo extends Equatable {
-  const RatingInfo({
+class FavoriteRatingInfo extends Equatable {
+  const FavoriteRatingInfo({
     required this.score,
     required this.scoreDescription,
     required this.reviewsCount,
   });
 
-  const RatingInfo.empty()
+  const FavoriteRatingInfo.empty()
       : this(
           score: 0,
           scoreDescription: '',
@@ -226,10 +200,120 @@ class RatingInfo extends Equatable {
 
   @override
   List<Object?> get props => [score, scoreDescription, reviewsCount];
+}
 
-  @override
-  String toString() {
-    return 'RatingInfo{score: $score, scoreDescription: $scoreDescription, '
-        'reviewsCount: $reviewsCount}';
+extension FavoriteExtension on Favorite {
+  Hotel toHotel() {
+    return Hotel(
+      id: id,
+      name: name,
+      latitude: latitude,
+      longitude: longitude,
+      category: category,
+      destination: destination,
+      images: images
+          .map((img) => HotelImage(large: img.large, small: img.small))
+          .toList(),
+      bestOffer: bestOffer.toHotelBestOffer(),
+      ratingInfo: ratingInfo.toHotelRatingInfo(),
+      badges: badges,
+      categoryType: categoryType,
+      hotelId: favoriteId,
+      analytics: analytics.toHotelAnalytics(),
+    );
+  }
+}
+
+extension FavoriteBestOfferExtension on FavoriteBestOffer {
+  BestOffer toHotelBestOffer() {
+    return BestOffer(
+      total: total,
+      travelPrice: travelPrice,
+      flightIncluded: flightIncluded,
+      travelDate: travelDate.toHotelTravelDate(),
+    );
+  }
+}
+
+extension FavoriteTravelDateExtension on FavoriteTravelDate {
+  TravelDate toHotelTravelDate() {
+    return TravelDate(
+      days: days,
+      departureDate: departureDate,
+      nights: nights,
+      returnDate: returnDate,
+    );
+  }
+}
+
+extension FavoriteRatingInfoExtension on FavoriteRatingInfo {
+  RatingInfo toHotelRatingInfo() {
+    return RatingInfo(
+      score: score,
+      scoreDescription: scoreDescription,
+      reviewsCount: reviewsCount,
+    );
+  }
+}
+
+extension FavoriteAnalyticsExtension on FavoriteAnalytics {
+  Analytics toHotelAnalytics() {
+    return Analytics(
+      currency: currency,
+      itemCategory: itemCategory,
+      itemCategory2: itemCategory2,
+      itemId: itemId,
+      itemListName: itemListName,
+      itemName: itemName,
+      itemRooms: itemRooms,
+      price: price,
+      quantity: quantity,
+    );
+  }
+}
+
+extension FavoriteHotelMapper on FavoriteHotel {
+  Favorite toFavorite() {
+    return Favorite(
+      id: id,
+      name: name,
+      latitude: latitude,
+      longitude: longitude,
+      category: category,
+      destination: destination,
+      images: images
+          .map((image) => FavoriteImage(large: image.large, small: image.small))
+          .toList(),
+      bestOffer: FavoriteBestOffer(
+        total: bestOffer.total,
+        travelPrice: bestOffer.travelPrice,
+        flightIncluded: bestOffer.flightIncluded,
+        travelDate: FavoriteTravelDate(
+          days: bestOffer.travelDate.days,
+          departureDate: bestOffer.travelDate.departureDate,
+          nights: bestOffer.travelDate.nights,
+          returnDate: bestOffer.travelDate.returnDate,
+        ),
+      ),
+      ratingInfo: FavoriteRatingInfo(
+        score: ratingInfo.score,
+        scoreDescription: ratingInfo.scoreDescription,
+        reviewsCount: ratingInfo.reviewsCount,
+      ),
+      badges: badges,
+      categoryType: categoryType,
+      favoriteId: hotelId,
+      analytics: FavoriteAnalytics(
+        currency: analytics.currency,
+        itemCategory: analytics.itemCategory,
+        itemCategory2: analytics.itemCategory2,
+        itemId: analytics.itemId,
+        itemListName: analytics.itemListName,
+        itemName: analytics.itemName,
+        itemRooms: analytics.itemRooms,
+        price: analytics.price,
+        quantity: analytics.quantity,
+      ),
+    );
   }
 }

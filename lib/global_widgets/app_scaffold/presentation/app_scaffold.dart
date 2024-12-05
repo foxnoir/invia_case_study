@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/core/theme/screen_size.dart';
+import 'package:invia_case_study/features/favorites/domain/entities/favorite.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_banner.dart';
 import 'package:invia_case_study/global_widgets/app_card.dart';
@@ -15,11 +16,11 @@ class AppScaffold extends StatelessWidget {
     required this.isLoading,
     required this.isLoaded,
     required this.hasError,
-    required this.hotels,
+    required this.hotelList,
     required this.errorMessage,
     required this.onRefresh,
     required this.buttonText,
-    required this.location,
+    this.location,
     super.key,
   });
 
@@ -27,11 +28,11 @@ class AppScaffold extends StatelessWidget {
   final bool isLoading;
   final bool isLoaded;
   final bool hasError;
-  final List<Hotel> hotels;
+  final List<Object> hotelList;
   final String errorMessage;
   final Future<void> Function() onRefresh;
   final String buttonText;
-  final String location;
+  final String? location;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,9 @@ class AppScaffold extends StatelessWidget {
                       SliverFillRemaining(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 40, horizontal: 20),
+                            vertical: 40,
+                            horizontal: 20,
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -87,7 +90,7 @@ class AppScaffold extends StatelessWidget {
                     else
                       AppSliverList(
                         buttonText: buttonText,
-                        hotels: hotels,
+                        hotelList: hotelList,
                         location: location,
                       ),
                   ],
@@ -109,15 +112,15 @@ class AppScaffold extends StatelessWidget {
 
 class AppSliverList extends StatelessWidget {
   const AppSliverList({
-    required this.hotels,
+    required this.hotelList,
     required this.buttonText,
-    required this.location,
+    this.location,
     super.key,
   });
 
-  final List<Hotel> hotels;
+  final List<Object> hotelList;
   final String buttonText;
-  final String location;
+  final String? location;
 
   @override
   Widget build(BuildContext context) {
@@ -125,19 +128,27 @@ class AppSliverList extends StatelessWidget {
     final localizations = AppLocalizations.of(context);
     final hotelsFor = localizations?.hotelFor ?? FallBackString.hotelsFor;
 
+    final hotels = hotelList.isEmpty
+        ? <Hotel>[]
+        : hotelList.first is Hotel
+            ? hotelList.cast<Hotel>()
+            : hotelList
+                .cast<Favorite>()
+                .map((favorite) => favorite.toHotel())
+                .toList();
+
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
       sliver: SliverList(
         delegate: SliverChildListDelegate([
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
+          if (location != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                '${hotels.length} $hotelsFor $location',
+                style: theme.textTheme.headlineMedium,
+              ),
             ),
-            child: Text(
-              '${hotels.length} $hotelsFor $location',
-              style: theme.textTheme.headlineMedium,
-            ),
-          ),
           ...hotels.map((hotel) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),

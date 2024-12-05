@@ -30,7 +30,7 @@ class FavoriteHotel extends HiveObject {
       category: hotel.category,
       destination: hotel.destination,
       images: hotel.images
-          .map((e) => HotelImageHive.fromModel(e as HotelImageModel))
+          .map((e) => FavoriteHotelImageHive.fromModel(e as HotelImageModel))
           .toList(),
       bestOffer: BestOfferHive.fromModel(hotel.bestOffer as BestOfferModel),
       ratingInfo: RatingInfoHive.fromModel(hotel.ratingInfo as RatingInfoModel),
@@ -60,7 +60,7 @@ class FavoriteHotel extends HiveObject {
   final String destination;
 
   @HiveField(6)
-  final List<HotelImageHive> images;
+  final List<FavoriteHotelImageHive> images;
 
   @HiveField(7)
   final BestOfferHive bestOffer;
@@ -100,14 +100,14 @@ class FavoriteHotel extends HiveObject {
 }
 
 @HiveType(typeId: 1)
-class HotelImageHive {
-  const HotelImageHive({
+class FavoriteHotelImageHive {
+  const FavoriteHotelImageHive({
     required this.large,
     required this.small,
   });
 
-  factory HotelImageHive.fromModel(HotelImageModel model) {
-    return HotelImageHive(
+  factory FavoriteHotelImageHive.fromModel(HotelImageModel model) {
+    return FavoriteHotelImageHive(
       large: model.large,
       small: model.small,
     );

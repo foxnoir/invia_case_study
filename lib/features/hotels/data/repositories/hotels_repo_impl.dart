@@ -45,7 +45,7 @@ class HotelRepoImpl implements HotelsRepository {
       destination: hotel.destination,
       images: hotel.images
           .map(
-            (image) => HotelImageHive(
+            (image) => FavoriteHotelImageHive(
               large: image.large,
               small: image.small,
             ),

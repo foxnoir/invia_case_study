@@ -38,7 +38,7 @@ class LocalDatabaseImpl implements LocalDatabase {
   void _registerAdapter() {
     Hive
       ..registerAdapter<FavoriteHotel>(FavoriteHotelAdapter())
-      ..registerAdapter<HotelImageHive>(HotelImageHiveAdapter())
+      ..registerAdapter<FavoriteHotelImageHive>(FavoriteHotelImageHiveAdapter())
       ..registerAdapter<BestOfferHive>(BestOfferHiveAdapter())
       ..registerAdapter<TravelDateHive>(TravelDateHiveAdapter())
       ..registerAdapter<RatingInfoHive>(RatingInfoHiveAdapter())

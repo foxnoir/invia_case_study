@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:invia_case_study/features/favorites/data/repositories/favorites_repo_impl.dart';
+import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
 import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
 import 'package:invia_case_study/features/hotels/data/repositories/hotels_repo_impl.dart';
 import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
@@ -49,5 +51,10 @@ abstract class RegisterModule {
   @LazySingleton(as: HotelsRepository)
   HotelRepoImpl provideHotelsRepository() {
     return HotelRepoImpl();
+  }
+
+  @LazySingleton(as: FavoritesRepository)
+  FavoriteRepoImpl provideFavoritesRepository() {
+    return FavoriteRepoImpl();
   }
 }

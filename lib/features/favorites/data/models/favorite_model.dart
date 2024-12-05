@@ -30,9 +30,12 @@ class FavoriteModel extends Favorite {
               ?.map((image) => FavoriteImageModel.fromMap(image as DataMap))
               .toList() ??
           const [],
-      bestOffer: BestOfferModel.fromMap(map['best-offer'] as DataMap? ?? {}),
-      ratingInfo: RatingInfoModel.fromMap(map['rating-info'] as DataMap? ?? {}),
-      analytics: AnalyticsModel.fromMap(map['analytics'] as DataMap? ?? {}),
+      bestOffer:
+          FavoriteBestOfferModel.fromMap(map['best-offer'] as DataMap? ?? {}),
+      ratingInfo:
+          FavoriteRatingInfoModel.fromMap(map['rating-info'] as DataMap? ?? {}),
+      analytics:
+          FavoriteAnalyticsModel.fromMap(map['analytics'] as DataMap? ?? {}),
       badges: (map['badges'] as List<dynamic>?)?.cast<String>() ?? const [],
       categoryType: map['category-type'] as String? ?? '',
       favoriteId: map['favorite-id'] as String? ?? '',
@@ -50,9 +53,9 @@ class FavoriteModel extends Favorite {
       'images': (images as List<FavoriteImageModel>)
           .map((image) => image.toMap())
           .toList(),
-      'best-offer': (bestOffer as BestOfferModel).toMap(),
-      'rating-info': (ratingInfo as RatingInfoModel).toMap(),
-      'analytics': (analytics as AnalyticsModel).toMap(),
+      'best-offer': (bestOffer as FavoriteBestOfferModel).toMap(),
+      'rating-info': (ratingInfo as FavoriteRatingInfoModel).toMap(),
+      'analytics': (analytics as FavoriteAnalyticsModel).toMap(),
       'badges': badges,
       'category-type': categoryType,
     };
@@ -77,8 +80,8 @@ class FavoriteModel extends Favorite {
   }
 }
 
-class AnalyticsModel extends Analytics {
-  const AnalyticsModel({
+class FavoriteAnalyticsModel extends FavoriteAnalytics {
+  const FavoriteAnalyticsModel({
     required super.currency,
     required super.itemCategory,
     required super.itemCategory2,
@@ -90,9 +93,9 @@ class AnalyticsModel extends Analytics {
     required super.quantity,
   });
 
-  factory AnalyticsModel.fromMap(DataMap map) {
+  factory FavoriteAnalyticsModel.fromMap(DataMap map) {
     final selectItem = map['select_item.item.0'] as DataMap? ?? {};
-    return AnalyticsModel(
+    return FavoriteAnalyticsModel(
       currency: selectItem['currency'] as String? ?? '',
       itemCategory: selectItem['itemCategory'] as String? ?? '',
       itemCategory2: selectItem['itemCategory2'] as String? ?? '',
@@ -122,21 +125,21 @@ class AnalyticsModel extends Analytics {
   }
 }
 
-// Supporting BestOffer Model
-class BestOfferModel extends BestOffer {
-  const BestOfferModel({
+class FavoriteBestOfferModel extends FavoriteBestOffer {
+  const FavoriteBestOfferModel({
     required super.total,
     required super.travelPrice,
     required super.flightIncluded,
     required super.travelDate,
   });
 
-  factory BestOfferModel.fromMap(DataMap map) {
-    return BestOfferModel(
+  factory FavoriteBestOfferModel.fromMap(DataMap map) {
+    return FavoriteBestOfferModel(
       total: map['total'] as int? ?? 0,
       travelPrice: map['travel-price'] as int? ?? 0,
       flightIncluded: map['flight-included'] as bool? ?? false,
-      travelDate: TravelDateModel.fromMap(map['travel-date'] as DataMap? ?? {}),
+      travelDate:
+          FavoriteTravelDateModel.fromMap(map['travel-date'] as DataMap? ?? {}),
     );
   }
 
@@ -145,24 +148,23 @@ class BestOfferModel extends BestOffer {
       'total': total,
       'travel-price': travelPrice,
       'flight-included': flightIncluded,
-      'travel-date': (travelDate as TravelDateModel).toMap(),
+      'travel-date': (travelDate as FavoriteTravelDateModel).toMap(),
     };
   }
 }
 
-// Supporting TravelDate Model
-class TravelDateModel extends TravelDate {
-  const TravelDateModel({
+class FavoriteTravelDateModel extends FavoriteTravelDate {
+  const FavoriteTravelDateModel({
     required super.days,
     required super.departureDate,
     required super.nights,
     required super.returnDate,
   });
 
-  const TravelDateModel.empty() : super.empty();
+  const FavoriteTravelDateModel.empty() : super.empty();
 
-  factory TravelDateModel.fromMap(DataMap map) {
-    return TravelDateModel(
+  factory FavoriteTravelDateModel.fromMap(DataMap map) {
+    return FavoriteTravelDateModel(
       days: map['days'] as int? ?? 0,
       departureDate: map['departure-date'] as String? ?? '',
       nights: map['nights'] as int? ?? 0,
@@ -180,18 +182,17 @@ class TravelDateModel extends TravelDate {
   }
 }
 
-// Supporting RatingInfo Model
-class RatingInfoModel extends RatingInfo {
-  const RatingInfoModel({
+class FavoriteRatingInfoModel extends FavoriteRatingInfo {
+  const FavoriteRatingInfoModel({
     required super.score,
     required super.scoreDescription,
     required super.reviewsCount,
   });
 
-  const RatingInfoModel.empty() : super.empty();
+  const FavoriteRatingInfoModel.empty() : super.empty();
 
-  factory RatingInfoModel.fromMap(DataMap map) {
-    return RatingInfoModel(
+  factory FavoriteRatingInfoModel.fromMap(DataMap map) {
+    return FavoriteRatingInfoModel(
       score: (map['score'] as num?)?.toDouble() ?? 0.0,
       scoreDescription: map['score-description'] as String? ?? '',
       reviewsCount: map['reviews-count'] as int? ?? 0,
@@ -207,7 +208,6 @@ class RatingInfoModel extends RatingInfo {
   }
 }
 
-// Supporting FavoriteImage Model
 class FavoriteImageModel extends FavoriteImage {
   const FavoriteImageModel({
     required super.large,
