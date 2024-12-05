@@ -10,4 +10,5 @@ class FallBackString {
   static const String hotelsFor = 'Hotels für';
   static const String toHotel = 'Zum Hotel';
   static const String noFavorites = 'Du hast noch keine Favoriten,';
+  static const String editAccount = 'Account bearbeiten';
 }

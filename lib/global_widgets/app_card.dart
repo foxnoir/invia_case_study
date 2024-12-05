@@ -33,7 +33,7 @@ class AppCard extends StatelessWidget {
         return false;
       },
       builder: (context, state) {
-        bool isFavorite = hotel.isFavorite;
+        var isFavorite = hotel.isFavorite;
 
         if (state is AppScaffoldUpdated &&
             state.hotel.hotelId == hotel.hotelId) {

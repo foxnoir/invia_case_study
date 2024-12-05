@@ -13,7 +13,6 @@ class AppSliverFill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenSize.init(context);
     final theme = Theme.of(context);
 
     return SliverFillRemaining(

@@ -5,7 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/core/di/di.dart';
 import 'package:invia_case_study/core/log/logger.dart';
+import 'package:invia_case_study/core/theme/screen_size.dart';
 import 'package:invia_case_study/core/theme/theme.dart';
+import 'package:invia_case_study/features/account/presentation/bloc/account_bloc.dart';
 import 'package:invia_case_study/features/router/app_router.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
@@ -41,19 +43,28 @@ class InviaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.init(context);
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (_) => DI.getIt<AccountBloc>(),
+        ),
         BlocProvider(
           create: (_) => DI.getIt<AppScaffoldBloc>(),
         ),
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routeInformationParser: appRouter.defaultRouteParser(),
-        routerDelegate: appRouter.delegate(),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: getLightTheme(),
+      child: BlocBuilder<AccountBloc, AccountState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routeInformationParser: appRouter.defaultRouteParser(),
+            routerDelegate: appRouter.delegate(),
+            locale: state.locale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            theme: getLightTheme(),
+          );
+        },
       ),
     );
   }

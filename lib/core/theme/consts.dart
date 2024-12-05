@@ -56,4 +56,6 @@ class AppImg {
   static const String placeholder = 'assets/img/placeholder.png';
   static const String noFavorites = 'assets/img/no_favorites.png';
   static const String overview = 'assets/img/overview.png';
+  static const String de_flag = 'assets/img/de.png';
+  static const String en_flag = 'assets/img/en.png';
 }
