@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:equatable/equatable.dart';
 import 'package:invia_case_study/features/storage/hive_models/favorite_hotel.dart';
 
@@ -52,9 +51,42 @@ class Hotel extends Equatable {
         hotelId,
         isFavorite,
       ];
-}
 
-// Submodels like Analytics, BestOffer, etc. follow the same structure.
+  /// Erzeugt eine neue Instanz von `Hotel` mit aktualisierten Werten.
+  Hotel copyWith({
+    String? id,
+    String? name,
+    double? latitude,
+    double? longitude,
+    int? category,
+    String? destination,
+    List<HotelImage>? images,
+    BestOffer? bestOffer,
+    RatingInfo? ratingInfo,
+    Analytics? analytics,
+    List<String>? badges,
+    String? categoryType,
+    String? hotelId,
+    bool? isFavorite,
+  }) {
+    return Hotel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      category: category ?? this.category,
+      destination: destination ?? this.destination,
+      images: images ?? this.images,
+      bestOffer: bestOffer ?? this.bestOffer,
+      ratingInfo: ratingInfo ?? this.ratingInfo,
+      analytics: analytics ?? this.analytics,
+      badges: badges ?? this.badges,
+      categoryType: categoryType ?? this.categoryType,
+      hotelId: hotelId ?? this.hotelId,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
+}
 
 class Analytics extends Equatable {
   const Analytics({
@@ -109,8 +141,8 @@ class Analytics extends Equatable {
   String toString() {
     return 'Analytics{currency: $currency, itemCategory: $itemCategory, '
         'itemCategory2: $itemCategory2, itemId: $itemId, '
-        'itemListName: $itemListName, itemName: $itemName, itemRooms: $itemRooms, '
-        'price: $price, quantity: $quantity}';
+        'itemListName: $itemListName, itemName: $itemName, '
+        'itemRooms: $itemRooms, price: $price, quantity: $quantity}';
   }
 }
 

@@ -15,10 +15,36 @@ class HotelRepoImpl implements HotelsRepository {
   @override
   ResultFuture<List<Hotel>> getHotels() async {
     try {
-      final result = await _hotelsDataSource.getHotels();
-      return Right(result.map((model) => model.toEntity()).toList());
+      final hotelModels = await _hotelsDataSource.getHotels();
+      final hotels = hotelModels.map((model) => model.toEntity()).toList();
+
+      final favoriteResult = getFavoriteHotelIds();
+      final favoriteIds = favoriteResult.fold<List<String>>(
+        (failure) {
+          return [];
+        },
+        (ids) => ids,
+      );
+
+      final updatedHotels = hotels.map((hotel) {
+        final isFavorite = favoriteIds.contains(hotel.id);
+        return hotel.copyWith(isFavorite: isFavorite);
+      }).toList();
+
+      return Right(updatedHotels);
     } on ApiException catch (e) {
       return Left(ApiFailure.fromException(e));
+    }
+  }
+
+  @override
+  ResultSync<List<String>> getFavoriteHotelIds() {
+    try {
+      return Right(_localDatabase.getAllFavoriteHotelIds());
+    } on ApiException catch (e) {
+      return Left(
+        DatabaseFailure(message: 'Failed to fetch hotel ids: $e'),
+      );
     }
   }
 
@@ -30,17 +56,6 @@ class HotelRepoImpl implements HotelsRepository {
       return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure(message: 'Failed to add favorite hotel: $e'));
-    }
-  }
-
-  @override
-  ResultSync<List<String>> getFavoriteHotelIds() {
-    try {
-      return Right(_localDatabase.getAllFavoriteHotelIds());
-    } on ApiException catch (e) {
-      return Left(
-        DatabaseFailure(message: 'Failed to add fetch hotel ids: $e'),
-      );
     }
   }
 }

@@ -122,7 +122,6 @@ class AnalyticsModel extends Analytics {
   }
 }
 
-// Supporting BestOffer Model
 class BestOfferModel extends BestOffer {
   const BestOfferModel({
     required super.total,
@@ -150,7 +149,6 @@ class BestOfferModel extends BestOffer {
   }
 }
 
-// Supporting TravelDate Model
 class TravelDateModel extends TravelDate {
   const TravelDateModel({
     required super.days,
@@ -180,7 +178,6 @@ class TravelDateModel extends TravelDate {
   }
 }
 
-// Supporting RatingInfo Model
 class RatingInfoModel extends RatingInfo {
   const RatingInfoModel({
     required super.score,
@@ -207,7 +204,6 @@ class RatingInfoModel extends RatingInfo {
   }
 }
 
-// Supporting HotelImage Model
 class HotelImageModel extends HotelImage {
   const HotelImageModel({
     required super.large,
