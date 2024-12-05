@@ -38,6 +38,10 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<FavoritesBloc>().add(const FetchFavoritesEvent());
+    });
+
     return BlocBuilder<FavoritesBloc, FavoritesState>(
       builder: (context, state) {
         final localizations = AppLocalizations.of(context);

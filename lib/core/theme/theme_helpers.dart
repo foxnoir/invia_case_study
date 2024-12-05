@@ -17,7 +17,7 @@ class HexColor extends Color {
 }
 
 // converts a Hex color into a MaterialColor
-MaterialColor createMaterialColor(Color color) {
+MaterialColor createMaterialColor({required Color color}) {
   final swatch = <int, Color>{};
   final strengths = <double>[];
 

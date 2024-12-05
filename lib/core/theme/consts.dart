@@ -4,6 +4,8 @@ import 'package:invia_case_study/core/theme/theme_helpers.dart';
 class Consts {
   static const double navIconSize = 25;
   static const double acticveNavIconSize = 35;
+  static const double cardPadding = 16;
+  static const double cardIconSize = 15;
 }
 
 class AppColor {
@@ -49,6 +51,8 @@ class SvgIcon {
   static const String favoriteFilled = 'assets/icons/favorite_filled.svg';
   static const String overview = 'assets/icons/overview.svg';
   static const String hotel = 'assets/icons/hotel.svg';
+  static const String help = 'assets/icons/help.svg';
+  static const String star = 'assets/icons/star.svg';
 }
 
 class AppImg {

@@ -95,10 +95,10 @@ ThemeData _theme(ColorScheme colorScheme) {
         backgroundColor: colorScheme.secondary,
         foregroundColor: colorScheme.surface,
         elevation: 2,
+        minimumSize: const Size.fromHeight(40),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(4),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 12),
         textStyle: textTheme.labelMedium,
       ),
     ),
