@@ -273,8 +273,8 @@ extension FavoriteAnalyticsExtension on FavoriteAnalytics {
 }
 
 extension FavoriteHotelMapper on FavoriteHotel {
-  Favorite toFavorite() {
-    return Favorite(
+  Hotel toHotel() {
+    return Hotel(
       id: id,
       name: name,
       latitude: latitude,
@@ -282,28 +282,28 @@ extension FavoriteHotelMapper on FavoriteHotel {
       category: category,
       destination: destination,
       images: images
-          .map((image) => FavoriteImage(large: image.large, small: image.small))
+          .map((image) => HotelImage(large: image.large, small: image.small))
           .toList(),
-      bestOffer: FavoriteBestOffer(
+      bestOffer: BestOffer(
         total: bestOffer.total,
         travelPrice: bestOffer.travelPrice,
         flightIncluded: bestOffer.flightIncluded,
-        travelDate: FavoriteTravelDate(
+        travelDate: TravelDate(
           days: bestOffer.travelDate.days,
           departureDate: bestOffer.travelDate.departureDate,
           nights: bestOffer.travelDate.nights,
           returnDate: bestOffer.travelDate.returnDate,
         ),
       ),
-      ratingInfo: FavoriteRatingInfo(
+      ratingInfo: RatingInfo(
         score: ratingInfo.score,
         scoreDescription: ratingInfo.scoreDescription,
         reviewsCount: ratingInfo.reviewsCount,
       ),
       badges: badges,
       categoryType: categoryType,
-      favoriteId: hotelId,
-      analytics: FavoriteAnalytics(
+      hotelId: hotelId,
+      analytics: Analytics(
         currency: analytics.currency,
         itemCategory: analytics.itemCategory,
         itemCategory2: analytics.itemCategory2,

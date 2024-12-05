@@ -1,5 +1,6 @@
 // ignore_for_file: lines_longer_than_80_chars
 import 'package:equatable/equatable.dart';
+import 'package:invia_case_study/features/storage/hive_models/favorite_hotel.dart';
 
 class Hotel extends Equatable {
   const Hotel({
@@ -231,5 +232,56 @@ class RatingInfo extends Equatable {
   String toString() {
     return 'RatingInfo{score: $score, scoreDescription: $scoreDescription, '
         'reviewsCount: $reviewsCount}';
+  }
+}
+
+extension HotelMapper on Hotel {
+  FavoriteHotel toFavoriteHotel() {
+    return FavoriteHotel(
+      id: id,
+      name: name,
+      latitude: latitude,
+      longitude: longitude,
+      category: category,
+      destination: destination,
+      images: images
+          .map(
+            (image) => FavoriteHotelImageHive(
+              large: image.large,
+              small: image.small,
+            ),
+          )
+          .toList(),
+      bestOffer: BestOfferHive(
+        total: bestOffer.total,
+        travelPrice: bestOffer.travelPrice,
+        flightIncluded: bestOffer.flightIncluded,
+        travelDate: TravelDateHive(
+          days: bestOffer.travelDate.days,
+          departureDate: bestOffer.travelDate.departureDate,
+          nights: bestOffer.travelDate.nights,
+          returnDate: bestOffer.travelDate.returnDate,
+        ),
+      ),
+      ratingInfo: RatingInfoHive(
+        score: ratingInfo.score,
+        scoreDescription: ratingInfo.scoreDescription,
+        reviewsCount: ratingInfo.reviewsCount,
+      ),
+      badges: badges,
+      categoryType: categoryType,
+      hotelId: hotelId,
+      analytics: AnalyticsHive(
+        currency: analytics.currency,
+        itemCategory: analytics.itemCategory,
+        itemCategory2: analytics.itemCategory2,
+        itemId: analytics.itemId,
+        itemListName: analytics.itemListName,
+        itemName: analytics.itemName,
+        itemRooms: analytics.itemRooms,
+        price: analytics.price,
+        quantity: analytics.quantity,
+      ),
+    );
   }
 }

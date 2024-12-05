@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/core/theme/screen_size.dart';
-import 'package:invia_case_study/features/favorites/domain/entities/favorite.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_banner.dart';
 import 'package:invia_case_study/global_widgets/app_card.dart';
@@ -28,7 +27,7 @@ class AppScaffold extends StatelessWidget {
   final bool isLoading;
   final bool isLoaded;
   final bool hasError;
-  final List<Object> hotelList;
+  final List<Hotel> hotelList;
   final String errorMessage;
   final Future<void> Function() onRefresh;
   final String buttonText;
@@ -118,7 +117,7 @@ class AppSliverList extends StatelessWidget {
     super.key,
   });
 
-  final List<Object> hotelList;
+  final List<Hotel> hotelList;
   final String buttonText;
   final String? location;
 
@@ -128,15 +127,6 @@ class AppSliverList extends StatelessWidget {
     final localizations = AppLocalizations.of(context);
     final hotelsFor = localizations?.hotelFor ?? FallBackString.hotelsFor;
 
-    final hotels = hotelList.isEmpty
-        ? <Hotel>[]
-        : hotelList.first is Hotel
-            ? hotelList.cast<Hotel>()
-            : hotelList
-                .cast<Favorite>()
-                .map((favorite) => favorite.toHotel())
-                .toList();
-
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
       sliver: SliverList(
@@ -145,11 +135,11 @@ class AppSliverList extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                '${hotels.length} $hotelsFor $location',
+                '${hotelList.length} $hotelsFor $location',
                 style: theme.textTheme.headlineMedium,
               ),
             ),
-          ...hotels.map((hotel) {
+          ...hotelList.map((hotel) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: AppCard(
