@@ -7,4 +7,6 @@ abstract class HotelsRepository {
   const HotelsRepository();
 
   ResultFuture<List<Hotel>> getHotels();
+
+  ResultFuture<void> addFavoriteHotel({required Hotel hotel});
 }

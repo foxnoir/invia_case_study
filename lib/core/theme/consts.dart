@@ -32,6 +32,8 @@ class AppFontWeight {
 class AppFontSize {
   // bottom nav
   static const double s12 = 12;
+  // error banner
+  static const double s14 = 14;
   // button
   static const double s16 = 16;
   // hotels

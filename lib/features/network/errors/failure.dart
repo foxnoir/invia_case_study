@@ -2,18 +2,25 @@ import 'package:equatable/equatable.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 
 abstract class Failure extends Equatable {
-  const Failure({required this.message, required this.statusCode});
+  const Failure({required this.message, this.statusCode});
 
   final String message;
-  final int statusCode;
+  final int? statusCode;
 
   @override
-  List<Object> get props => [message, statusCode];
+  List<Object?> get props => [message, statusCode];
 }
 
 class ApiFailure extends Failure {
   const ApiFailure({required super.message, required super.statusCode});
 
   ApiFailure.fromException(ApiException exception)
-      : this(message: exception.message, statusCode: exception.statusCode);
+      : super(message: exception.message, statusCode: exception.statusCode);
+}
+
+class DatabaseFailure extends Failure {
+  const DatabaseFailure({required super.message, super.statusCode});
+
+  @override
+  String toString() => 'DatabaseFailure: $message';
 }

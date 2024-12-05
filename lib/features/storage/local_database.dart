@@ -1,33 +1,22 @@
 import 'dart:async';
 
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:invia_case_study/features/storage/hive_models/user.dart';
+import 'package:invia_case_study/features/storage/hive_models/favorite_hotel.dart';
+import 'package:invia_case_study/features/storage/local_database_impl.dart';
 
-class LocalDatabase {
-  static Future<void> init() async {
-    await Hive.initFlutter();
-    Hive.registerAdapter(UserAdapter());
-  }
+abstract class LocalDatabase {
+  static final localDatabase = LocalDatabaseImpl();
 
-  static Future<void> dispose() async {
-    await Hive.close();
-  }
-}
+  Future<void> init();
 
-// Constructs the production database
-LocalDatabase constructProdDb() {
-  LocalDatabase.init(); // Initializes Hive for production (persistent storage)
-  return LocalDatabase();
-}
+  Future<void> clear();
 
-// Constructs the test database (non-persistent, in-memory storage)
-LocalDatabase constructTestDb() {
-  LocalDatabase.init(); // Initializes Hive for test
-  Hive.init(null); // Uses in-memory storage instead of persistent files
-  return LocalDatabase();
-}
+  Future<void> flush();
 
-// Dispose function for dependency injection
-FutureOr<dynamic> disposeDatabase(LocalDatabase instance) async {
-  await LocalDatabase.dispose(); // Closes and cleans up the Hive instance
+  List<FavoriteHotel> getllFavoriteHotels();
+
+  Future<void> deleteFavoriteHotelById({required String id});
+
+  Future<void> addFavoriteHotel({
+    required FavoriteHotel favoriteHotel,
+  });
 }

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
-import 'package:invia_case_study/global_widgets/app_scaffold.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold/presentation/app_scaffold.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
 @RoutePage()
@@ -23,42 +23,42 @@ class HotelsScreen extends StatelessWidget {
 class HotelsView extends StatelessWidget {
   const HotelsView({super.key});
 
-  Future<void> _handleRefresh({required BuildContext context}) async {
+  Future<void> _handleRefresh(BuildContext context) async {
     context.read<HotelsBloc>().add(const FetchHotelsEvent());
+  }
+
+  String _handleErrorMessage(Failure failure, BuildContext context) {
+    final localizations = AppLocalizations.of(context);
+    if (failure is ApiFailure &&
+        failure.message.contains('No internet connection')) {
+      return localizations?.noInternet ?? FallBackString.noInternet;
+    }
+    return localizations?.error ?? FallBackString.error;
   }
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context);
     return BlocBuilder<HotelsBloc, HotelsState>(
       builder: (context, state) {
+        final localizations = AppLocalizations.of(context);
+        final isLoading = state is HotelsLoading;
         final hasError = state is HotelsError;
         final hasLoaded = state is HotelsLoaded;
 
         return AppScaffold(
           title: localizations?.hotels ?? FallBackString.hotels,
-          isLoading: state is HotelsLoading,
-          isLoaded: state is HotelsLoaded,
+          isLoading: isLoading,
+          isLoaded: hasLoaded,
           hasError: hasError,
           errorMessage: hasError
               ? _handleErrorMessage(state.failure, context)
               : FallBackString.error,
           hotels: hasLoaded ? state.hotels : [],
-          onRefresh: () => _handleRefresh(context: context),
+          onRefresh: () => _handleRefresh(context),
           buttonText: localizations?.toTheOffers ?? FallBackString.toTheOffers,
           location: hasLoaded ? state.location : '',
         );
       },
     );
-  }
-
-  String _handleErrorMessage(Failure failure, BuildContext context) {
-    final localizations = AppLocalizations.of(context);
-    if (failure is ApiFailure) {
-      if (failure.message.contains('No internet connection')) {
-        return localizations?.noInternet ?? FallBackString.noInternet;
-      }
-    }
-    return localizations?.error ?? FallBackString.error;
   }
 }

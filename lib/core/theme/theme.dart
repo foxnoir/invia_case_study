@@ -36,6 +36,11 @@ ThemeData _theme(ColorScheme colorScheme) {
       fontWeight: AppFontWeight.bold,
       color: colorScheme.onPrimary,
     ),
+    bodyMedium: TextStyle(
+      fontSize: AppFontSize.s14,
+      fontWeight: AppFontWeight.medium,
+      color: colorScheme.tertiary,
+    ),
   );
   final themeData = ThemeData(
     fontFamily: AppFont.fontFamily,
@@ -84,6 +89,7 @@ ThemeData _theme(ColorScheme colorScheme) {
         borderRadius: BorderRadius.circular(5),
       ),
     ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: colorScheme.secondary,
