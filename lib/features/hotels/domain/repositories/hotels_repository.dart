@@ -10,5 +10,7 @@ abstract class HotelsRepository {
 
   ResultFuture<void> addFavoriteHotel({required Hotel hotel});
 
+  ResultFuture<void> removeFavoriteHotelById({required String id});
+
   ResultSync<List<String>> getFavoriteHotelIds();
 }

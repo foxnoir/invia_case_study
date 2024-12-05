@@ -5,7 +5,7 @@ import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/core/theme/screen_size.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_banner.dart';
-import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_cubit.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/widgets/app_sliver_fill.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/widgets/app_sliver_list.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
@@ -40,7 +40,7 @@ class AppScaffold extends StatelessWidget {
     ScreenSize.init(context);
     final appLocalizations = AppLocalizations.of(context);
 
-    return BlocBuilder<AppScaffoldCubit, AppScaffoldState>(
+    return BlocBuilder<AppScaffoldBloc, AppScaffoldState>(
       builder: (context, state) {
         return Stack(
           children: [
@@ -76,6 +76,7 @@ class AppScaffold extends StatelessWidget {
                       )
                     else
                       AppSliverList(
+                        onRefresh: onRefresh,
                         buttonText: buttonText,
                         hotelList: hotelList,
                         location: location,
@@ -87,7 +88,7 @@ class AppScaffold extends StatelessWidget {
             if (state is AppScaffoldError)
               AppBanner(
                 onDismiss: () {
-                  context.read<AppScaffoldCubit>().resetError();
+                  context.read<AppScaffoldBloc>().add(ResetErrorEvent());
                 },
               ),
           ],

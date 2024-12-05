@@ -1,28 +1,17 @@
-part of 'app_scaffold_cubit.dart';
+part of 'app_scaffold_bloc.dart';
 
-abstract class AppScaffoldState extends Equatable {
-  const AppScaffoldState();
-
-  @override
-  List<Object?> get props => [];
-}
+abstract class AppScaffoldState {}
 
 class AppScaffoldInitial extends AppScaffoldState {}
 
 class AppScaffoldLoading extends AppScaffoldState {}
 
-class AppScaffoldAdded extends AppScaffoldState {
-  const AppScaffoldAdded(this.hotel);
+class AppScaffoldUpdated extends AppScaffoldState {
+  AppScaffoldUpdated({required this.hotel});
   final Hotel hotel;
-
-  @override
-  List<Object?> get props => [hotel];
 }
 
 class AppScaffoldError extends AppScaffoldState {
-  const AppScaffoldError(this.message);
+  AppScaffoldError({required this.message});
   final String message;
-
-  @override
-  List<Object?> get props => [message];
 }

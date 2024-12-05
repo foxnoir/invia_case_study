@@ -8,7 +8,7 @@ import 'package:invia_case_study/core/log/logger.dart';
 import 'package:invia_case_study/core/theme/theme.dart';
 import 'package:invia_case_study/features/router/app_router.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
-import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_cubit.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
@@ -44,7 +44,7 @@ class InviaApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => DI.getIt<AppScaffoldCubit>(),
+          create: (_) => DI.getIt<AppScaffoldBloc>(),
         ),
       ],
       child: MaterialApp.router(

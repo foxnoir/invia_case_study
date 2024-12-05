@@ -128,7 +128,6 @@ class LocalDatabaseImpl implements LocalDatabase {
     required FavoriteHotel favoriteHotel,
   }) async {
     try {
-      print(favoriteHotel.isFavorite);
       await _favoriteHotelBox.put(favoriteHotel.id, favoriteHotel);
     } catch (e) {
       logger.e('Error while saving favoriteHotel', e, null);

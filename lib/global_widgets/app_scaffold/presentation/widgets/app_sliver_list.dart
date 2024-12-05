@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_card.dart';
-import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_cubit.dart';
-import 'package:invia_case_study/l10n/de_fallback.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 
 class AppSliverList extends StatelessWidget {
   const AppSliverList({
     required this.hotelList,
     required this.buttonText,
+    required this.onRefresh,
     this.location,
     super.key,
   });
@@ -17,12 +16,11 @@ class AppSliverList extends StatelessWidget {
   final List<Hotel> hotelList;
   final String buttonText;
   final String? location;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final localizations = AppLocalizations.of(context);
-    final hotelsFor = localizations?.hotelFor ?? FallBackString.hotelsFor;
 
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
@@ -32,7 +30,7 @@ class AppSliverList extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                '${hotelList.length} $hotelsFor $location',
+                '${hotelList.length} Hotels für $location',
                 style: theme.textTheme.headlineMedium,
               ),
             ),
@@ -43,9 +41,6 @@ class AppSliverList extends StatelessWidget {
                 hotel: hotel,
                 imgUrl: hotel.images.isNotEmpty ? hotel.images.first.large : '',
                 onButtonPressed: () {},
-                onFavoritePressed: () {
-                  context.read<AppScaffoldCubit>().addFavorite(hotel);
-                },
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -56,9 +51,7 @@ class AppSliverList extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '${hotel.bestOffer.travelDate.days} Tage | ${hotel.bestOffer.travelDate.nights} Nächte',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.secondary,
-                      ),
+                      style: theme.textTheme.bodySmall,
                     ),
                     const SizedBox(height: 4),
                     Text(

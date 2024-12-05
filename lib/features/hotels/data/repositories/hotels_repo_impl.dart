@@ -58,4 +58,14 @@ class HotelRepoImpl implements HotelsRepository {
       return Left(DatabaseFailure(message: 'Failed to add favorite hotel: $e'));
     }
   }
+
+  @override
+  ResultFuture<void> removeFavoriteHotelById({required String id}) async {
+    try {
+      await _localDatabase.removeFavoriteHotelById(id: id);
+      return const Right(null);
+    } catch (e) {
+      return Left(DatabaseFailure(message: 'Failed to add favorite hotel: $e'));
+    }
+  }
 }
