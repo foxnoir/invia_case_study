@@ -56,7 +56,8 @@ class AppCard extends StatelessWidget {
                   height: 30,
                   width: 30,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.surface.withOpacity(.7),
+                    color: theme.colorScheme.surface
+                        .withOpacity(hotel.isFavorite ? .1 : .7),
                     shape: BoxShape.circle,
                   ),
                   child: Material(
@@ -71,7 +72,9 @@ class AppCard extends StatelessWidget {
                           assetPath: hotel.isFavorite
                               ? SvgIcon.favoriteFilled
                               : SvgIcon.favorite,
-                          color: theme.colorScheme.tertiary,
+                          color: hotel.isFavorite
+                              ? theme.colorScheme.surface
+                              : theme.colorScheme.tertiary,
                         ),
                       ),
                     ),

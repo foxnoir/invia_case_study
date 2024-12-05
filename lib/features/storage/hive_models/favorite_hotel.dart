@@ -4,6 +4,7 @@ import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
 part 'favorite_hotel.g.dart';
 
 @HiveType(typeId: 0)
+@HiveType(typeId: 0)
 class FavoriteHotel extends HiveObject {
   FavoriteHotel({
     required this.id,
@@ -19,6 +20,7 @@ class FavoriteHotel extends HiveObject {
     required this.categoryType,
     required this.hotelId,
     required this.analytics,
+    required this.isFavorite,
   });
 
   factory FavoriteHotel.fromHotelModel(HotelModel hotel) {
@@ -38,6 +40,7 @@ class FavoriteHotel extends HiveObject {
       categoryType: hotel.categoryType,
       hotelId: hotel.hotelId,
       analytics: AnalyticsHive.fromModel(hotel.analytics as AnalyticsModel),
+      isFavorite: hotel.isFavorite,
     );
   }
 
@@ -79,6 +82,9 @@ class FavoriteHotel extends HiveObject {
 
   @HiveField(12)
   final AnalyticsHive analytics;
+
+  @HiveField(13)
+  final bool isFavorite;
 
   HotelModel toHotelModel() {
     return HotelModel(

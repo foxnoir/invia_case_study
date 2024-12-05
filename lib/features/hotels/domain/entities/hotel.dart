@@ -242,6 +242,7 @@ extension HotelMapper on Hotel {
   FavoriteHotel toFavoriteHotel() {
     return FavoriteHotel(
       id: id,
+      isFavorite: true,
       name: name,
       latitude: latitude,
       longitude: longitude,

@@ -208,6 +208,7 @@ class FavoriteRatingInfo extends Equatable {
 extension FavoriteExtension on Favorite {
   Hotel toHotel() {
     return Hotel(
+      isFavorite: isFavorite,
       id: id,
       name: name,
       latitude: latitude,
@@ -278,6 +279,7 @@ extension FavoriteAnalyticsExtension on FavoriteAnalytics {
 extension FavoriteHotelMapper on FavoriteHotel {
   Hotel toHotel() {
     return Hotel(
+      isFavorite: isFavorite,
       id: id,
       name: name,
       latitude: latitude,
