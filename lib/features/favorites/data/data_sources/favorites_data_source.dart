@@ -38,7 +38,9 @@ class FavoritesDataSourceImpl implements FavoritesDataSource {
     } catch (e) {
       logger.i('fetching favorites failed');
       throw ApiException(
-          message: 'Error parsing favorites: $e', statusCode: 500);
+        message: 'Error parsing favorites: $e',
+        statusCode: 500,
+      );
     }
   }
 }

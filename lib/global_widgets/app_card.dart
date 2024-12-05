@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invia_case_study/core/log/logger.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
-import 'package:invia_case_study/core/theme/theme_helpers.dart';
 
 class AppCard extends StatelessWidget {
   const AppCard({
