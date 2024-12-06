@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
+import 'package:invia_case_study/core/theme/screen_size.dart';
 import 'package:invia_case_study/core/utils/formatter.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
-import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_text_row.dart';
 import 'package:invia_case_study/global_widgets/app_card/app_card_star_rating.dart';
+import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_text_row.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
 class AppCardDetailsSection extends StatelessWidget {
@@ -24,6 +25,7 @@ class AppCardDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final appLocalizations = AppLocalizations.of(context);
+
     final days = hotel.bestOffer.travelDate.days;
     final finalDays = days < 2
         ? '$days ${appLocalizations?.day ?? FallBackString.day}'
@@ -32,6 +34,15 @@ class AppCardDetailsSection extends StatelessWidget {
     final finalNights = nights < 2
         ? '$nights ${appLocalizations?.night ?? FallBackString.night}'
         : '$nights ${appLocalizations?.nights ?? FallBackString.nights}';
+    final travelers = '${hotel.bestOffer.overallRoomDetails.adultCount} '
+        ' ${appLocalizations?.adults ?? FallBackString.adults}, '
+        '${hotel.bestOffer.overallRoomDetails.childrenCount} '
+        '${appLocalizations?.children ?? FallBackString.children}';
+    final flight = hotel.bestOffer.flightIncluded
+        ? '${appLocalizations?.including ?? FallBackString.including} '
+            '${appLocalizations?.flight ?? FallBackString.flight}'
+        : '${appLocalizations?.without ?? FallBackString.without} '
+            '${appLocalizations?.flight ?? FallBackString.flight}';
 
     return Padding(
       padding: const EdgeInsets.all(Consts.cardPadding),
@@ -80,7 +91,7 @@ class AppCardDetailsSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
+                Expanded(
                   flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,13 +111,8 @@ class AppCardDetailsSection extends StatelessWidget {
                         ),
                       AppCardDetailsTextRow(
                         context: context,
-                        leftText: '${hotel.bestOffer.roomGroups.first.name}  ',
-                        rightText:
-                            '  ${hotel.bestOffer.roomGroups.first.boarding}',
-                      ),
-                      Text(
-                        '2 Erw., 2 Kinder | inkl. Flug',
-                        style: theme.textTheme.bodySmall,
+                        leftText: travelers,
+                        rightText: flight,
                       ),
                       const SizedBox(height: 4),
                     ],
@@ -127,8 +133,11 @@ class AppCardDetailsSection extends StatelessWidget {
                             TextSpan(
                               text:
                                   '${Formatter.formatPrice(priceInCents: hotel.bestOffer.total)} €',
-                              style: theme.textTheme.headlineLarge
-                                  ?.copyWith(fontSize: AppFontSize.s23),
+                              style: theme.textTheme.headlineLarge?.copyWith(
+                                fontSize: ScreenSize.screenWidth <= 430
+                                    ? AppFontSize.s18
+                                    : AppFontSize.s23,
+                              ),
                             ),
                           ],
                         ),

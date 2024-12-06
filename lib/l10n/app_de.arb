@@ -16,5 +16,10 @@
   "day": "Tag",
   "days": "Tage",
   "night": "Nacht",
-  "nights": "Nächte"
+  "nights": "Nächte",
+  "adults": "Erw.",
+  "including": "inkl.",
+  "children": "Kinder",
+  "flight": "Flug",
+   "without": "ohne"
 }

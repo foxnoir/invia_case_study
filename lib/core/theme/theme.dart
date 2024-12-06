@@ -43,7 +43,7 @@ ThemeData _theme(ColorScheme colorScheme) {
     ),
     // small card Text
     bodySmall: TextStyle(
-      fontSize: AppFontSize.s12,
+      fontSize: AppFontSize.s11,
       fontWeight: AppFontWeight.medium,
       color: colorScheme.tertiary,
     ),

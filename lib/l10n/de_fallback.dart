@@ -17,4 +17,9 @@ class FallBackString {
   static const String days = 'Tage';
   static const String night = 'Nacht';
   static const String nights = 'Nächte';
+  static const String adults = 'Erw.';
+  static const String including = 'inkl.';
+  static const String children = 'Kinder';
+  static const String flight = 'Flight';
+  static const String without = 'ohne';
 }

@@ -16,5 +16,10 @@
   "day": "day",
   "days": "days",
   "night": "night",
-  "nights": "nights"
+  "nights": "nights",
+  "adults": "Adults",
+  "including": "incl.",
+  "children": "children",
+  "flight": "Flight",
+  "without": "without"
 }

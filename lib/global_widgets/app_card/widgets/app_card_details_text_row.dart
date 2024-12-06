@@ -32,7 +32,6 @@ class AppCardDetailsTextRow extends StatelessWidget {
             height: 18,
             child: VerticalDivider(
               color: AppColor.grey.withOpacity(0.4),
-              thickness: 1,
             ),
           ),
           Flexible(
