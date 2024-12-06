@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:equatable/equatable.dart';
 
 class Hotel extends Equatable {
@@ -10,7 +8,6 @@ class Hotel extends Equatable {
     required this.destination,
     required this.bestOffer,
     required this.ratingInfo,
-    required this.analytics,
     required this.hotelId,
     this.images = const [],
     this.isFavorite = false,
@@ -23,7 +20,6 @@ class Hotel extends Equatable {
   final List<HotelImage> images;
   final BestOffer bestOffer;
   final RatingInfo ratingInfo;
-  final Analytics analytics;
   final bool isFavorite;
   final String hotelId;
 
@@ -36,7 +32,6 @@ class Hotel extends Equatable {
         images,
         bestOffer,
         ratingInfo,
-        analytics,
         isFavorite,
         hotelId,
       ];
@@ -49,7 +44,6 @@ class Hotel extends Equatable {
     List<HotelImage>? images,
     BestOffer? bestOffer,
     RatingInfo? ratingInfo,
-    Analytics? analytics,
     bool? isFavorite,
     String? hotelId,
   }) {
@@ -61,7 +55,6 @@ class Hotel extends Equatable {
       images: images ?? this.images,
       bestOffer: bestOffer ?? this.bestOffer,
       ratingInfo: ratingInfo ?? this.ratingInfo,
-      analytics: analytics ?? this.analytics,
       isFavorite: isFavorite ?? this.isFavorite,
       hotelId: hotelId ?? this.hotelId,
     );
@@ -75,6 +68,7 @@ class BestOffer extends Equatable {
     required this.flightIncluded,
     required this.travelDate,
     required this.roomGroups,
+    required this.overallRoomDetails,
   });
 
   const BestOffer.empty()
@@ -84,6 +78,7 @@ class BestOffer extends Equatable {
           flightIncluded: false,
           travelDate: const TravelDate.empty(),
           roomGroups: const [],
+          overallRoomDetails: const RoomDetails.empty(),
         );
 
   final int total;
@@ -91,6 +86,7 @@ class BestOffer extends Equatable {
   final bool flightIncluded;
   final TravelDate travelDate;
   final List<RoomGroup> roomGroups;
+  final RoomDetails overallRoomDetails;
 
   @override
   List<Object?> get props => [
@@ -99,12 +95,14 @@ class BestOffer extends Equatable {
         flightIncluded,
         travelDate,
         roomGroups,
+        overallRoomDetails,
       ];
 
   @override
   String toString() {
     return 'BestOffer{total: $total, simplePricePerPerson: $simplePricePerPerson, '
-        'flightIncluded: $flightIncluded, travelDate: $travelDate, roomGroups: $roomGroups}';
+        'flightIncluded: $flightIncluded, travelDate: $travelDate, '
+        'roomGroups: $roomGroups, overallRoomDetails: $overallRoomDetails}';
   }
 }
 
@@ -129,6 +127,41 @@ class RoomGroup extends Equatable {
   @override
   String toString() {
     return 'RoomGroup{name: $name, boarding: $boarding}';
+  }
+}
+
+class RoomDetails extends Equatable {
+  const RoomDetails({
+    required this.name,
+    required this.boarding,
+    required this.adultCount,
+    required this.childrenCount,
+  });
+
+  const RoomDetails.empty()
+      : this(
+          name: '',
+          boarding: '',
+          adultCount: 0,
+          childrenCount: 0,
+        );
+
+  final String name;
+  final String boarding;
+  final int adultCount;
+  final int childrenCount;
+
+  @override
+  List<Object?> get props => [
+        name,
+        boarding,
+        adultCount,
+        childrenCount,
+      ];
+
+  @override
+  String toString() {
+    return 'RoomDetails{name: $name, boarding: $boarding, adultCount: $adultCount, childrenCount: $childrenCount}';
   }
 }
 
@@ -208,53 +241,5 @@ class RatingInfo extends Equatable {
   String toString() {
     return 'RatingInfo{score: $score, scoreDescription: $scoreDescription, '
         'reviewsCount: $reviewsCount}';
-  }
-}
-
-class Analytics extends Equatable {
-  const Analytics({
-    required this.currency,
-    required this.itemCategory,
-    required this.itemId,
-    required this.itemListName,
-    required this.itemName,
-    required this.itemRooms,
-    required this.price,
-  });
-
-  const Analytics.empty()
-      : this(
-          currency: '',
-          itemCategory: '',
-          itemId: '',
-          itemListName: '',
-          itemName: '',
-          itemRooms: '',
-          price: '',
-        );
-
-  final String currency;
-  final String itemCategory;
-  final String itemId;
-  final String itemListName;
-  final String itemName;
-  final String itemRooms;
-  final String price;
-
-  @override
-  List<Object?> get props => [
-        currency,
-        itemCategory,
-        itemId,
-        itemListName,
-        itemName,
-        itemRooms,
-        price,
-      ];
-
-  @override
-  String toString() {
-    return 'Analytics{currency: $currency, itemCategory: $itemCategory, itemId: $itemId, '
-        'itemListName: $itemListName, itemName: $itemName, itemRooms: $itemRooms, price: $price}';
   }
 }

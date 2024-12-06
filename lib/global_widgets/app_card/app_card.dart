@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
-import 'package:invia_case_study/global_widgets/app_card/app_card_details_section.dart';
-import 'package:invia_case_study/global_widgets/app_card/app_card_img_section.dart';
+import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_section.dart';
+import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_img_section.dart';
 
 class AppCard extends StatelessWidget {
   const AppCard({

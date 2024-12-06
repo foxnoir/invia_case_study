@@ -9,7 +9,6 @@ class Favorite extends Equatable {
     required this.destination,
     required this.bestOffer,
     required this.ratingInfo,
-    required this.analytics,
     required this.favoriteId,
     this.images = const [],
     this.isFavorite = true,
@@ -22,7 +21,6 @@ class Favorite extends Equatable {
   final List<FavoriteImage> images;
   final FavoriteBestOffer bestOffer;
   final FavoriteRatingInfo ratingInfo;
-  final FavoriteAnalytics analytics;
   final String favoriteId;
   final bool isFavorite;
 
@@ -35,51 +33,8 @@ class Favorite extends Equatable {
         images,
         bestOffer,
         ratingInfo,
-        analytics,
         favoriteId,
         isFavorite,
-      ];
-}
-
-class FavoriteAnalytics extends Equatable {
-  const FavoriteAnalytics({
-    required this.currency,
-    required this.itemCategory,
-    required this.itemId,
-    required this.itemListName,
-    required this.itemName,
-    required this.itemRooms,
-    required this.price,
-  });
-
-  const FavoriteAnalytics.empty()
-      : this(
-          currency: '',
-          itemCategory: '',
-          itemId: '',
-          itemListName: '',
-          itemName: '',
-          itemRooms: '',
-          price: '',
-        );
-
-  final String currency;
-  final String itemCategory;
-  final String itemId;
-  final String itemListName;
-  final String itemName;
-  final String itemRooms;
-  final String price;
-
-  @override
-  List<Object?> get props => [
-        currency,
-        itemCategory,
-        itemId,
-        itemListName,
-        itemName,
-        itemRooms,
-        price,
       ];
 }
 
@@ -109,6 +64,7 @@ class FavoriteBestOffer extends Equatable {
     required this.flightIncluded,
     required this.travelDate,
     required this.roomGroups,
+    required this.overallRoomDetails,
   });
 
   const FavoriteBestOffer.empty()
@@ -118,6 +74,7 @@ class FavoriteBestOffer extends Equatable {
           flightIncluded: false,
           travelDate: const FavoriteTravelDate.empty(),
           roomGroups: const [],
+          overallRoomDetails: const FavoriteRoomDetails.empty(),
         );
 
   final int total;
@@ -125,6 +82,7 @@ class FavoriteBestOffer extends Equatable {
   final bool flightIncluded;
   final FavoriteTravelDate travelDate;
   final List<FavoriteRoomGroup> roomGroups;
+  final FavoriteRoomDetails overallRoomDetails;
 
   @override
   List<Object?> get props => [
@@ -133,6 +91,7 @@ class FavoriteBestOffer extends Equatable {
         flightIncluded,
         travelDate,
         roomGroups,
+        overallRoomDetails,
       ];
 }
 
@@ -155,6 +114,36 @@ class FavoriteRoomGroup extends Equatable {
   List<Object?> get props => [
         name,
         boarding,
+      ];
+}
+
+class FavoriteRoomDetails extends Equatable {
+  const FavoriteRoomDetails({
+    required this.name,
+    required this.boarding,
+    required this.adultCount,
+    required this.childrenCount,
+  });
+
+  const FavoriteRoomDetails.empty()
+      : this(
+          name: '',
+          boarding: '',
+          adultCount: 0,
+          childrenCount: 0,
+        );
+
+  final String name;
+  final String boarding;
+  final int adultCount;
+  final int childrenCount;
+
+  @override
+  List<Object?> get props => [
+        name,
+        boarding,
+        adultCount,
+        childrenCount,
       ];
 }
 
@@ -215,7 +204,6 @@ extension FavoriteExtension on Favorite {
           .toList(),
       bestOffer: bestOffer.toHotelBestOffer(),
       ratingInfo: ratingInfo.toHotelRatingInfo(),
-      analytics: analytics.toHotelAnalytics(),
       hotelId: favoriteId,
     );
   }
@@ -229,6 +217,7 @@ extension FavoriteBestOfferExtension on FavoriteBestOffer {
       flightIncluded: flightIncluded,
       travelDate: travelDate.toHotelTravelDate(),
       roomGroups: roomGroups.map((group) => group.toHotelRoomGroup()).toList(),
+      overallRoomDetails: overallRoomDetails.toHotelRoomDetails(),
     );
   }
 }
@@ -238,6 +227,17 @@ extension FavoriteRoomGroupExtension on FavoriteRoomGroup {
     return RoomGroup(
       name: name,
       boarding: boarding,
+    );
+  }
+}
+
+extension FavoriteRoomDetailsExtension on FavoriteRoomDetails {
+  RoomDetails toHotelRoomDetails() {
+    return RoomDetails(
+      name: name,
+      boarding: boarding,
+      adultCount: adultCount,
+      childrenCount: childrenCount,
     );
   }
 }
@@ -257,20 +257,6 @@ extension FavoriteRatingInfoExtension on FavoriteRatingInfo {
       score: score,
       scoreDescription: scoreDescription,
       reviewsCount: reviewsCount,
-    );
-  }
-}
-
-extension FavoriteAnalyticsExtension on FavoriteAnalytics {
-  Analytics toHotelAnalytics() {
-    return Analytics(
-      currency: currency,
-      itemCategory: itemCategory,
-      itemId: itemId,
-      itemListName: itemListName,
-      itemName: itemName,
-      itemRooms: itemRooms,
-      price: price,
     );
   }
 }

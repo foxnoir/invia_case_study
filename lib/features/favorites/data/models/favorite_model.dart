@@ -9,7 +9,6 @@ class FavoriteModel extends Hotel {
     required super.destination,
     required super.bestOffer,
     required super.ratingInfo,
-    required super.analytics,
     required super.hotelId,
     List<FavoriteImageModel> images = const [],
   }) : super(images: images);
@@ -28,8 +27,6 @@ class FavoriteModel extends Hotel {
           FavoriteBestOfferModel.fromMap(map['best-offer'] as DataMap? ?? {}),
       ratingInfo:
           FavoriteRatingInfoModel.fromMap(map['rating-info'] as DataMap? ?? {}),
-      analytics:
-          FavoriteAnalyticsModel.fromMap(map['analytics'] as DataMap? ?? {}),
       hotelId: map['hotel-id'] as String? ?? '',
     );
   }
@@ -44,7 +41,6 @@ class FavoriteModel extends Hotel {
           images.map((image) => (image as FavoriteImageModel).toMap()).toList(),
       'best-offer': (bestOffer as FavoriteBestOfferModel).toMap(),
       'rating-info': (ratingInfo as FavoriteRatingInfoModel).toMap(),
-      'analytics': (analytics as FavoriteAnalyticsModel).toMap(),
     };
   }
 
@@ -59,7 +55,6 @@ class FavoriteModel extends Hotel {
           .toList(),
       bestOffer: (bestOffer as FavoriteBestOfferModel).toEntity(),
       ratingInfo: (ratingInfo as FavoriteRatingInfoModel).toEntity(),
-      analytics: (analytics as FavoriteAnalyticsModel).toEntity(),
       hotelId: hotelId,
     );
   }
@@ -72,11 +67,14 @@ class FavoriteBestOfferModel extends BestOffer {
     required super.flightIncluded,
     required super.travelDate,
     required super.roomGroups,
+    required super.overallRoomDetails,
   });
 
   factory FavoriteBestOfferModel.fromMap(DataMap map) {
     final rooms = map['rooms'] as DataMap? ?? {};
     final roomGroups = rooms['room-groups'] as List<dynamic>? ?? [];
+    final overall = rooms['overall'] as DataMap? ?? {};
+
     return FavoriteBestOfferModel(
       total: map['total'] as int? ?? 0,
       simplePricePerPerson: map['simple-price-per-person'] as int? ?? 0,
@@ -86,6 +84,7 @@ class FavoriteBestOfferModel extends BestOffer {
       roomGroups: roomGroups
           .map((group) => FavoriteRoomGroupModel.fromMap(group as DataMap))
           .toList(),
+      overallRoomDetails: FavoriteRoomDetailsModel.fromMap(overall),
     );
   }
 
@@ -98,6 +97,7 @@ class FavoriteBestOfferModel extends BestOffer {
       'room-groups': roomGroups
           .map((group) => (group as FavoriteRoomGroupModel).toMap())
           .toList(),
+      'overall': (overallRoomDetails as FavoriteRoomDetailsModel).toMap(),
     };
   }
 
@@ -110,6 +110,8 @@ class FavoriteBestOfferModel extends BestOffer {
       roomGroups: roomGroups
           .map((group) => (group as FavoriteRoomGroupModel).toEntity())
           .toList(),
+      overallRoomDetails:
+          (overallRoomDetails as FavoriteRoomDetailsModel).toEntity(),
     );
   }
 }
@@ -138,6 +140,42 @@ class FavoriteRoomGroupModel extends RoomGroup {
     return RoomGroup(
       name: name,
       boarding: boarding,
+    );
+  }
+}
+
+class FavoriteRoomDetailsModel extends RoomDetails {
+  const FavoriteRoomDetailsModel({
+    required super.name,
+    required super.boarding,
+    required super.adultCount,
+    required super.childrenCount,
+  });
+
+  factory FavoriteRoomDetailsModel.fromMap(DataMap map) {
+    return FavoriteRoomDetailsModel(
+      name: map['name'] as String? ?? '',
+      boarding: map['boarding'] as String? ?? '',
+      adultCount: map['adult-count'] as int? ?? 0,
+      childrenCount: map['children-count'] as int? ?? 0,
+    );
+  }
+
+  DataMap toMap() {
+    return {
+      'name': name,
+      'boarding': boarding,
+      'adult-count': adultCount,
+      'children-count': childrenCount,
+    };
+  }
+
+  RoomDetails toEntity() {
+    return RoomDetails(
+      name: name,
+      boarding: boarding,
+      adultCount: adultCount,
+      childrenCount: childrenCount,
     );
   }
 }
@@ -183,7 +221,7 @@ class FavoriteRatingInfoModel extends RatingInfo {
     return FavoriteRatingInfoModel(
       score: (map['score'] as num?)?.toDouble() ?? 0.0,
       scoreDescription: map['score-description'] as String? ?? '',
-      reviewsCount: map['reviews-count'] as int? ?? 0, // Korrekte Extraktion
+      reviewsCount: map['reviews-count'] as int? ?? 0,
     );
   }
 
@@ -191,7 +229,7 @@ class FavoriteRatingInfoModel extends RatingInfo {
     return {
       'score': score,
       'score-description': scoreDescription,
-      'reviews-count': reviewsCount, // Korrekte Serialisierung
+      'reviews-count': reviewsCount,
     };
   }
 
@@ -199,58 +237,7 @@ class FavoriteRatingInfoModel extends RatingInfo {
     return RatingInfo(
       score: score,
       scoreDescription: scoreDescription,
-      reviewsCount: reviewsCount, // Korrekte Zuordnung
-    );
-  }
-}
-
-class FavoriteAnalyticsModel extends Analytics {
-  const FavoriteAnalyticsModel({
-    required super.currency,
-    required super.itemCategory,
-    required super.itemId,
-    required super.itemListName,
-    required super.itemName,
-    required super.itemRooms,
-    required super.price,
-  });
-
-  factory FavoriteAnalyticsModel.fromMap(DataMap map) {
-    final selectItem = map['select_item.item.0'] as DataMap? ?? {};
-    return FavoriteAnalyticsModel(
-      currency: selectItem['currency'] as String? ?? '',
-      itemCategory: selectItem['itemCategory'] as String? ?? '',
-      itemId: selectItem['itemId'] as String? ?? '',
-      itemListName: selectItem['itemListName'] as String? ?? '',
-      itemName: selectItem['itemName'] as String? ?? '',
-      itemRooms: selectItem['itemRooms'] as String? ?? '',
-      price: selectItem['price'] as String? ?? '',
-    );
-  }
-
-  DataMap toMap() {
-    return {
-      'select_item.item.0': {
-        'currency': currency,
-        'itemCategory': itemCategory,
-        'itemId': itemId,
-        'itemListName': itemListName,
-        'itemName': itemName,
-        'itemRooms': itemRooms,
-        'price': price,
-      },
-    };
-  }
-
-  Analytics toEntity() {
-    return Analytics(
-      currency: currency,
-      itemCategory: itemCategory,
-      itemId: itemId,
-      itemListName: itemListName,
-      itemName: itemName,
-      itemRooms: itemRooms,
-      price: price,
+      reviewsCount: reviewsCount,
     );
   }
 }
