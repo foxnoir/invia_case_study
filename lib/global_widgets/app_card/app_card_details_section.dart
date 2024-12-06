@@ -13,10 +13,12 @@ import 'package:invia_case_study/l10n/de_fallback.dart';
 class AppCardDetailsSection extends StatelessWidget {
   const AppCardDetailsSection({
     required this.hotel,
+    this.isFavoriteTab = false,
     super.key,
   });
 
   final Hotel hotel;
+  final bool? isFavoriteTab;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class AppCardDetailsSection extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: Consts.cardPadding),
             child: Divider(),
           ),
-          if (appRouter.currentPath == '/${AppRouterPaths.hotels}')
+          if (!isFavoriteTab!)
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

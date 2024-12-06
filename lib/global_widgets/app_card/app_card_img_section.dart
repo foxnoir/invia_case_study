@@ -4,8 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
-import 'package:invia_case_study/features/router/app_router.dart';
-import 'package:invia_case_study/features/router/app_router_paths.dart';
 import 'package:invia_case_study/global_widgets/app_icon.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
@@ -14,6 +12,7 @@ class AppCardImgSection extends StatelessWidget {
   const AppCardImgSection({
     required this.imgUrl,
     required this.hotel,
+    this.isFavoriteTab = false,
     this.content,
     super.key,
   });
@@ -21,6 +20,7 @@ class AppCardImgSection extends StatelessWidget {
   final String imgUrl;
   final Widget? content;
   final Hotel hotel;
+  final bool? isFavoriteTab;
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +39,6 @@ class AppCardImgSection extends StatelessWidget {
                 state.hotel.hotelId == hotel.hotelId)
             ? state.hotel.isFavorite
             : hotel.isFavorite;
-
-        print(isFavorite);
 
         return Stack(
           children: [
@@ -87,7 +85,7 @@ class AppCardImgSection extends StatelessWidget {
                 ),
               ),
             ),
-            if (appRouter.currentPath == '/${AppRouterPaths.favorites}')
+            if (isFavoriteTab!)
               Positioned(
                 left: 10,
                 bottom: 10,

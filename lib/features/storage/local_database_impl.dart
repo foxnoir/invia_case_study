@@ -14,36 +14,27 @@ class LocalDatabaseImpl implements LocalDatabase {
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
   final String DB_ENCRYPTION_KEY = 'DB_ENCRYPTION_KEY';
   final String FIRST_RUN_KEY = 'FIRST_RUN_KEY';
-  final String APP_CONFIG_KEY = 'APP_CONFIG_KEY';
-  final String DB_VERSION_KEY = 'DB_VERSION_KEY';
   final int DB_VERSION_VALUE = 1;
 
   @override
   Future<void> init() async {
-    if (_isInitialized == true) {
-      return;
-    }
+    if (_isInitialized) return;
+
     final sharedPreferences = await SharedPreferences.getInstance();
     await _clearSecureStorageForFirstRun(sharedPreferences);
+
     try {
       _registerAdapter();
       await Hive.initFlutter();
       await _openBoxes();
-    } catch (exception) {
-      logger.i(exception.toString());
+    } catch (e) {
+      logger.e('Error initializing database', e, null);
     }
     _isInitialized = true;
   }
 
   void _registerAdapter() {
-    Hive
-      ..registerAdapter<FavoriteHotel>(FavoriteHotelAdapter())
-      ..registerAdapter<FavoriteHotelImageHive>(FavoriteHotelImageHiveAdapter())
-      ..registerAdapter<BestOfferHive>(BestOfferHiveAdapter())
-      ..registerAdapter<TravelDateHive>(TravelDateHiveAdapter())
-      ..registerAdapter<RatingInfoHive>(RatingInfoHiveAdapter())
-      ..registerAdapter<AnalyticsHive>(AnalyticsHiveAdapter())
-      ..registerAdapter<RoomGroupHive>(RoomGroupHiveAdapter());
+    Hive.registerAdapter<FavoriteHotel>(FavoriteHotelAdapter());
   }
 
   Future<void> _openBoxes() async {
@@ -52,14 +43,15 @@ class LocalDatabaseImpl implements LocalDatabase {
       'favoriteHotelBox',
       encryptionCipher: hiveAesCipher,
     );
-    logger.i('Box opened with ${_favoriteHotelBox.length} entries.');
+    logger
+        .i('FavoriteHotelBox opened with ${_favoriteHotelBox.length} entries.');
   }
 
   Future<void> _clearSecureStorageForFirstRun(
     SharedPreferences sharedPreferences,
   ) async {
     if (sharedPreferences.getBool(FIRST_RUN_KEY) ?? true) {
-      logger.i('**** cleaning secure storage *****');
+      logger.i('Clearing secure storage for first run.');
       await _secureStorage.deleteAll();
       await sharedPreferences.setBool(FIRST_RUN_KEY, false);
     }
@@ -81,42 +73,23 @@ class LocalDatabaseImpl implements LocalDatabase {
   }
 
   @override
-  Future<void> clear() async {
-    await _favoriteHotelBox.clear();
-    await Hive.deleteFromDisk();
-    await _secureStorage.deleteAll();
-    _isInitialized = false;
-    await init();
-  }
-
-  @override
-  Future<void> flush() async {
-    await _favoriteHotelBox.flush();
-  }
-
-  @override
-  Future<void> removeFavoriteHotelById({required String id}) async {
+  Future<void> addFavoriteHotelId({required String hotelId}) async {
     try {
-      final hotelKey = _favoriteHotelBox.keys.firstWhere(
-        (key) => _favoriteHotelBox.get(key)?.id == id,
-        orElse: () => null,
-      );
-
-      if (hotelKey != null) {
-        await _favoriteHotelBox.delete(hotelKey);
-        logger.i('Favorite hotel with id $id deleted successfully.');
-      } else {
-        logger.i('No favorite hotel found with id $id.');
-      }
+      await _favoriteHotelBox.put(hotelId, FavoriteHotel(id: hotelId));
+      logger.i('Added favorite hotel with id: $hotelId');
     } catch (e) {
-      logger.e('Error deleting favorite hotel with id $id', e, null);
-      rethrow;
+      logger.e('Error adding favorite hotel ID', e, null);
     }
   }
 
   @override
-  List<FavoriteHotel> getallFavoriteHotels() {
-    return _favoriteHotelBox.values.toList();
+  Future<void> removeFavoriteHotelId({required String id}) async {
+    try {
+      await _favoriteHotelBox.delete(id);
+      logger.i('Removed favorite hotel with id: $id');
+    } catch (e) {
+      logger.e('Error removing favorite hotel ID', e, null);
+    }
   }
 
   @override
@@ -125,13 +98,17 @@ class LocalDatabaseImpl implements LocalDatabase {
   }
 
   @override
-  Future<void> addFavoriteHotel({
-    required FavoriteHotel favoriteHotel,
-  }) async {
-    try {
-      await _favoriteHotelBox.put(favoriteHotel.id, favoriteHotel);
-    } catch (e) {
-      logger.e('Error while saving favoriteHotel', e, null);
-    }
+  Future<void> clear() async {
+    await _favoriteHotelBox.clear();
+    await Hive.deleteFromDisk();
+    await _secureStorage.deleteAll();
+    _isInitialized = false;
+    logger.i('Database cleared and reset.');
+    await init();
+  }
+
+  @override
+  Future<void> flush() async {
+    await _favoriteHotelBox.flush();
   }
 }

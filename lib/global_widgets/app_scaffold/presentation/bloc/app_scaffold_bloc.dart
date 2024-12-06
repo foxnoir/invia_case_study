@@ -35,7 +35,7 @@ class AppScaffoldBloc extends Bloc<AppScaffoldEvent, AppScaffoldState> {
     Emitter<AppScaffoldState> emit,
   ) async {
     try {
-      await hotelsRepository.removeFavoriteHotelById(id: event.hotel.hotelId);
+      await hotelsRepository.removeFavoriteHotelId(id: event.hotel.hotelId);
       emit(AppScaffoldUpdated(hotel: event.hotel.copyWith(isFavorite: false)));
     } catch (e) {
       emit(AppScaffoldError(message: 'Error removing favorite: $e'));

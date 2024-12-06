@@ -46,6 +46,7 @@ class HotelsView extends StatelessWidget {
         final hasLoaded = state is HotelsLoaded;
 
         return AppScaffold(
+          isFavoriteTab: false,
           title: localizations?.hotels ?? FallBackString.hotels,
           isLoading: isLoading,
           isLoaded: hasLoaded,

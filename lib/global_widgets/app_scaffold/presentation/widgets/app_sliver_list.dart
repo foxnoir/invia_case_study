@@ -9,6 +9,7 @@ class AppSliverList extends StatelessWidget {
     required this.hotelList,
     required this.buttonText,
     required this.onRefresh,
+    required this.isFavoriteTab,
     this.location,
     super.key,
   });
@@ -17,6 +18,7 @@ class AppSliverList extends StatelessWidget {
   final String buttonText;
   final String? location;
   final Future<void> Function() onRefresh;
+  final bool isFavoriteTab;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class AppSliverList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
               child: AppCard(
+                isFavoriteTab: isFavoriteTab,
                 hotel: hotel,
                 imgUrl: hotel.images.isNotEmpty ? hotel.images.first.large : '',
                 onButtonPressed: () {},

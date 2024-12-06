@@ -13,14 +13,14 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     on<FetchHotelsEvent>(_onFetchHotels);
   }
 
-  final HotelsRepository hotelsRepository = DI.getIt<HotelsRepository>();
+  final HotelsRepository _hotelsRepository = DI.getIt<HotelsRepository>();
 
   Future<void> _onFetchHotels(
     FetchHotelsEvent event,
     Emitter<HotelsState> emit,
   ) async {
     emit(const HotelsLoading());
-    final result = await hotelsRepository.getHotels();
+    final result = await _hotelsRepository.getHotels();
     result.fold(
       (failure) => emit(HotelsError(failure: failure)),
       (hotels) {

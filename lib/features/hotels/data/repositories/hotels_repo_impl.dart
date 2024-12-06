@@ -51,8 +51,7 @@ class HotelRepoImpl implements HotelsRepository {
   @override
   ResultFuture<void> addFavoriteHotel({required Hotel hotel}) async {
     try {
-      final favoriteHotel = hotel.toFavoriteHotel();
-      await _localDatabase.addFavoriteHotel(favoriteHotel: favoriteHotel);
+      await _localDatabase.addFavoriteHotelId(hotelId: hotel.id);
       return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure(message: 'Failed to add favorite hotel: $e'));
@@ -60,9 +59,9 @@ class HotelRepoImpl implements HotelsRepository {
   }
 
   @override
-  ResultFuture<void> removeFavoriteHotelById({required String id}) async {
+  ResultFuture<void> removeFavoriteHotelId({required String id}) async {
     try {
-      await _localDatabase.removeFavoriteHotelById(id: id);
+      await _localDatabase.removeFavoriteHotelId(id: id);
       return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure(message: 'Failed to add favorite hotel: $e'));

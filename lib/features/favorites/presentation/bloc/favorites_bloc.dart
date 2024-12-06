@@ -13,19 +13,20 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<FetchFavoritesEvent>(_onFetchFavorites);
   }
 
-  final FavoritesRepository favoritesRepository =
+  final FavoritesRepository _favoritesRepository =
       DI.getIt<FavoritesRepository>();
 
-  void _onFetchFavorites(
+  Future<void> _onFetchFavorites(
     FetchFavoritesEvent event,
     Emitter<FavoritesState> emit,
-  ) {
+  ) async {
     emit(const FavoritesLoading());
-    favoritesRepository.getFavorites().fold(
-          (failure) => emit(FavoritesError(failure: failure)),
-          (hotels) => emit(
-            FavoritesLoaded(favorites: hotels),
-          ),
-        );
+    final result = await _favoritesRepository.getFavorites();
+    result.fold(
+      (failure) => emit(FavoritesError(failure: failure)),
+      (hotels) {
+        emit(FavoritesLoaded(favorites: hotels));
+      },
+    );
   }
 }

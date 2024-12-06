@@ -1,7 +1,6 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:equatable/equatable.dart';
-import 'package:invia_case_study/features/storage/hive_models/favorite_hotel.dart';
 
 class Hotel extends Equatable {
   const Hotel({
@@ -257,57 +256,5 @@ class Analytics extends Equatable {
   String toString() {
     return 'Analytics{currency: $currency, itemCategory: $itemCategory, itemId: $itemId, '
         'itemListName: $itemListName, itemName: $itemName, itemRooms: $itemRooms, price: $price}';
-  }
-}
-
-extension HotelMapper on Hotel {
-  FavoriteHotel toFavoriteHotel() {
-    return FavoriteHotel(
-      id: id,
-      name: name,
-      category: category,
-      destination: destination,
-      images: images
-          .map(
-            (image) => FavoriteHotelImageHive(
-              large: image.large,
-              small: image.small,
-            ),
-          )
-          .toList(),
-      bestOffer: BestOfferHive(
-        total: bestOffer.total,
-        simplePricePerPerson: bestOffer.simplePricePerPerson,
-        flightIncluded: bestOffer.flightIncluded,
-        travelDate: TravelDateHive(
-          days: bestOffer.travelDate.days,
-          nights: bestOffer.travelDate.nights,
-        ),
-        roomGroups: bestOffer.roomGroups
-            .map(
-              (group) => RoomGroupHive(
-                name: group.name,
-                boarding: group.boarding,
-              ),
-            )
-            .toList(),
-      ),
-      ratingInfo: RatingInfoHive(
-        score: ratingInfo.score,
-        scoreDescription: ratingInfo.scoreDescription,
-        reviewsCount: ratingInfo.reviewsCount,
-      ),
-      hotelId: hotelId,
-      analytics: AnalyticsHive(
-        currency: analytics.currency,
-        itemCategory: analytics.itemCategory,
-        itemId: analytics.itemId,
-        itemListName: analytics.itemListName,
-        itemName: analytics.itemName,
-        itemRooms: analytics.itemRooms,
-        price: analytics.price,
-      ),
-      isFavorite: true,
-    );
   }
 }

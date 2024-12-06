@@ -10,6 +10,7 @@ class AppCard extends StatelessWidget {
     required this.buttonText,
     required this.onButtonPressed,
     required this.hotel,
+    required this.isFavoriteTab,
     super.key,
   });
 
@@ -17,6 +18,7 @@ class AppCard extends StatelessWidget {
   final String buttonText;
   final VoidCallback onButtonPressed;
   final Hotel hotel;
+  final bool isFavoriteTab;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,9 @@ class AppCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AppCardImgSection(imgUrl: imgUrl, hotel: hotel),
-          AppCardDetailsSection(hotel: hotel),
+          AppCardImgSection(
+              imgUrl: imgUrl, hotel: hotel, isFavoriteTab: isFavoriteTab),
+          AppCardDetailsSection(hotel: hotel, isFavoriteTab: isFavoriteTab),
           Padding(
             padding: const EdgeInsets.only(
               bottom: Consts.cardPadding,

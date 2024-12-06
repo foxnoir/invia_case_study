@@ -6,5 +6,7 @@ import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 abstract class FavoritesRepository {
   const FavoritesRepository();
 
-  ResultSync<List<Hotel>> getFavorites();
+  ResultFuture<List<Hotel>> getFavorites();
+
+  ResultSync<List<String>> getFavoriteHotelIds();
 }

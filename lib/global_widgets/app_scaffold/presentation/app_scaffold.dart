@@ -19,6 +19,7 @@ class AppScaffold extends StatelessWidget {
     required this.errorMessage,
     required this.onRefresh,
     required this.buttonText,
+    required this.isFavoriteTab,
     this.location,
     super.key,
   });
@@ -32,6 +33,7 @@ class AppScaffold extends StatelessWidget {
   final Future<void> Function() onRefresh;
   final String buttonText;
   final String? location;
+  final bool isFavoriteTab;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +76,7 @@ class AppScaffold extends StatelessWidget {
                       )
                     else
                       AppSliverList(
+                        isFavoriteTab: isFavoriteTab,
                         onRefresh: onRefresh,
                         buttonText: buttonText,
                         hotelList: hotelList,
