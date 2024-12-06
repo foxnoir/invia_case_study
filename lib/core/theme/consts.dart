@@ -17,6 +17,7 @@ class AppColor {
   static Color dark_grey = HexColor.fromHex('#595959');
   static Color grey = HexColor.fromHex('#222222');
   static Color light_grey = HexColor.fromHex('#E9E9E9');
+  static Color box_grey = HexColor.fromHex('#9E9E9E');
   static Color error = HexColor.fromHex('#E60000');
 }
 
@@ -45,7 +46,7 @@ class AppFontSize {
   // hotel name
   static const double s21 = 21;
   // price
-  static const double s23 = 23;
+  static const double s23 = 22;
 }
 
 class SvgIcon {

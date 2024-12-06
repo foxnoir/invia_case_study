@@ -12,11 +12,6 @@ class FallBackString {
   static const String noFavorites = 'Du hast noch keine Favoriten.';
   static const String editAccount = 'Account bearbeiten';
   static const String rating = 'Bew.';
-  static const String ratingHighlySatisfied = 'Hervorragend';
-  static const String ratingVerySatisfied = 'Sehr gut';
-  static const String ratingSatisfied = 'Gut';
-  static const String ratingDissatisfied = 'Unzufrieden';
-  static const String ratingVeryDissatisfied = 'Sehr unzufrieden';
   static const String prizeFrom = 'ab';
   static const String day = 'Tag';
   static const String days = 'Tage';

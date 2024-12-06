@@ -25,10 +25,9 @@ class AppCardImgSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final hotelRating = hotel.analytics.itemCategory;
-    final ratingInfo = RatingMapper.getRatingInfo(hotelRating, context);
-    final ratingString =
-        AppLocalizations.of(context)?.rating ?? FallBackString.rating;
+    final appLocalizations = AppLocalizations.of(context);
+    final scoreDescription =
+        ScoreDescription.fromString(hotel.ratingInfo.scoreDescription);
 
     return BlocBuilder<AppScaffoldBloc, AppScaffoldState>(
       buildWhen: (previous, current) =>
@@ -95,7 +94,7 @@ class AppCardImgSection extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        color: ratingInfo.color,
+                        color: scoreDescription.color,
                         borderRadius: BorderRadius.circular(2),
                       ),
                       child: Row(
@@ -120,18 +119,17 @@ class AppCardImgSection extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      width: 12,
-                    ),
+                    const SizedBox(width: 12),
                     Text(
-                      ratingInfo.text,
+                      hotel.ratingInfo.scoreDescription,
                       style: theme.textTheme.bodySmall!.copyWith(
                         color: theme.colorScheme.surface,
                         fontWeight: AppFontWeight.bold,
                       ),
                     ),
                     Text(
-                      ' (${hotel.ratingInfo.reviewsCount} $ratingString)',
+                      ' (${hotel.ratingInfo.reviewsCount} '
+                      '${appLocalizations?.rating ?? FallBackString.rating})',
                       style: theme.textTheme.bodySmall!.copyWith(
                         color: theme.colorScheme.surface,
                         fontWeight: AppFontWeight.bold,
@@ -147,55 +145,38 @@ class AppCardImgSection extends StatelessWidget {
   }
 }
 
-class RatingMapper {
-  static RatingInfo getRatingInfo(String itemCategory, BuildContext context) {
-    final appLocalizations = AppLocalizations.of(context);
+enum ScoreDescription {
+  noDesc,
+  excellent,
+  veryGood,
+  adequate,
+  weak;
 
-    final keywords = itemCategory.split(',').map((s) => s.trim());
-
-    for (final keyword in keywords) {
-      if (keyword == 'highlySatisfied') {
-        return RatingInfo(
-          text: appLocalizations?.ratingHighlySatisfied ??
-              FallBackString.ratingHighlySatisfied,
-          color: AppColor.light_green,
-        );
-      } else if (keyword == 'verySatisfied') {
-        return RatingInfo(
-          text: appLocalizations?.ratingVerySatisfied ??
-              FallBackString.ratingVerySatisfied,
-          color: AppColor.light_green,
-        );
-      } else if (keyword == 'satisfied') {
-        return RatingInfo(
-          text: appLocalizations?.ratingSatisfied ??
-              FallBackString.ratingSatisfied,
-          color: AppColor.light_green,
-        );
-      } else if (keyword == 'dissatisfied') {
-        return RatingInfo(
-          text: appLocalizations?.ratingDissatisfied ??
-              FallBackString.ratingDissatisfied,
-          color: AppColor.error,
-        );
-      } else if (keyword == 'veryDissatisfied') {
-        return RatingInfo(
-          text: appLocalizations?.ratingVeryDissatisfied ??
-              FallBackString.ratingVeryDissatisfied,
-          color: AppColor.error,
-        );
-      }
+  static ScoreDescription fromString(String description) {
+    switch (description) {
+      case 'Ausgezeichnet':
+        return ScoreDescription.excellent;
+      case 'Sehr Gut':
+        return ScoreDescription.veryGood;
+      case 'Angemessen':
+        return ScoreDescription.adequate;
+      case 'Schwach':
+        return ScoreDescription.weak;
+      default:
+        return ScoreDescription.noDesc;
     }
-
-    return RatingInfo(
-      text: '',
-      color: Colors.grey,
-    );
   }
-}
 
-class RatingInfo {
-  RatingInfo({required this.text, required this.color});
-  final String text;
-  final Color color;
+  Color get color {
+    switch (this) {
+      case ScoreDescription.excellent:
+      case ScoreDescription.veryGood:
+        return AppColor.light_green;
+      case ScoreDescription.adequate:
+      case ScoreDescription.weak:
+        return AppColor.error;
+      case ScoreDescription.noDesc:
+        return AppColor.box_grey;
+    }
+  }
 }
