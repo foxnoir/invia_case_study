@@ -16,5 +16,10 @@
   "ratingVerySatisfied": "Very good",
   "ratingSatisfied": "Good",
   "ratingDissatisfied": "Dissatisfied",
-  "ratingVeryDissatisfied": "Very dissatisfied"
+  "ratingVeryDissatisfied": "Very dissatisfied",
+  "prizeFrom": "from",
+  "day": "day",
+  "days": "days",
+  "night": "night",
+  "nights": "nights"
 }

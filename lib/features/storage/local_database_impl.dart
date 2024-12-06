@@ -42,7 +42,8 @@ class LocalDatabaseImpl implements LocalDatabase {
       ..registerAdapter<BestOfferHive>(BestOfferHiveAdapter())
       ..registerAdapter<TravelDateHive>(TravelDateHiveAdapter())
       ..registerAdapter<RatingInfoHive>(RatingInfoHiveAdapter())
-      ..registerAdapter<AnalyticsHive>(AnalyticsHiveAdapter());
+      ..registerAdapter<AnalyticsHive>(AnalyticsHiveAdapter())
+      ..registerAdapter<RoomGroupHive>(RoomGroupHiveAdapter());
   }
 
   Future<void> _openBoxes() async {

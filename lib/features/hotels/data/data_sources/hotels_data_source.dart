@@ -28,6 +28,7 @@ class HotelsDataSourceImpl implements HotelsDataSource {
 
       final decodedJson = response.data! as DataMap;
       final hotelsList = decodedJson['hotels']! as List<dynamic>;
+
       return hotelsList
           .map((json) => HotelModel.fromMap(json as DataMap))
           .toList();

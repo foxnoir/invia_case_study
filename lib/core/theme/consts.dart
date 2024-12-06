@@ -42,7 +42,10 @@ class AppFontSize {
   static const double s17 = 17;
   // hotel count
   static const double s19 = 19;
-  static const double xLarge = 21;
+  // hotel name
+  static const double s21 = 21;
+  // price
+  static const double s23 = 23;
 }
 
 class SvgIcon {

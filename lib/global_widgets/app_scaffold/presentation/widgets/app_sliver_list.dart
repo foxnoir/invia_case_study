@@ -44,7 +44,6 @@ class AppSliverList extends StatelessWidget {
                 hotel: hotel,
                 imgUrl: hotel.images.isNotEmpty ? hotel.images.first.large : '',
                 onButtonPressed: () {},
-                content: Container(),
                 buttonText: buttonText,
               ),
             );

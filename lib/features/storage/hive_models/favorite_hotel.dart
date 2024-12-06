@@ -1,23 +1,19 @@
 import 'package:hive/hive.dart';
 import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 
 part 'favorite_hotel.g.dart';
 
-@HiveType(typeId: 0)
 @HiveType(typeId: 0)
 class FavoriteHotel extends HiveObject {
   FavoriteHotel({
     required this.id,
     required this.name,
-    required this.latitude,
-    required this.longitude,
     required this.category,
     required this.destination,
     required this.images,
     required this.bestOffer,
     required this.ratingInfo,
-    required this.badges,
-    required this.categoryType,
     required this.hotelId,
     required this.analytics,
     required this.isFavorite,
@@ -27,8 +23,6 @@ class FavoriteHotel extends HiveObject {
     return FavoriteHotel(
       id: hotel.id,
       name: hotel.name,
-      latitude: hotel.latitude,
-      longitude: hotel.longitude,
       category: hotel.category,
       destination: hotel.destination,
       images: hotel.images
@@ -36,8 +30,6 @@ class FavoriteHotel extends HiveObject {
           .toList(),
       bestOffer: BestOfferHive.fromModel(hotel.bestOffer as BestOfferModel),
       ratingInfo: RatingInfoHive.fromModel(hotel.ratingInfo as RatingInfoModel),
-      badges: hotel.badges,
-      categoryType: hotel.categoryType,
       hotelId: hotel.hotelId,
       analytics: AnalyticsHive.fromModel(hotel.analytics as AnalyticsModel),
       isFavorite: hotel.isFavorite,
@@ -51,54 +43,38 @@ class FavoriteHotel extends HiveObject {
   final String name;
 
   @HiveField(2)
-  final double latitude;
-
-  @HiveField(3)
-  final double longitude;
-
-  @HiveField(4)
   final int category;
 
-  @HiveField(5)
+  @HiveField(3)
   final String destination;
 
-  @HiveField(6)
+  @HiveField(4)
   final List<FavoriteHotelImageHive> images;
 
-  @HiveField(7)
+  @HiveField(5)
   final BestOfferHive bestOffer;
 
-  @HiveField(8)
+  @HiveField(6)
   final RatingInfoHive ratingInfo;
 
-  @HiveField(9)
-  final List<String> badges;
-
-  @HiveField(10)
-  final String categoryType;
-
-  @HiveField(11)
+  @HiveField(7)
   final String hotelId;
 
-  @HiveField(12)
+  @HiveField(8)
   final AnalyticsHive analytics;
 
-  @HiveField(13)
+  @HiveField(9)
   final bool isFavorite;
 
   HotelModel toHotelModel() {
     return HotelModel(
       id: id,
       name: name,
-      latitude: latitude,
-      longitude: longitude,
       category: category,
       destination: destination,
       images: images.map((e) => e.toModel()).toList(),
       bestOffer: bestOffer.toModel(),
       ratingInfo: ratingInfo.toModel(),
-      badges: badges,
-      categoryType: categoryType,
       hotelId: hotelId,
       analytics: analytics.toModel(),
     );
@@ -137,17 +113,19 @@ class FavoriteHotelImageHive {
 class BestOfferHive {
   const BestOfferHive({
     required this.total,
-    required this.travelPrice,
+    required this.simplePricePerPerson,
     required this.flightIncluded,
     required this.travelDate,
+    required this.roomGroups,
   });
 
   factory BestOfferHive.fromModel(BestOfferModel model) {
     return BestOfferHive(
       total: model.total,
-      travelPrice: model.travelPrice,
+      simplePricePerPerson: model.simplePricePerPerson,
       flightIncluded: model.flightIncluded,
       travelDate: TravelDateHive.fromModel(model.travelDate as TravelDateModel),
+      roomGroups: model.roomGroups.map(RoomGroupHive.fromModel).toList(),
     );
   }
 
@@ -155,7 +133,7 @@ class BestOfferHive {
   final int total;
 
   @HiveField(1)
-  final int travelPrice;
+  final int simplePricePerPerson;
 
   @HiveField(2)
   final bool flightIncluded;
@@ -163,12 +141,16 @@ class BestOfferHive {
   @HiveField(3)
   final TravelDateHive travelDate;
 
+  @HiveField(4)
+  final List<RoomGroupHive> roomGroups;
+
   BestOfferModel toModel() {
     return BestOfferModel(
       total: total,
-      travelPrice: travelPrice,
+      simplePricePerPerson: simplePricePerPerson,
       flightIncluded: flightIncluded,
       travelDate: travelDate.toModel(),
+      roomGroups: roomGroups.map((group) => group.toModel()).toList(),
     );
   }
 }
@@ -177,17 +159,13 @@ class BestOfferHive {
 class TravelDateHive {
   const TravelDateHive({
     required this.days,
-    required this.departureDate,
     required this.nights,
-    required this.returnDate,
   });
 
   factory TravelDateHive.fromModel(TravelDateModel model) {
     return TravelDateHive(
       days: model.days,
-      departureDate: model.departureDate,
       nights: model.nights,
-      returnDate: model.returnDate,
     );
   }
 
@@ -195,25 +173,45 @@ class TravelDateHive {
   final int days;
 
   @HiveField(1)
-  final String departureDate;
-
-  @HiveField(2)
   final int nights;
-
-  @HiveField(3)
-  final String returnDate;
 
   TravelDateModel toModel() {
     return TravelDateModel(
       days: days,
-      departureDate: departureDate,
       nights: nights,
-      returnDate: returnDate,
     );
   }
 }
 
 @HiveType(typeId: 4)
+class RoomGroupHive {
+  const RoomGroupHive({
+    required this.name,
+    required this.boarding,
+  });
+
+  factory RoomGroupHive.fromModel(RoomGroup model) {
+    return RoomGroupHive(
+      name: model.name,
+      boarding: model.boarding,
+    );
+  }
+
+  @HiveField(0)
+  final String name;
+
+  @HiveField(1)
+  final String boarding;
+
+  RoomGroup toModel() {
+    return RoomGroup(
+      name: name,
+      boarding: boarding,
+    );
+  }
+}
+
+@HiveType(typeId: 5)
 class RatingInfoHive {
   const RatingInfoHive({
     required this.score,
@@ -247,31 +245,27 @@ class RatingInfoHive {
   }
 }
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 6)
 class AnalyticsHive {
   const AnalyticsHive({
     required this.currency,
     required this.itemCategory,
-    required this.itemCategory2,
     required this.itemId,
     required this.itemListName,
     required this.itemName,
     required this.itemRooms,
     required this.price,
-    required this.quantity,
   });
 
   factory AnalyticsHive.fromModel(AnalyticsModel model) {
     return AnalyticsHive(
       currency: model.currency,
       itemCategory: model.itemCategory,
-      itemCategory2: model.itemCategory2,
       itemId: model.itemId,
       itemListName: model.itemListName,
       itemName: model.itemName,
       itemRooms: model.itemRooms,
       price: model.price,
-      quantity: model.quantity,
     );
   }
 
@@ -282,37 +276,29 @@ class AnalyticsHive {
   final String itemCategory;
 
   @HiveField(2)
-  final String itemCategory2;
-
-  @HiveField(3)
   final String itemId;
 
-  @HiveField(4)
+  @HiveField(3)
   final String itemListName;
 
-  @HiveField(5)
+  @HiveField(4)
   final String itemName;
 
-  @HiveField(6)
+  @HiveField(5)
   final String itemRooms;
 
-  @HiveField(7)
+  @HiveField(6)
   final String price;
-
-  @HiveField(8)
-  final int quantity;
 
   AnalyticsModel toModel() {
     return AnalyticsModel(
       currency: currency,
       itemCategory: itemCategory,
-      itemCategory2: itemCategory2,
       itemId: itemId,
       itemListName: itemListName,
       itemName: itemName,
       itemRooms: itemRooms,
       price: price,
-      quantity: quantity,
     );
   }
 }

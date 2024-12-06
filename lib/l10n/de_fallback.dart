@@ -17,4 +17,9 @@ class FallBackString {
   static const String ratingSatisfied = 'Gut';
   static const String ratingDissatisfied = 'Unzufrieden';
   static const String ratingVeryDissatisfied = 'Sehr unzufrieden';
+  static const String prizeFrom = 'ab';
+  static const String day = 'Tag';
+  static const String days = 'Tage';
+  static const String night = 'Nacht';
+  static const String nights = 'Nächte';
 }

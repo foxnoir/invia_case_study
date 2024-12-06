@@ -40,6 +40,8 @@ class AppCardImgSection extends StatelessWidget {
             ? state.hotel.isFavorite
             : hotel.isFavorite;
 
+        print(isFavorite);
+
         return Stack(
           children: [
             AspectRatio(

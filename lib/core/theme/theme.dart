@@ -8,7 +8,7 @@ ThemeData getLightTheme() {
 ThemeData _theme(ColorScheme colorScheme) {
   final textTheme = TextTheme(
     headlineLarge: TextStyle(
-      fontSize: AppFontSize.xLarge,
+      fontSize: AppFontSize.s21,
       fontWeight: AppFontWeight.bold,
       color: colorScheme.onSurface,
     ),

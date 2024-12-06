@@ -10,12 +10,10 @@ class AppCard extends StatelessWidget {
     required this.buttonText,
     required this.onButtonPressed,
     required this.hotel,
-    this.content,
     super.key,
   });
 
   final String imgUrl;
-  final Widget? content;
   final String buttonText;
   final VoidCallback onButtonPressed;
   final Hotel hotel;
@@ -31,21 +29,14 @@ class AppCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AppCardImgSection(content: content, imgUrl: imgUrl, hotel: hotel),
+          AppCardImgSection(imgUrl: imgUrl, hotel: hotel),
           AppCardDetailsSection(hotel: hotel),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: Consts.cardPadding),
-            child: Divider(),
-          ),
-          if (content != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Consts.cardPadding,
-              ),
-              child: content,
-            ),
           Padding(
-            padding: const EdgeInsets.all(Consts.cardPadding),
+            padding: const EdgeInsets.only(
+              bottom: Consts.cardPadding,
+              left: Consts.cardPadding,
+              right: Consts.cardPadding,
+            ),
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(

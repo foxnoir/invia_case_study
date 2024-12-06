@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:equatable/equatable.dart';
 import 'package:invia_case_study/features/storage/hive_models/favorite_hotel.dart';
 
@@ -5,15 +7,11 @@ class Hotel extends Equatable {
   const Hotel({
     required this.id,
     required this.name,
-    required this.latitude,
-    required this.longitude,
     required this.category,
     required this.destination,
     required this.bestOffer,
     required this.ratingInfo,
     required this.analytics,
-    required this.badges,
-    required this.categoryType,
     required this.hotelId,
     this.images = const [],
     this.isFavorite = false,
@@ -21,128 +19,144 @@ class Hotel extends Equatable {
 
   final String id;
   final String name;
-  final double latitude;
-  final double longitude;
   final int category;
   final String destination;
   final List<HotelImage> images;
   final BestOffer bestOffer;
   final RatingInfo ratingInfo;
   final Analytics analytics;
-  final List<String> badges;
-  final String categoryType;
-  final String hotelId;
   final bool isFavorite;
+  final String hotelId;
 
   @override
   List<Object?> get props => [
         id,
         name,
-        latitude,
-        longitude,
         category,
         destination,
         images,
         bestOffer,
         ratingInfo,
         analytics,
-        badges,
-        categoryType,
-        hotelId,
         isFavorite,
+        hotelId,
       ];
 
-  /// Erzeugt eine neue Instanz von `Hotel` mit aktualisierten Werten.
   Hotel copyWith({
     String? id,
     String? name,
-    double? latitude,
-    double? longitude,
     int? category,
     String? destination,
     List<HotelImage>? images,
     BestOffer? bestOffer,
     RatingInfo? ratingInfo,
     Analytics? analytics,
-    List<String>? badges,
-    String? categoryType,
-    String? hotelId,
     bool? isFavorite,
+    String? hotelId,
   }) {
     return Hotel(
       id: id ?? this.id,
       name: name ?? this.name,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
       category: category ?? this.category,
       destination: destination ?? this.destination,
       images: images ?? this.images,
       bestOffer: bestOffer ?? this.bestOffer,
       ratingInfo: ratingInfo ?? this.ratingInfo,
       analytics: analytics ?? this.analytics,
-      badges: badges ?? this.badges,
-      categoryType: categoryType ?? this.categoryType,
-      hotelId: hotelId ?? this.hotelId,
       isFavorite: isFavorite ?? this.isFavorite,
+      hotelId: hotelId ?? this.hotelId,
     );
   }
 }
 
-class Analytics extends Equatable {
-  const Analytics({
-    required this.currency,
-    required this.itemCategory,
-    required this.itemCategory2,
-    required this.itemId,
-    required this.itemListName,
-    required this.itemName,
-    required this.itemRooms,
-    required this.price,
-    required this.quantity,
+class BestOffer extends Equatable {
+  const BestOffer({
+    required this.total,
+    required this.simplePricePerPerson,
+    required this.flightIncluded,
+    required this.travelDate,
+    required this.roomGroups,
   });
 
-  const Analytics.empty()
+  const BestOffer.empty()
       : this(
-          currency: '',
-          itemCategory: '',
-          itemCategory2: '',
-          itemId: '',
-          itemListName: '',
-          itemName: '',
-          itemRooms: '',
-          price: '',
-          quantity: 0,
+          total: 0,
+          simplePricePerPerson: 0,
+          flightIncluded: false,
+          travelDate: const TravelDate.empty(),
+          roomGroups: const [],
         );
 
-  final String currency;
-  final String itemCategory;
-  final String itemCategory2;
-  final String itemId;
-  final String itemListName;
-  final String itemName;
-  final String itemRooms;
-  final String price;
-  final int quantity;
+  final int total;
+  final int simplePricePerPerson;
+  final bool flightIncluded;
+  final TravelDate travelDate;
+  final List<RoomGroup> roomGroups;
 
   @override
   List<Object?> get props => [
-        currency,
-        itemCategory,
-        itemCategory2,
-        itemId,
-        itemListName,
-        itemName,
-        itemRooms,
-        price,
-        quantity,
+        total,
+        simplePricePerPerson,
+        flightIncluded,
+        travelDate,
+        roomGroups,
       ];
 
   @override
   String toString() {
-    return 'Analytics{currency: $currency, itemCategory: $itemCategory, '
-        'itemCategory2: $itemCategory2, itemId: $itemId, '
-        'itemListName: $itemListName, itemName: $itemName, '
-        'itemRooms: $itemRooms, price: $price, quantity: $quantity}';
+    return 'BestOffer{total: $total, simplePricePerPerson: $simplePricePerPerson, '
+        'flightIncluded: $flightIncluded, travelDate: $travelDate, roomGroups: $roomGroups}';
+  }
+}
+
+class RoomGroup extends Equatable {
+  const RoomGroup({
+    required this.name,
+    required this.boarding,
+  });
+
+  const RoomGroup.empty()
+      : this(
+          name: '',
+          boarding: '',
+        );
+
+  final String name;
+  final String boarding;
+
+  @override
+  List<Object?> get props => [name, boarding];
+
+  @override
+  String toString() {
+    return 'RoomGroup{name: $name, boarding: $boarding}';
+  }
+}
+
+class TravelDate extends Equatable {
+  const TravelDate({
+    required this.days,
+    required this.nights,
+  });
+
+  const TravelDate.empty()
+      : this(
+          days: 0,
+          nights: 0,
+        );
+
+  final int days;
+  final int nights;
+
+  @override
+  List<Object?> get props => [
+        days,
+        nights,
+      ];
+
+  @override
+  String toString() {
+    return 'TravelDate{days: $days, nights: $nights}';
   }
 }
 
@@ -167,78 +181,6 @@ class HotelImage extends Equatable {
   @override
   String toString() {
     return 'HotelImage{large: $large, small: $small}';
-  }
-}
-
-class BestOffer extends Equatable {
-  const BestOffer({
-    required this.total,
-    required this.travelPrice,
-    required this.flightIncluded,
-    required this.travelDate,
-  });
-
-  const BestOffer.empty()
-      : this(
-          total: 0,
-          travelPrice: 0,
-          flightIncluded: false,
-          travelDate: const TravelDate.empty(),
-        );
-
-  final int total;
-  final int travelPrice;
-  final bool flightIncluded;
-  final TravelDate travelDate;
-
-  @override
-  List<Object?> get props => [
-        total,
-        travelPrice,
-        flightIncluded,
-        travelDate,
-      ];
-
-  @override
-  String toString() {
-    return 'BestOffer{total: $total, travelPrice: $travelPrice, '
-        'flightIncluded: $flightIncluded, travelDate: $travelDate}';
-  }
-}
-
-class TravelDate extends Equatable {
-  const TravelDate({
-    required this.days,
-    required this.departureDate,
-    required this.nights,
-    required this.returnDate,
-  });
-
-  const TravelDate.empty()
-      : this(
-          days: 0,
-          departureDate: '',
-          nights: 0,
-          returnDate: '',
-        );
-
-  final int days;
-  final String departureDate;
-  final int nights;
-  final String returnDate;
-
-  @override
-  List<Object?> get props => [
-        days,
-        departureDate,
-        nights,
-        returnDate,
-      ];
-
-  @override
-  String toString() {
-    return 'TravelDate{days: $days, departureDate: $departureDate, '
-        'nights: $nights, returnDate: $returnDate}';
   }
 }
 
@@ -270,14 +212,59 @@ class RatingInfo extends Equatable {
   }
 }
 
+class Analytics extends Equatable {
+  const Analytics({
+    required this.currency,
+    required this.itemCategory,
+    required this.itemId,
+    required this.itemListName,
+    required this.itemName,
+    required this.itemRooms,
+    required this.price,
+  });
+
+  const Analytics.empty()
+      : this(
+          currency: '',
+          itemCategory: '',
+          itemId: '',
+          itemListName: '',
+          itemName: '',
+          itemRooms: '',
+          price: '',
+        );
+
+  final String currency;
+  final String itemCategory;
+  final String itemId;
+  final String itemListName;
+  final String itemName;
+  final String itemRooms;
+  final String price;
+
+  @override
+  List<Object?> get props => [
+        currency,
+        itemCategory,
+        itemId,
+        itemListName,
+        itemName,
+        itemRooms,
+        price,
+      ];
+
+  @override
+  String toString() {
+    return 'Analytics{currency: $currency, itemCategory: $itemCategory, itemId: $itemId, '
+        'itemListName: $itemListName, itemName: $itemName, itemRooms: $itemRooms, price: $price}';
+  }
+}
+
 extension HotelMapper on Hotel {
   FavoriteHotel toFavoriteHotel() {
     return FavoriteHotel(
       id: id,
-      isFavorite: true,
       name: name,
-      latitude: latitude,
-      longitude: longitude,
       category: category,
       destination: destination,
       images: images
@@ -290,34 +277,37 @@ extension HotelMapper on Hotel {
           .toList(),
       bestOffer: BestOfferHive(
         total: bestOffer.total,
-        travelPrice: bestOffer.travelPrice,
+        simplePricePerPerson: bestOffer.simplePricePerPerson,
         flightIncluded: bestOffer.flightIncluded,
         travelDate: TravelDateHive(
           days: bestOffer.travelDate.days,
-          departureDate: bestOffer.travelDate.departureDate,
           nights: bestOffer.travelDate.nights,
-          returnDate: bestOffer.travelDate.returnDate,
         ),
+        roomGroups: bestOffer.roomGroups
+            .map(
+              (group) => RoomGroupHive(
+                name: group.name,
+                boarding: group.boarding,
+              ),
+            )
+            .toList(),
       ),
       ratingInfo: RatingInfoHive(
         score: ratingInfo.score,
         scoreDescription: ratingInfo.scoreDescription,
         reviewsCount: ratingInfo.reviewsCount,
       ),
-      badges: badges,
-      categoryType: categoryType,
       hotelId: hotelId,
       analytics: AnalyticsHive(
         currency: analytics.currency,
         itemCategory: analytics.itemCategory,
-        itemCategory2: analytics.itemCategory2,
         itemId: analytics.itemId,
         itemListName: analytics.itemListName,
         itemName: analytics.itemName,
         itemRooms: analytics.itemRooms,
         price: analytics.price,
-        quantity: analytics.quantity,
       ),
+      isFavorite: true,
     );
   }
 }
