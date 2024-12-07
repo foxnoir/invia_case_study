@@ -9,8 +9,16 @@ import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
 
 class HotelRepoImpl implements HotelsRepository {
-  final HotelsDataSource _hotelsDataSource = DI.getIt<HotelsDataSource>();
-  final LocalDatabase _localDatabase = DI.getIt<LocalDatabase>();
+  HotelRepoImpl({
+    LocalDatabase? localDatabase,
+    HotelsDataSource? hotelsDataSource,
+  }) {
+    _localDatabase = localDatabase ?? DI.getIt<LocalDatabase>();
+    _hotelsDataSource = hotelsDataSource ?? DI.getIt<HotelsDataSource>();
+  }
+
+  late LocalDatabase _localDatabase;
+  late HotelsDataSource _hotelsDataSource;
 
   @override
   ResultFuture<List<Hotel>> getHotels() async {

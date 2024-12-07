@@ -3,6 +3,8 @@ import 'package:invia_case_study/features/favorites/data/data_sources/favorites_
 import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../features/hotels/data/repositories/hotels_repo_impl_test.dart';
+
 class MockLocalDatabase extends Mock implements LocalDatabase {}
 
 class MockFavoritesDataSource extends Mock implements FavoritesDataSource {}
@@ -17,6 +19,6 @@ abstract class RegisterTestModule {
   MockFavoritesDataSource get mockFavoritesDataSource =>
       MockFavoritesDataSource();
 
-  // @LazySingleton()
-  // MockHotelsDataSource get mockHotelsDataSource => MockHotelsDataSource();
+  @LazySingleton()
+  MockHotelsDataSource get mockHotelsDataSource => MockHotelsDataSource();
 }

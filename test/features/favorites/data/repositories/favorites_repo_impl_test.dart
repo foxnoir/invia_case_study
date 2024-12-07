@@ -54,7 +54,7 @@ void main() {
 
     final tHotelModelsList = [tHotel1, tHotel2];
 
-    test('should be a subclass of [FavoriteRepository]', () {
+    test('should be a subclass of [FavoritesRepository]', () {
       expect(_favoriteRepoImpl, isA<FavoritesRepository>());
     });
 
@@ -88,7 +88,7 @@ void main() {
       'should return a [] '
       'when the call to data source is successful and there are no favorites ',
       () async {
-        final tFavoriteIds = ['11a', '22b', '33c'];
+        final tFavoriteIds = List<String>.empty();
         when(() => _favoritesDataSource.getHotels())
             .thenAnswer((_) async => tHotelModelsList);
 
