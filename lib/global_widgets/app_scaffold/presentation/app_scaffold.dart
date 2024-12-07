@@ -42,6 +42,14 @@ class AppScaffold extends StatelessWidget {
 
     return BlocBuilder<AppScaffoldBloc, AppScaffoldState>(
       builder: (context, state) {
+        var currentHotels = hotelList;
+
+        if (isFavoriteTab &&
+            state is AppScaffoldUpdated &&
+            state.favorites != null) {
+          currentHotels = state.favorites!;
+        }
+
         return Stack(
           children: [
             Scaffold(
@@ -63,7 +71,7 @@ class AppScaffold extends StatelessWidget {
                       const SliverFillRemaining(
                         child: Center(child: CircularProgressIndicator()),
                       )
-                    else if (hotelList.isEmpty)
+                    else if (currentHotels.isEmpty)
                       AppSliverFill(
                         img: AppImg.noFavorites,
                         message: appLocalizations?.noFavorites ??
@@ -79,7 +87,7 @@ class AppScaffold extends StatelessWidget {
                         isFavoriteTab: isFavoriteTab,
                         onRefresh: onRefresh,
                         buttonText: buttonText,
-                        hotelList: hotelList,
+                        hotelList: currentHotels,
                         location: location,
                       ),
                   ],

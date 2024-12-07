@@ -9,9 +9,17 @@ import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
 
 class FavoriteRepoImpl implements FavoritesRepository {
-  final LocalDatabase _localDatabase = DI.getIt<LocalDatabase>();
-  final FavoritesDataSource _favoritesDataSource =
-      DI.getIt<FavoritesDataSource>();
+  FavoriteRepoImpl({
+    LocalDatabase? localDatabase,
+    FavoritesDataSource? favoritesDataSource,
+  }) {
+    _localDatabase = localDatabase ?? DI.getIt<LocalDatabase>();
+    _favoritesDataSource =
+        favoritesDataSource ?? DI.getIt<FavoritesDataSource>();
+  }
+
+  late LocalDatabase _localDatabase;
+  late FavoritesDataSource _favoritesDataSource;
 
   @override
   ResultFuture<List<Hotel>> getFavorites() async {

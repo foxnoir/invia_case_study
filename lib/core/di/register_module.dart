@@ -22,9 +22,7 @@ abstract class RegisterModule {
       SharedPreferences.getInstance();
 
   @LazySingleton()
-  LocalDatabase appDb() {
-    return LocalDatabaseImpl();
-  }
+  LocalDatabase appDb() => LocalDatabaseImpl();
 
   @lazySingleton
   Dio provideDio() => Dio();
@@ -45,22 +43,15 @@ abstract class RegisterModule {
   }
 
   @LazySingleton(as: HotelsDataSource)
-  HotelsDataSourceImpl provideHotelsDataSource() {
-    return HotelsDataSourceImpl();
-  }
+  HotelsDataSourceImpl provideHotelsDataSource() => HotelsDataSourceImpl();
 
   @LazySingleton(as: FavoritesDataSource)
-  FavoritesDataSourceImpl provideFavoritesDataSource() {
-    return FavoritesDataSourceImpl();
-  }
+  FavoritesDataSourceImpl provideFavoritesDataSource() =>
+      FavoritesDataSourceImpl();
 
   @LazySingleton(as: HotelsRepository)
-  HotelRepoImpl provideHotelsRepository() {
-    return HotelRepoImpl();
-  }
+  HotelRepoImpl provideHotelsRepository() => HotelRepoImpl();
 
   @LazySingleton(as: FavoritesRepository)
-  FavoriteRepoImpl provideFavoritesRepository() {
-    return FavoriteRepoImpl();
-  }
+  FavoriteRepoImpl provideFavoritesRepository() => FavoriteRepoImpl();
 }

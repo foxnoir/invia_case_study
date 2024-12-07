@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 
@@ -12,6 +13,18 @@ class FavoriteModel extends Hotel {
     required super.hotelId,
     List<FavoriteImageModel> images = const [],
   }) : super(images: images);
+
+  const FavoriteModel.empty()
+      : this(
+          id: '',
+          name: '',
+          category: 0,
+          destination: '',
+          bestOffer: const FavoriteBestOfferModel.empty(),
+          ratingInfo: const FavoriteRatingInfoModel.empty(),
+          hotelId: '',
+          images: const [],
+        );
 
   factory FavoriteModel.fromMap(DataMap map) {
     return FavoriteModel(
@@ -70,6 +83,16 @@ class FavoriteBestOfferModel extends BestOffer {
     required super.overallRoomDetails,
   });
 
+  const FavoriteBestOfferModel.empty()
+      : this(
+          total: 0,
+          simplePricePerPerson: 0,
+          flightIncluded: false,
+          travelDate: const FavoriteTravelDateModel.empty(),
+          roomGroups: const [],
+          overallRoomDetails: const FavoriteRoomDetailsModel.empty(),
+        );
+
   factory FavoriteBestOfferModel.fromMap(DataMap map) {
     final rooms = map['rooms'] as DataMap? ?? {};
     final roomGroups = rooms['room-groups'] as List<dynamic>? ?? [];
@@ -122,6 +145,12 @@ class FavoriteRoomGroupModel extends RoomGroup {
     required super.boarding,
   });
 
+  const FavoriteRoomGroupModel.empty()
+      : this(
+          name: '',
+          boarding: '',
+        );
+
   factory FavoriteRoomGroupModel.fromMap(DataMap map) {
     return FavoriteRoomGroupModel(
       name: map['name'] as String? ?? '',
@@ -151,6 +180,14 @@ class FavoriteRoomDetailsModel extends RoomDetails {
     required super.adultCount,
     required super.childrenCount,
   });
+
+  const FavoriteRoomDetailsModel.empty()
+      : this(
+          name: '',
+          boarding: '',
+          adultCount: 0,
+          childrenCount: 0,
+        );
 
   factory FavoriteRoomDetailsModel.fromMap(DataMap map) {
     return FavoriteRoomDetailsModel(
@@ -217,6 +254,13 @@ class FavoriteRatingInfoModel extends RatingInfo {
     required super.reviewsCount,
   });
 
+  const FavoriteRatingInfoModel.empty()
+      : this(
+          score: 0,
+          scoreDescription: '',
+          reviewsCount: 0,
+        );
+
   factory FavoriteRatingInfoModel.fromMap(DataMap map) {
     return FavoriteRatingInfoModel(
       score: (map['score'] as num?)?.toDouble() ?? 0.0,
@@ -247,6 +291,12 @@ class FavoriteImageModel extends HotelImage {
     required super.large,
     required super.small,
   });
+
+  const FavoriteImageModel.empty()
+      : this(
+          large: '',
+          small: '',
+        );
 
   factory FavoriteImageModel.fromMap(DataMap map) {
     return FavoriteImageModel(
