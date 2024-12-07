@@ -239,7 +239,7 @@ class RatingInfoModel extends RatingInfo {
   });
   const RatingInfoModel.empty()
       : this(
-          score: 0.0,
+          score: 0,
           scoreDescription: '',
           reviewsCount: 0,
         );

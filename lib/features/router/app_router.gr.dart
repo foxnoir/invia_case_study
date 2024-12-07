@@ -27,6 +27,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const FavoritesScreen(),
       );
     },
+    HotelDetailsRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<HotelDetailsRouteArgs>(
+          orElse: () =>
+              HotelDetailsRouteArgs(hotelId: pathParams.getString('hotelId')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: HotelDetailsScreen(hotelId: args.hotelId),
+      );
+    },
     HotelsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -74,6 +84,36 @@ class FavoritesRoute extends PageRouteInfo<void> {
   static const String name = 'FavoritesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HotelDetailsScreen]
+class HotelDetailsRoute extends PageRouteInfo<HotelDetailsRouteArgs> {
+  HotelDetailsRoute({
+    required String hotelId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          HotelDetailsRoute.name,
+          args: HotelDetailsRouteArgs(hotelId: hotelId),
+          rawPathParams: {'hotelId': hotelId},
+          initialChildren: children,
+        );
+
+  static const String name = 'HotelDetailsRoute';
+
+  static const PageInfo<HotelDetailsRouteArgs> page =
+      PageInfo<HotelDetailsRouteArgs>(name);
+}
+
+class HotelDetailsRouteArgs {
+  const HotelDetailsRouteArgs({required this.hotelId});
+
+  final String hotelId;
+
+  @override
+  String toString() {
+    return 'HotelDetailsRouteArgs{hotelId: $hotelId}';
+  }
 }
 
 /// generated route for

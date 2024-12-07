@@ -100,7 +100,8 @@ class BestOffer extends Equatable {
 
   @override
   String toString() {
-    return 'BestOffer{total: $total, simplePricePerPerson: $simplePricePerPerson, '
+    return 'BestOffer{total: $total, '
+        'simplePricePerPerson: $simplePricePerPerson, '
         'flightIncluded: $flightIncluded, travelDate: $travelDate, '
         'roomGroups: $roomGroups, overallRoomDetails: $overallRoomDetails}';
   }
@@ -161,7 +162,8 @@ class RoomDetails extends Equatable {
 
   @override
   String toString() {
-    return 'RoomDetails{name: $name, boarding: $boarding, adultCount: $adultCount, childrenCount: $childrenCount}';
+    return 'RoomDetails{name: $name, boarding: $boarding, '
+        'adultCount: $adultCount, childrenCount: $childrenCount}';
   }
 }
 

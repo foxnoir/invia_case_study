@@ -22,4 +22,5 @@ class FallBackString {
   static const String children = 'Kinder';
   static const String flight = 'Flight';
   static const String without = 'ohne';
+  static const String details = 'Details';
 }

@@ -63,6 +63,7 @@ ThemeData _theme(ColorScheme colorScheme) {
 
     // AppBar Theme
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(color: colorScheme.onPrimary),
       centerTitle: true,
       color: colorScheme.primary,
       elevation: 0,

@@ -4,8 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/favorites/data/data_sources/favorites_data_source.dart';
 import 'package:invia_case_study/features/favorites/data/models/favorite_model.dart';
-import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
-import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
 import 'package:invia_case_study/features/network/api_endpoints.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/http_client.dart';

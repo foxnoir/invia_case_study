@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/features/account/presentation/account_screen.dart';
 import 'package:invia_case_study/features/favorites/presentation/favorites_screen.dart';
+import 'package:invia_case_study/features/hotel_details/presentation/hotel_details_screen.dart';
 import 'package:invia_case_study/features/hotels/presentation/hotels_screen.dart';
 import 'package:invia_case_study/features/initial_screen.dart';
 import 'package:invia_case_study/features/overview/presentation/overview_screen.dart';
@@ -27,6 +28,10 @@ class AppRouter extends _$AppRouter {
             ),
             AutoRoute(path: AppRouterPaths.account, page: AccountRoute.page),
           ],
+        ),
+        AutoRoute(
+          path: '${AppRouterPaths.hotelDetails}:hotelId?',
+          page: HotelDetailsRoute.page,
         ),
       ];
 }
