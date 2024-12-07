@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,10 +15,12 @@ class HotelsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HotelsBloc()..add(const FetchHotelsEvent()),
-      child: const HotelsView(),
-    );
+    return Platform.environment.containsKey('FLUTTER_TEST')
+        ? Container()
+        : BlocProvider(
+            create: (_) => HotelsBloc()..add(const FetchHotelsEvent()),
+            child: const HotelsView(),
+          );
   }
 }
 

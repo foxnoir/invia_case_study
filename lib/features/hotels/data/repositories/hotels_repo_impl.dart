@@ -49,7 +49,7 @@ class HotelRepoImpl implements HotelsRepository {
   ResultSync<List<String>> getFavoriteHotelIds() {
     try {
       return Right(_localDatabase.getAllFavoriteHotelIds());
-    } on ApiException catch (e) {
+    } on DatabaseException catch (e) {
       return Left(
         DatabaseFailure(message: 'Failed to fetch hotel ids: $e'),
       );

@@ -154,7 +154,6 @@ void main() {
         verifyNoMoreInteractions(_mockLocalDatabase);
       },
     );
-
     test(
       'should return [DatabaseFailure] when an exception is thrown '
       'while fetching hotel IDs from the local database',
@@ -163,12 +162,13 @@ void main() {
             .thenThrow(const DatabaseException(message: 'Database Error'));
 
         final result = _hotelRepoImpl.getFavoriteHotelIds();
+
         expect(
           result,
           equals(
             const Left<DatabaseFailure, List<String>>(
               DatabaseFailure(
-                message: 'Failed to fetch hotel IDs: '
+                message: 'Failed to fetch hotel ids: '
                     'DatabaseException(Database Error)',
               ),
             ),
@@ -180,7 +180,7 @@ void main() {
       },
     );
 
-    group('HotelRepoImpl - addFavoriteHotel', () {
+    group('addFavoriteHotel', () {
       const tHotel = Hotel(
         id: '123',
         name: 'Test Hotel',
@@ -206,27 +206,27 @@ void main() {
           verifyNoMoreInteractions(_mockLocalDatabase);
         },
       );
-
       test(
         'should return [DatabaseFailure] '
         'when an exception is thrown while adding a favorite hotel',
         () async {
           when(() => _mockLocalDatabase.addFavoriteHotelId(hotelId: tHotel.id))
-              .thenThrow(Exception('Some Database Error'));
+              .thenThrow(const DatabaseException(message: 'Database Error'));
 
           final result = await _hotelRepoImpl.addFavoriteHotel(hotel: tHotel);
 
           expect(
             result,
             equals(
-              const Left<Failure, void>(
+              const Left<DatabaseFailure, void>(
                 DatabaseFailure(
                   message: 'Failed to add favorite hotel: '
-                      'Exception: Some Database Error',
+                      'DatabaseException(Database Error)',
                 ),
               ),
             ),
           );
+
           verify(
             () => _mockLocalDatabase.addFavoriteHotelId(hotelId: tHotel.id),
           ).called(1);
@@ -234,5 +234,49 @@ void main() {
         },
       );
     });
+  });
+  group('removeFavoriteHotelId', () {
+    const tHotelId = '123';
+
+    test(
+      'should remove a favorite hotel ID successfully and return Right(null)',
+      () async {
+        when(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+            .thenAnswer((_) async => Future.value());
+
+        final result = await _hotelRepoImpl.removeFavoriteHotelId(id: tHotelId);
+
+        expect(result, equals(const Right<Failure, void>(null)));
+        verify(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+            .called(1);
+        verifyNoMoreInteractions(_mockLocalDatabase);
+      },
+    );
+
+    test(
+      'should return [DatabaseFailure] '
+      'when an exception is thrown while removing a favorite hotel ID',
+      () async {
+        when(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+            .thenThrow(Exception('Some Database Error'));
+
+        final result = await _hotelRepoImpl.removeFavoriteHotelId(id: tHotelId);
+
+        expect(
+          result,
+          equals(
+            const Left<Failure, void>(
+              DatabaseFailure(
+                message: 'Failed to add favorite hotel: Exception: '
+                    'Some Database Error',
+              ),
+            ),
+          ),
+        );
+        verify(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+            .called(1);
+        verifyNoMoreInteractions(_mockLocalDatabase);
+      },
+    );
   });
 }

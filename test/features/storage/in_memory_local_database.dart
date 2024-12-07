@@ -22,19 +22,16 @@ class InMemoryLocalDatabase implements LocalDatabase {
 
   @override
   Future<void> clear() {
-    // TODO: implement clear
     throw UnimplementedError();
   }
 
   @override
   Future<void> flush() {
-    // TODO: implement flush
     throw UnimplementedError();
   }
 
   @override
   Future<void> init() {
-    // TODO: implement init
     throw UnimplementedError();
   }
 }
