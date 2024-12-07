@@ -7,6 +7,10 @@ abstract class AccountEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class AccountInitial extends AccountEvent {
+  const AccountInitial();
+}
+
 class ChangeLocaleEvent extends AccountEvent {
   const ChangeLocaleEvent(this.locale);
   final Locale locale;
