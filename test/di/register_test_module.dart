@@ -1,7 +1,5 @@
 import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/features/favorites/data/data_sources/favorites_data_source.dart';
-import 'package:invia_case_study/features/favorites/data/repositories/favorites_repo_impl.dart';
-import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -18,4 +16,7 @@ abstract class RegisterTestModule {
   @LazySingleton()
   MockFavoritesDataSource get mockFavoritesDataSource =>
       MockFavoritesDataSource();
+
+  // @LazySingleton()
+  // MockHotelsDataSource get mockHotelsDataSource => MockHotelsDataSource();
 }

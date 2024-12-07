@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 

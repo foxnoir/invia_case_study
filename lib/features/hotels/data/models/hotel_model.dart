@@ -12,6 +12,17 @@ class HotelModel extends Hotel {
     required super.hotelId,
     List<HotelImageModel> images = const [],
   }) : super(images: images);
+  const HotelModel.empty()
+      : this(
+          id: '',
+          name: '',
+          category: 0,
+          destination: '',
+          bestOffer: const BestOfferModel.empty(),
+          ratingInfo: const RatingInfoModel.empty(),
+          hotelId: '',
+          images: const [],
+        );
 
   factory HotelModel.fromMap(DataMap map) {
     return HotelModel(
@@ -66,6 +77,15 @@ class BestOfferModel extends BestOffer {
     required super.roomGroups,
     required super.overallRoomDetails,
   });
+  const BestOfferModel.empty()
+      : this(
+          total: 0,
+          simplePricePerPerson: 0,
+          flightIncluded: false,
+          travelDate: const TravelDateModel.empty(),
+          roomGroups: const [],
+          overallRoomDetails: const RoomDetailsModel.empty(),
+        );
 
   factory BestOfferModel.fromMap(DataMap map) {
     final rooms = map['rooms'] as DataMap? ?? {};
@@ -145,6 +165,13 @@ class RoomDetailsModel extends RoomDetails {
     required super.adultCount,
     required super.childrenCount,
   });
+  const RoomDetailsModel.empty()
+      : this(
+          name: '',
+          boarding: '',
+          adultCount: 0,
+          childrenCount: 0,
+        );
 
   factory RoomDetailsModel.fromMap(DataMap map) {
     return RoomDetailsModel(
@@ -210,6 +237,12 @@ class RatingInfoModel extends RatingInfo {
     required super.scoreDescription,
     required super.reviewsCount,
   });
+  const RatingInfoModel.empty()
+      : this(
+          score: 0.0,
+          scoreDescription: '',
+          reviewsCount: 0,
+        );
 
   factory RatingInfoModel.fromMap(DataMap map) {
     return RatingInfoModel(

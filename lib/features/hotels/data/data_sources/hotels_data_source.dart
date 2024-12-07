@@ -14,7 +14,9 @@ abstract class HotelsDataSource {
 }
 
 class HotelsDataSourceImpl implements HotelsDataSource {
-  final HttpClient _httpClient = DI.getIt<HttpClient>();
+  HotelsDataSourceImpl({HttpClient? httpClient})
+      : _httpClient = httpClient ?? DI.getIt<HttpClient>();
+  final HttpClient _httpClient;
 
   @override
   Future<List<HotelModel>> getHotels() async {
