@@ -29,7 +29,7 @@ void main() {
     );
   });
 
-  group('getFavorissstes', () {
+  group('getFavorissssssstes', () {
     var tFavoriteModel = const FavoriteModel(
       id: '1',
       name: 'Test Hotel',
