@@ -6,6 +6,7 @@ import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_icon.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
 class AppCardImgSection extends StatelessWidget {

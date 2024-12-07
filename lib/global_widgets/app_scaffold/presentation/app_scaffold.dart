@@ -5,6 +5,7 @@ import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_banner.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
+import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/widgets/app_sliver_fill.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/widgets/app_sliver_list.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
@@ -44,10 +45,8 @@ class AppScaffold extends StatelessWidget {
       builder: (context, state) {
         var currentHotels = hotelList;
 
-        if (isFavoriteTab &&
-            state is AppScaffoldUpdated &&
-            state.favorites != null) {
-          currentHotels = state.favorites!;
+        if (isFavoriteTab && state is AppScaffoldUpdated) {
+          currentHotels = state.favorites;
         }
 
         return Stack(

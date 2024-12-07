@@ -1,18 +1,31 @@
-part of 'app_scaffold_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/network/errors/failure.dart';
 
-abstract class AppScaffoldState {}
+abstract class AppScaffoldState extends Equatable {
+  const AppScaffoldState();
 
-class AppScaffoldInitial extends AppScaffoldState {}
+  @override
+  List<Object?> get props => [];
+}
 
-class AppScaffoldLoading extends AppScaffoldState {}
+class AppScaffoldInitial extends AppScaffoldState {
+  const AppScaffoldInitial();
+}
 
 class AppScaffoldUpdated extends AppScaffoldState {
-  AppScaffoldUpdated({required this.hotel, this.favorites});
+  const AppScaffoldUpdated({required this.hotel, required this.favorites});
   final Hotel hotel;
-  final List<Hotel>? favorites;
+  final List<Hotel> favorites;
+
+  @override
+  List<Object?> get props => [hotel, favorites];
 }
 
 class AppScaffoldError extends AppScaffoldState {
-  AppScaffoldError({required this.failure});
+  const AppScaffoldError({required this.failure});
   final Failure failure;
+
+  @override
+  List<Object?> get props => [failure];
 }
