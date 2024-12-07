@@ -14,7 +14,9 @@ abstract class FavoritesDataSource {
 }
 
 class FavoritesDataSourceImpl implements FavoritesDataSource {
-  final HttpClient _httpClient = DI.getIt<HttpClient>();
+  FavoritesDataSourceImpl({HttpClient? httpClient})
+      : _httpClient = httpClient ?? DI.getIt<HttpClient>();
+  final HttpClient _httpClient;
 
   @override
   Future<List<FavoriteModel>> getHotels() async {

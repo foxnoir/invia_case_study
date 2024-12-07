@@ -1,7 +1,9 @@
-import 'dart:convert';
+// Unit Test file for favorites_data_source.dartimport 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:invia_case_study/features/favorites/data/data_sources/favorites_data_source.dart';
+import 'package:invia_case_study/features/favorites/data/models/favorite_model.dart';
 import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
 import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
 import 'package:invia_case_study/features/network/api_endpoints.dart';
@@ -15,7 +17,7 @@ class MockDio extends Mock implements Dio {}
 
 void main() {
   late MockHttpClient _mockHttpClient;
-  late HotelsDataSourceImpl _hotelDataSource;
+  late FavoritesDataSourceImpl _favoritwDataSource;
   late MockDio _mockDioClient;
 
   setUp(() {
@@ -23,13 +25,13 @@ void main() {
     _mockDioClient = MockDio();
     when(() => _mockHttpClient.dioClient).thenReturn(_mockDioClient);
 
-    _hotelDataSource = HotelsDataSourceImpl(httpClient: _mockHttpClient);
+    _favoritwDataSource = FavoritesDataSourceImpl(httpClient: _mockHttpClient);
   });
 
-  group('HotalDataSource', () {
-    const tHotels = [HotelModel.empty()];
+  group('FavoriteDataSource', () {
+    const tFavoriteHotels = [FavoriteModel.empty()];
     final tResponseData = {
-      'hotels': tHotels.map((hotel) => hotel.toMap()).toList(),
+      'hotels': tFavoriteHotels.map((hotel) => hotel.toMap()).toList(),
     };
 
     test(
@@ -52,10 +54,10 @@ void main() {
         );
 
         // Act
-        final result = await _hotelDataSource.getHotels();
+        final result = await _favoritwDataSource.getHotels();
 
         // Assert
-        expect(result, equals(tHotels));
+        expect(result, equals(tFavoriteHotels));
 
         verify(
           () => _mockDioClient.get<Map<String, dynamic>>(
@@ -91,7 +93,7 @@ void main() {
         );
 
         // Act
-        final call = _hotelDataSource.getHotels;
+        final call = _favoritwDataSource.getHotels();
 
         // Assert
         expect(call, throwsA(isA<ApiException>()));
