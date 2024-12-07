@@ -51,7 +51,8 @@ void main() {
     });
 
     blocTest<HotelsBloc, HotelsState>(
-      'emits [HotelsLoading, HotelsLoaded] when FetchHotelsEvent is added and repository succeeds',
+      'emits [HotelsLoading, HotelsLoaded] when '
+      'FetchHotelsEvent is added and repository succeeds',
       build: () {
         when(() => _mockHotelsRepository.getHotels())
             .thenAnswer((_) async => Right(hotelsList));
@@ -71,7 +72,8 @@ void main() {
     );
 
     blocTest<HotelsBloc, HotelsState>(
-      'emits [HotelsLoading, HotelsError] when FetchHotelsEvent is added and repository fails',
+      'emits [HotelsLoading, HotelsError] '
+      'when FetchHotelsEvent is added and repository fails',
       build: () {
         when(() => _mockHotelsRepository.getHotels()).thenAnswer(
           (_) async =>
