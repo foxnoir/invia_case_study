@@ -9,11 +9,13 @@ part 'hotels_event.dart';
 part 'hotels_state.dart';
 
 class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
-  HotelsBloc() : super(const HotelsInitial()) {
+  HotelsBloc({HotelsRepository? hotelsRepository})
+      : super(const HotelsInitial()) {
+    _hotelsRepository = hotelsRepository ?? DI.getIt<HotelsRepository>();
     on<FetchHotelsEvent>(_onFetchHotels);
   }
 
-  final HotelsRepository _hotelsRepository = DI.getIt<HotelsRepository>();
+  late HotelsRepository _hotelsRepository;
 
   Future<void> _onFetchHotels(
     FetchHotelsEvent event,

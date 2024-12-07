@@ -4,6 +4,7 @@ import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../features/hotels/data/repositories/hotels_repo_impl_test.dart';
+import '../features/hotels/presentation/bloc/hotels_bloc_test.dart';
 import '../features/router/app_router_test.dart';
 
 class MockLocalDatabase extends Mock implements LocalDatabase {}
@@ -25,6 +26,6 @@ abstract class RegisterTestModule {
   @LazySingleton()
   MockHotelsBloc get mockHotelsBloc => MockHotelsBloc();
 
-  // @LazySingleton()
-  // MockFavoritesBloc get mockFavoritesBloc => MockFavoritesBloc();
+  @LazySingleton()
+  MockHotelsRepository get mockHotelsRepository => MockHotelsRepository();
 }

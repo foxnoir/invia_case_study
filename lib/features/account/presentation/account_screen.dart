@@ -71,7 +71,7 @@ class AccountScreen extends StatelessWidget {
                         const Text(
                           'Fox Noir',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 20, fontWeight: FontWeight.bold,),
                         ),
                         const Spacer(),
                         ElevatedButton(

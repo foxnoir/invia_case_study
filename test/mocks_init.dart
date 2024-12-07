@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'di/test_di.dart';
 
 class InitMocks {
-  static void initMocks() {
+  static void init() {
     setUpAll(() async {
       TestWidgetsFlutterBinding.ensureInitialized();
       SharedPreferences.setMockInitialValues({});
