@@ -9,12 +9,14 @@ part 'favorites_event.dart';
 part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
-  FavoritesBloc() : super(const FavoritesInitial()) {
+  FavoritesBloc({FavoritesRepository? favoritesRepository})
+      : super(const FavoritesInitial()) {
+    _favoritesRepository =
+        favoritesRepository ?? DI.getIt<FavoritesRepository>();
     on<FetchFavoritesEvent>(_onFetchFavorites);
   }
 
-  final FavoritesRepository _favoritesRepository =
-      DI.getIt<FavoritesRepository>();
+  late FavoritesRepository _favoritesRepository;
 
   Future<void> _onFetchFavorites(
     FetchFavoritesEvent event,

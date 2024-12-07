@@ -3,6 +3,7 @@ import 'package:invia_case_study/features/favorites/data/data_sources/favorites_
 import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../features/favorites/presentation/bloc/favorites_bloc_test.dart';
 import '../features/hotels/data/repositories/hotels_repo_impl_test.dart';
 import '../features/hotels/presentation/bloc/hotels_bloc_test.dart';
 import '../features/router/app_router_test.dart';
@@ -28,4 +29,8 @@ abstract class RegisterTestModule {
 
   @LazySingleton()
   MockHotelsRepository get mockHotelsRepository => MockHotelsRepository();
+
+  @LazySingleton()
+  MockFavoritesRepository get mockFavoritesRepository =>
+      MockFavoritesRepository();
 }

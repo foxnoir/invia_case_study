@@ -36,15 +36,15 @@ void main() {
   });
 
   group('HotelsBloc', () {
-    final hotel1 = const Hotel.empty().copyWith(
+    final tHotel1 = const Hotel.empty().copyWith(
       destination: 'City A, Country A',
     );
 
-    final hotel2 = const Hotel.empty().copyWith(
+    final tHotel2 = const Hotel.empty().copyWith(
       destination: 'City B, Country B',
     );
 
-    final hotelsList = [hotel1, hotel2];
+    final hotelsList = [tHotel1, tHotel2];
 
     test('initial state is HotelsInitial', () {
       expect(_hotelsBloc.state, const HotelsInitial());
