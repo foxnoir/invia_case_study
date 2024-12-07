@@ -35,9 +35,7 @@ class FavoriteRepoImpl implements FavoritesRepository {
 
       return Right(favorites);
     } on ApiException catch (e) {
-      return Left(
-        DatabaseFailure(message: 'Failed to fetch favorite hotels: $e'),
-      );
+      return Left(ApiFailure.fromException(e));
     }
   }
 
@@ -46,7 +44,7 @@ class FavoriteRepoImpl implements FavoritesRepository {
     try {
       final ids = _localDatabase.getAllFavoriteHotelIds();
       return Right(ids);
-    } on ApiException catch (e) {
+    } on DatabaseException catch (e) {
       return Left(DatabaseFailure(message: 'Failed to fetch hotel IDs: $e'));
     }
   }

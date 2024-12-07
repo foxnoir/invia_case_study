@@ -12,6 +12,18 @@ class Hotel extends Equatable {
     this.images = const [],
     this.isFavorite = false,
   });
+  const Hotel.empty()
+      : this(
+          id: '',
+          name: '',
+          category: 0,
+          destination: '',
+          bestOffer: const BestOffer.empty(),
+          ratingInfo: const RatingInfo.empty(),
+          hotelId: '',
+          images: const [],
+          isFavorite: false,
+        );
 
   final String id;
   final String name;
@@ -97,14 +109,6 @@ class BestOffer extends Equatable {
         roomGroups,
         overallRoomDetails,
       ];
-
-  @override
-  String toString() {
-    return 'BestOffer{total: $total, '
-        'simplePricePerPerson: $simplePricePerPerson, '
-        'flightIncluded: $flightIncluded, travelDate: $travelDate, '
-        'roomGroups: $roomGroups, overallRoomDetails: $overallRoomDetails}';
-  }
 }
 
 class RoomGroup extends Equatable {
@@ -124,11 +128,6 @@ class RoomGroup extends Equatable {
 
   @override
   List<Object?> get props => [name, boarding];
-
-  @override
-  String toString() {
-    return 'RoomGroup{name: $name, boarding: $boarding}';
-  }
 }
 
 class RoomDetails extends Equatable {
@@ -159,12 +158,6 @@ class RoomDetails extends Equatable {
         adultCount,
         childrenCount,
       ];
-
-  @override
-  String toString() {
-    return 'RoomDetails{name: $name, boarding: $boarding, '
-        'adultCount: $adultCount, childrenCount: $childrenCount}';
-  }
 }
 
 class TravelDate extends Equatable {
@@ -187,11 +180,6 @@ class TravelDate extends Equatable {
         days,
         nights,
       ];
-
-  @override
-  String toString() {
-    return 'TravelDate{days: $days, nights: $nights}';
-  }
 }
 
 class HotelImage extends Equatable {
@@ -211,11 +199,6 @@ class HotelImage extends Equatable {
 
   @override
   List<Object?> get props => [large, small];
-
-  @override
-  String toString() {
-    return 'HotelImage{large: $large, small: $small}';
-  }
 }
 
 class RatingInfo extends Equatable {
@@ -238,10 +221,4 @@ class RatingInfo extends Equatable {
 
   @override
   List<Object?> get props => [score, scoreDescription, reviewsCount];
-
-  @override
-  String toString() {
-    return 'RatingInfo{score: $score, scoreDescription: $scoreDescription, '
-        'reviewsCount: $reviewsCount}';
-  }
 }

@@ -15,7 +15,7 @@ class MockDio extends Mock implements Dio {}
 
 void main() {
   late MockHttpClient _mockHttpClient;
-  late FavoritesDataSourceImpl _favoritwDataSource;
+  late FavoritesDataSourceImpl _favoriteDataSource;
   late MockDio _mockDioClient;
 
   setUp(() {
@@ -23,7 +23,7 @@ void main() {
     _mockDioClient = MockDio();
     when(() => _mockHttpClient.dioClient).thenReturn(_mockDioClient);
 
-    _favoritwDataSource = FavoritesDataSourceImpl(httpClient: _mockHttpClient);
+    _favoriteDataSource = FavoritesDataSourceImpl(httpClient: _mockHttpClient);
   });
 
   group('FavoriteDataSource', () {
@@ -32,10 +32,13 @@ void main() {
       'hotels': tFavoriteHotels.map((hotel) => hotel.toMap()).toList(),
     };
 
+    test('should be a subclass of [FavoritesDataSource]', () {
+      expect(_favoriteDataSource, isA<FavoritesDataSource>());
+    });
+
     test(
       'should return [List<HotelModel>] when the status code is 200',
       () async {
-        // Arrange
         when(
           () => _mockDioClient.get<Map<String, dynamic>>(
             any(),
@@ -52,7 +55,7 @@ void main() {
         );
 
         // Act
-        final result = await _favoritwDataSource.getHotels();
+        final result = await _favoriteDataSource.getHotels();
 
         // Assert
         expect(result, equals(tFavoriteHotels));
@@ -70,7 +73,6 @@ void main() {
     test(
       'should throw ApiException when Dio throws a DioException',
       () async {
-        // Arrange
         when(
           () => _mockDioClient.get<Map<String, dynamic>>(
             any(),
@@ -91,7 +93,7 @@ void main() {
         );
 
         // Act
-        final call = _favoritwDataSource.getHotels();
+        final call = _favoriteDataSource.getHotels();
 
         // Assert
         expect(call, throwsA(isA<ApiException>()));

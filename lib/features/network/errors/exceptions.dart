@@ -23,3 +23,12 @@ class NoConnectivityException extends DioException with EquatableMixin {
   @override
   List<Object> get props => [message, statusCode];
 }
+
+class DatabaseException extends Equatable implements Exception {
+  const DatabaseException({required this.message});
+
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}

@@ -30,10 +30,13 @@ void main() {
       'hotels': tHotels.map((hotel) => hotel.toMap()).toList(),
     };
 
+    test('should be a subclass of [HotelsDataSource]', () {
+      expect(_hotelDataSource, isA<HotelsDataSource>());
+    });
+
     test(
       'should return [List<HotelModel>] when the status code is 200',
       () async {
-        // Arrange
         when(
           () => _mockDioClient.get<Map<String, dynamic>>(
             any(),
@@ -49,10 +52,8 @@ void main() {
           ),
         );
 
-        // Act
         final result = await _hotelDataSource.getHotels();
 
-        // Assert
         expect(result, equals(tHotels));
 
         verify(
@@ -68,7 +69,6 @@ void main() {
     test(
       'should throw ApiException when Dio throws a DioException',
       () async {
-        // Arrange
         when(
           () => _mockDioClient.get<Map<String, dynamic>>(
             any(),
@@ -88,10 +88,8 @@ void main() {
           ),
         );
 
-        // Act
         final call = _hotelDataSource.getHotels;
 
-        // Assert
         expect(call, throwsA(isA<ApiException>()));
 
         verify(

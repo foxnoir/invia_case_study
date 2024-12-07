@@ -36,5 +36,5 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     emit(state.copyWith(locale: event.locale));
   }
 
-  Locale get currentLocale => state.locale; // Zugriff auf den aktuellen Zustand
+  Locale get currentLocale => state.locale;
 }
