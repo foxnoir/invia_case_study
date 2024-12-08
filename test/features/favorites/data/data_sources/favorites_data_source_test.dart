@@ -1,5 +1,3 @@
-// Unit Test file for favorites_data_source.dartimport 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/favorites/data/data_sources/favorites_data_source.dart';
@@ -54,10 +52,8 @@ void main() {
           ),
         );
 
-        // Act
         final result = await _favoriteDataSource.ge_tHotels();
 
-        // Assert
         expect(result, equals(tFavoriteHotels));
 
         verify(
@@ -92,10 +88,8 @@ void main() {
           ),
         );
 
-        // Act
         final call = _favoriteDataSource.ge_tHotels();
 
-        // Assert
         expect(call, throwsA(isA<ApiException>()));
 
         verify(

@@ -3,7 +3,7 @@ import 'package:invia_case_study/core/di/di.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/favorites/data/data_sources/favorites_data_source.dart';
 import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
@@ -22,7 +22,7 @@ class FavoriteRepoImpl implements FavoritesRepository {
   late FavoritesDataSource _favoritesDataSource;
 
   @override
-  ResultFuture<List<Hotel>> getFavorites() async {
+  ResultFuture<List<HotelEntity>> getFavorites() async {
     try {
       final hotelModels = await _favoritesDataSource.ge_tHotels();
       final favoriteIdsResult = getFavoriteHotelIds();

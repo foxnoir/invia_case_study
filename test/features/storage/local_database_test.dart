@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/hotels/data/repositories/hotels_repo_impl.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 
 import '../hotels/data/repositories/hotels_repo_impl_test.dart';
@@ -22,13 +22,13 @@ void main() {
   });
 
   group('Local Database', () {
-    const _tHotel = Hotel(
+    const _tHotel = HotelEntity(
       id: '123',
       name: 'Test Hotel',
       category: 5,
       destination: 'Test Destination',
-      bestOffer: BestOffer.empty(),
-      ratingInfo: RatingInfo.empty(),
+      bestOffer: BestOfferEntity.empty(),
+      ratingInfo: RatingInfoEntity.empty(),
       hotelId: '123',
     );
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_card/app_card.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
@@ -14,7 +14,7 @@ class AppSliverList extends StatelessWidget {
     super.key,
   });
 
-  final List<Hotel> hotelList;
+  final List<HotelEntity> hotelList;
   final String buttonText;
   final String? location;
   final Future<void> Function() onRefresh;

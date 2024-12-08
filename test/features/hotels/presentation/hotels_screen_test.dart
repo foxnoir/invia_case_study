@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:invia_case_study/features/hotels/presentation/hotels_screen.dart';
@@ -41,8 +41,8 @@ void main() {
         .thenReturn(const AppScaffoldInitial());
 
     final hotelsList = [
-      const Hotel.empty().copyWith(name: 'Hotel 1'),
-      const Hotel.empty().copyWith(name: 'Hotel 2'),
+      const HotelEntity.empty().copyWith(name: 'Hotel 1'),
+      const HotelEntity.empty().copyWith(name: 'Hotel 2'),
     ];
 
     when(() => _mockHotelsRepository.ge_tHotels())

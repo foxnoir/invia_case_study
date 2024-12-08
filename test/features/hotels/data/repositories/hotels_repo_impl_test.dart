@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
 import 'package:invia_case_study/features/hotels/data/models/hotel_model.dart';
 import 'package:invia_case_study/features/hotels/data/repositories/hotels_repo_impl.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
@@ -126,7 +126,7 @@ void main() {
         expect(
           result,
           equals(
-            const Left<ApiFailure, List<Hotel>>(
+            const Left<ApiFailure, List<HotelEntity>>(
               ApiFailure(message: 'Bad Request', statusCode: 400),
             ),
           ),
@@ -181,13 +181,13 @@ void main() {
     );
 
     group('addFavoriteHotel', () {
-      const _tHotel = Hotel(
+      const _tHotel = HotelEntity(
         id: '123',
         name: 'Test Hotel',
         category: 5,
         destination: 'Test Destination',
-        bestOffer: BestOffer.empty(),
-        ratingInfo: RatingInfo.empty(),
+        bestOffer: BestOfferEntity.empty(),
+        ratingInfo: RatingInfoEntity.empty(),
         hotelId: '123',
       );
 

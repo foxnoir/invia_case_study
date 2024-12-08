@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:invia_case_study/global_widgets/app_banner.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/app_scaffold.dart';
@@ -32,13 +32,13 @@ void main() {
   const testErrorMessage = 'Something went wrong';
   const testButtonText = 'Try Again';
 
-  final hotelList = <Hotel>[
-    const Hotel.empty().copyWith(
+  final hotelList = <HotelEntity>[
+    const HotelEntity.empty().copyWith(
       id: '1',
       name: 'Hotel 1',
       hotelId: 'hotel_1',
     ),
-    const Hotel.empty().copyWith(
+    const HotelEntity.empty().copyWith(
       id: '2',
       name: 'Hotel 2',
       hotelId: 'hotel_2',

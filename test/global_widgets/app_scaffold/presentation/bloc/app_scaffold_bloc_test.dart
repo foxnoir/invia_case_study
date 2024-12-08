@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
 import 'package:mocktail/mocktail.dart';
@@ -28,7 +28,7 @@ void main() {
     await _appScaffoldBloc.close();
   });
 
-  final tes_tHotel = const Hotel.empty().copyWith(
+  final tes_tHotel = const HotelEntity.empty().copyWith(
     id: '1',
     name: 'Test Hotel',
     hotelId: 'hotel123',

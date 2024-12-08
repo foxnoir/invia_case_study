@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_icon.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
@@ -20,7 +20,7 @@ class AppCardImgSection extends StatelessWidget {
 
   final String imgUrl;
   final Widget? content;
-  final Hotel hotel;
+  final HotelEntity hotel;
   final bool? isFavoriteTab;
 
   @override

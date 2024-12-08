@@ -1,7 +1,7 @@
 import 'package:invia_case_study/core/utils/type_defs.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 
-class HotelModel extends Hotel {
+class HotelModel extends HotelEntity {
   const HotelModel({
     required super.id,
     required super.name,
@@ -53,8 +53,8 @@ class HotelModel extends Hotel {
     };
   }
 
-  Hotel toEntity() {
-    return Hotel(
+  HotelEntity toEntity() {
+    return HotelEntity(
       id: id,
       name: name,
       category: category,
@@ -68,7 +68,7 @@ class HotelModel extends Hotel {
   }
 }
 
-class BestOfferModel extends BestOffer {
+class BestOfferModel extends BestOfferEntity {
   const BestOfferModel({
     required super.total,
     required super.simplePricePerPerson,
@@ -116,8 +116,8 @@ class BestOfferModel extends BestOffer {
     };
   }
 
-  BestOffer toEntity() {
-    return BestOffer(
+  BestOfferEntity toEntity() {
+    return BestOfferEntity(
       total: total,
       simplePricePerPerson: simplePricePerPerson,
       flightIncluded: flightIncluded,
@@ -130,7 +130,7 @@ class BestOfferModel extends BestOffer {
   }
 }
 
-class RoomGroupModel extends RoomGroup {
+class RoomGroupModel extends RoomGroupEntity {
   const RoomGroupModel({
     required super.name,
     required super.boarding,
@@ -150,15 +150,15 @@ class RoomGroupModel extends RoomGroup {
     };
   }
 
-  RoomGroup toEntity() {
-    return RoomGroup(
+  RoomGroupEntity toEntity() {
+    return RoomGroupEntity(
       name: name,
       boarding: boarding,
     );
   }
 }
 
-class RoomDetailsModel extends RoomDetails {
+class RoomDetailsModel extends RoomDetailsEntity {
   const RoomDetailsModel({
     required super.name,
     required super.boarding,
@@ -191,8 +191,8 @@ class RoomDetailsModel extends RoomDetails {
     };
   }
 
-  RoomDetails toEntity() {
-    return RoomDetails(
+  RoomDetailsEntity toEntity() {
+    return RoomDetailsEntity(
       name: name,
       boarding: boarding,
       adultCount: adultCount,
@@ -201,7 +201,7 @@ class RoomDetailsModel extends RoomDetails {
   }
 }
 
-class TravelDateModel extends TravelDate {
+class TravelDateModel extends TravelDateEntity {
   const TravelDateModel({
     required super.days,
     required super.nights,
@@ -223,15 +223,15 @@ class TravelDateModel extends TravelDate {
     };
   }
 
-  TravelDate toEntity() {
-    return TravelDate(
+  TravelDateEntity toEntity() {
+    return TravelDateEntity(
       days: days,
       nights: nights,
     );
   }
 }
 
-class RatingInfoModel extends RatingInfo {
+class RatingInfoModel extends RatingInfoEntity {
   const RatingInfoModel({
     required super.score,
     required super.scoreDescription,
@@ -260,8 +260,8 @@ class RatingInfoModel extends RatingInfo {
     };
   }
 
-  RatingInfo toEntity() {
-    return RatingInfo(
+  RatingInfoEntity toEntity() {
+    return RatingInfoEntity(
       score: score,
       scoreDescription: scoreDescription,
       reviewsCount: reviewsCount,
@@ -269,7 +269,7 @@ class RatingInfoModel extends RatingInfo {
   }
 }
 
-class HotelImageModel extends HotelImage {
+class HotelImageModel extends HotelImageEntity {
   const HotelImageModel({
     required super.large,
     required super.small,
@@ -289,8 +289,8 @@ class HotelImageModel extends HotelImage {
     };
   }
 
-  HotelImage toEntity() {
-    return HotelImage(
+  HotelImageEntity toEntity() {
+    return HotelImageEntity(
       large: large,
       small: small,
     );

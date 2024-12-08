@@ -17,7 +17,7 @@ class FavoritesLoading extends FavoritesState {
 
 class FavoritesLoaded extends FavoritesState {
   const FavoritesLoaded({required this.favorites});
-  final List<Hotel> favorites;
+  final List<HotelEntity> favorites;
 
   @override
   List<Object?> get props => [favorites];

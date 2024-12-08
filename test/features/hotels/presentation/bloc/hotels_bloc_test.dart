@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
@@ -36,11 +36,11 @@ void main() {
   });
 
   group('HotelsBloc', () {
-    final _tHotel1 = const Hotel.empty().copyWith(
+    final _tHotel1 = const HotelEntity.empty().copyWith(
       destination: 'City A, Country A',
     );
 
-    final _tHotel2 = const Hotel.empty().copyWith(
+    final _tHotel2 = const HotelEntity.empty().copyWith(
       destination: 'City B, Country B',
     );
 

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/core/theme/screen_size.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_banner.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
@@ -30,7 +30,7 @@ class AppScaffold extends StatelessWidget {
   final bool isLoading;
   final bool isLoaded;
   final bool hasError;
-  final List<Hotel> hotelList;
+  final List<HotelEntity> hotelList;
   final String errorMessage;
   final Future<void> Function() onRefresh;
   final String buttonText;
@@ -45,10 +45,10 @@ class AppScaffold extends StatelessWidget {
 
     return BlocBuilder<AppScaffoldBloc, AppScaffoldState>(
       builder: (context, state) {
-        var curren_tHotels = hotelList;
+        var current_tHotels = hotelList;
 
         if (isFavoriteTab && state is AppScaffoldUpdated) {
-          curren_tHotels = state.favorites;
+          current_tHotels = state.favorites;
         }
 
         return Stack(
@@ -72,7 +72,7 @@ class AppScaffold extends StatelessWidget {
                       const SliverFillRemaining(
                         child: Center(child: CircularProgressIndicator()),
                       )
-                    else if (curren_tHotels.isEmpty)
+                    else if (current_tHotels.isEmpty && !hasError)
                       AppSliverFill(
                         img: AppImg.noFavorites,
                         message: appLocalizations?.noFavorites ??
@@ -88,7 +88,7 @@ class AppScaffold extends StatelessWidget {
                         isFavoriteTab: isFavoriteTab,
                         onRefresh: onRefresh,
                         buttonText: buttonText,
-                        hotelList: curren_tHotels,
+                        hotelList: current_tHotels,
                         location: location,
                       ),
                   ],

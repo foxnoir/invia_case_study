@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class Hotel extends Equatable {
-  const Hotel({
+class HotelEntity extends Equatable {
+  const HotelEntity({
     required this.id,
     required this.name,
     required this.category,
@@ -12,14 +12,14 @@ class Hotel extends Equatable {
     this.images = const [],
     this.isFavorite = false,
   });
-  const Hotel.empty()
+  const HotelEntity.empty()
       : this(
           id: '',
           name: '',
           category: 0,
           destination: '',
-          bestOffer: const BestOffer.empty(),
-          ratingInfo: const RatingInfo.empty(),
+          bestOffer: const BestOfferEntity.empty(),
+          ratingInfo: const RatingInfoEntity.empty(),
           hotelId: '',
           images: const [],
           isFavorite: false,
@@ -29,9 +29,9 @@ class Hotel extends Equatable {
   final String name;
   final int category;
   final String destination;
-  final List<HotelImage> images;
-  final BestOffer bestOffer;
-  final RatingInfo ratingInfo;
+  final List<HotelImageEntity> images;
+  final BestOfferEntity bestOffer;
+  final RatingInfoEntity ratingInfo;
   final bool isFavorite;
   final String hotelId;
 
@@ -48,18 +48,18 @@ class Hotel extends Equatable {
         hotelId,
       ];
 
-  Hotel copyWith({
+  HotelEntity copyWith({
     String? id,
     String? name,
     int? category,
     String? destination,
-    List<HotelImage>? images,
-    BestOffer? bestOffer,
-    RatingInfo? ratingInfo,
+    List<HotelImageEntity>? images,
+    BestOfferEntity? bestOffer,
+    RatingInfoEntity? ratingInfo,
     bool? isFavorite,
     String? hotelId,
   }) {
-    return Hotel(
+    return HotelEntity(
       id: id ?? this.id,
       name: name ?? this.name,
       category: category ?? this.category,
@@ -73,8 +73,8 @@ class Hotel extends Equatable {
   }
 }
 
-class BestOffer extends Equatable {
-  const BestOffer({
+class BestOfferEntity extends Equatable {
+  const BestOfferEntity({
     required this.total,
     required this.simplePricePerPerson,
     required this.flightIncluded,
@@ -83,22 +83,22 @@ class BestOffer extends Equatable {
     required this.overallRoomDetails,
   });
 
-  const BestOffer.empty()
+  const BestOfferEntity.empty()
       : this(
           total: 0,
           simplePricePerPerson: 0,
           flightIncluded: false,
-          travelDate: const TravelDate.empty(),
+          travelDate: const TravelDateEntity.empty(),
           roomGroups: const [],
-          overallRoomDetails: const RoomDetails.empty(),
+          overallRoomDetails: const RoomDetailsEntity.empty(),
         );
 
   final int total;
   final int simplePricePerPerson;
   final bool flightIncluded;
-  final TravelDate travelDate;
-  final List<RoomGroup> roomGroups;
-  final RoomDetails overallRoomDetails;
+  final TravelDateEntity travelDate;
+  final List<RoomGroupEntity> roomGroups;
+  final RoomDetailsEntity overallRoomDetails;
 
   @override
   List<Object?> get props => [
@@ -111,13 +111,13 @@ class BestOffer extends Equatable {
       ];
 }
 
-class RoomGroup extends Equatable {
-  const RoomGroup({
+class RoomGroupEntity extends Equatable {
+  const RoomGroupEntity({
     required this.name,
     required this.boarding,
   });
 
-  const RoomGroup.empty()
+  const RoomGroupEntity.empty()
       : this(
           name: '',
           boarding: '',
@@ -130,15 +130,15 @@ class RoomGroup extends Equatable {
   List<Object?> get props => [name, boarding];
 }
 
-class RoomDetails extends Equatable {
-  const RoomDetails({
+class RoomDetailsEntity extends Equatable {
+  const RoomDetailsEntity({
     required this.name,
     required this.boarding,
     required this.adultCount,
     required this.childrenCount,
   });
 
-  const RoomDetails.empty()
+  const RoomDetailsEntity.empty()
       : this(
           name: '',
           boarding: '',
@@ -160,13 +160,13 @@ class RoomDetails extends Equatable {
       ];
 }
 
-class TravelDate extends Equatable {
-  const TravelDate({
+class TravelDateEntity extends Equatable {
+  const TravelDateEntity({
     required this.days,
     required this.nights,
   });
 
-  const TravelDate.empty()
+  const TravelDateEntity.empty()
       : this(
           days: 0,
           nights: 0,
@@ -182,13 +182,13 @@ class TravelDate extends Equatable {
       ];
 }
 
-class HotelImage extends Equatable {
-  const HotelImage({
+class HotelImageEntity extends Equatable {
+  const HotelImageEntity({
     required this.large,
     required this.small,
   });
 
-  const HotelImage.empty()
+  const HotelImageEntity.empty()
       : this(
           large: '',
           small: '',
@@ -201,14 +201,14 @@ class HotelImage extends Equatable {
   List<Object?> get props => [large, small];
 }
 
-class RatingInfo extends Equatable {
-  const RatingInfo({
+class RatingInfoEntity extends Equatable {
+  const RatingInfoEntity({
     required this.score,
     required this.scoreDescription,
     required this.reviewsCount,
   });
 
-  const RatingInfo.empty()
+  const RatingInfoEntity.empty()
       : this(
           score: 0,
           scoreDescription: '',

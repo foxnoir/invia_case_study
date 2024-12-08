@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:invia_case_study/core/di/di.dart';
 import 'package:invia_case_study/core/utils/type_defs.dart';
 import 'package:invia_case_study/features/hotels/data/data_sources/hotels_data_source.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
@@ -21,7 +21,7 @@ class HotelRepoImpl implements HotelsRepository {
   late HotelsDataSource _hotelsDataSource;
 
   @override
-  ResultFuture<List<Hotel>> ge_tHotels() async {
+  ResultFuture<List<HotelEntity>> ge_tHotels() async {
     try {
       final hotelModels = await _hotelsDataSource.ge_tHotels();
       final hotels = hotelModels.map((model) => model.toEntity()).toList();
@@ -57,7 +57,7 @@ class HotelRepoImpl implements HotelsRepository {
   }
 
   @override
-  ResultFuture<void> addFavoriteHotel({required Hotel hotel}) async {
+  ResultFuture<void> addFavoriteHotel({required HotelEntity hotel}) async {
     try {
       await _localDatabase.addFavoriteHotelId(hotelId: hotel.id);
       return const Right(null);

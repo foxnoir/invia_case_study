@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_section.dart';
 
 class TestHttpOverrides extends HttpOverrides {
@@ -17,27 +17,27 @@ class TestHttpOverrides extends HttpOverrides {
 }
 
 void main() {
-  late Hotel _hotel;
+  late HotelEntity _hotel;
 
   setUp(() {
-    _hotel = const Hotel.empty().copyWith(
+    _hotel = const HotelEntity.empty().copyWith(
       id: '1',
       name: 'Test Hotel',
       destination: 'Berlin, Germany',
       hotelId: 'hotel_1',
-      bestOffer: const BestOffer(
+      bestOffer: const BestOfferEntity(
         total: 99999,
         simplePricePerPerson: 49999,
-        travelDate: TravelDate(days: 5, nights: 4),
+        travelDate: TravelDateEntity(days: 5, nights: 4),
         flightIncluded: true,
-        overallRoomDetails: RoomDetails(
+        overallRoomDetails: RoomDetailsEntity(
           name: 'Standard Room',
           boarding: 'Bed & Breakfast',
           adultCount: 2,
           childrenCount: 1,
         ),
         roomGroups: [
-          RoomGroup(
+          RoomGroupEntity(
             name: 'Deluxe Room',
             boarding: 'Half Board',
           ),
@@ -106,12 +106,12 @@ void main() {
     testWidgets('does not render room details if roomGroups is empty',
         (tester) async {
       _hotel = _hotel.copyWith(
-        bestOffer: const BestOffer(
+        bestOffer: const BestOfferEntity(
           total: 99999,
           simplePricePerPerson: 49999,
-          travelDate: TravelDate(days: 5, nights: 4),
+          travelDate: TravelDateEntity(days: 5, nights: 4),
           flightIncluded: true,
-          overallRoomDetails: RoomDetails(
+          overallRoomDetails: RoomDetailsEntity(
             name: 'Standard Room',
             boarding: 'Bed & Breakfast',
             adultCount: 2,
@@ -123,7 +123,6 @@ void main() {
 
       await tester.pumpWidget(createAppCardDetailsSectionTestWidget());
 
-      // Deluxe Room and Boarding should not be present
       expect(find.textContaining('Deluxe Room'), findsNothing);
       expect(find.textContaining('Half Board'), findsNothing);
     });

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 
-class Favorite extends Equatable {
-  const Favorite({
+class FavoriteEntity extends Equatable {
+  const FavoriteEntity({
     required this.id,
     required this.name,
     required this.category,
@@ -18,9 +18,9 @@ class Favorite extends Equatable {
   final String name;
   final int category;
   final String destination;
-  final List<FavoriteImage> images;
-  final FavoriteBestOffer bestOffer;
-  final FavoriteRatingInfo ratingInfo;
+  final List<FavoriteImageEnity> images;
+  final FavoriteBestOfferEntity bestOffer;
+  final FavoriteRatingInfoEntity ratingInfo;
   final String favoriteId;
   final bool isFavorite;
 
@@ -38,13 +38,13 @@ class Favorite extends Equatable {
       ];
 }
 
-class FavoriteImage extends Equatable {
-  const FavoriteImage({
+class FavoriteImageEnity extends Equatable {
+  const FavoriteImageEnity({
     required this.large,
     required this.small,
   });
 
-  const FavoriteImage.empty()
+  const FavoriteImageEnity.empty()
       : this(
           large: '',
           small: '',
@@ -57,8 +57,8 @@ class FavoriteImage extends Equatable {
   List<Object?> get props => [large, small];
 }
 
-class FavoriteBestOffer extends Equatable {
-  const FavoriteBestOffer({
+class FavoriteBestOfferEntity extends Equatable {
+  const FavoriteBestOfferEntity({
     required this.total,
     required this.simplePricePerPerson,
     required this.flightIncluded,
@@ -67,22 +67,22 @@ class FavoriteBestOffer extends Equatable {
     required this.overallRoomDetails,
   });
 
-  const FavoriteBestOffer.empty()
+  const FavoriteBestOfferEntity.empty()
       : this(
           total: 0,
           simplePricePerPerson: 0,
           flightIncluded: false,
-          travelDate: const FavoriteTravelDate.empty(),
+          travelDate: const FavoriteTravelDateEntity.empty(),
           roomGroups: const [],
-          overallRoomDetails: const FavoriteRoomDetails.empty(),
+          overallRoomDetails: const FavoriteRoomDetailsEntity.empty(),
         );
 
   final int total;
   final int simplePricePerPerson;
   final bool flightIncluded;
-  final FavoriteTravelDate travelDate;
-  final List<FavoriteRoomGroup> roomGroups;
-  final FavoriteRoomDetails overallRoomDetails;
+  final FavoriteTravelDateEntity travelDate;
+  final List<FavoriteRoomGroupEntity> roomGroups;
+  final FavoriteRoomDetailsEntity overallRoomDetails;
 
   @override
   List<Object?> get props => [
@@ -95,13 +95,13 @@ class FavoriteBestOffer extends Equatable {
       ];
 }
 
-class FavoriteRoomGroup extends Equatable {
-  const FavoriteRoomGroup({
+class FavoriteRoomGroupEntity extends Equatable {
+  const FavoriteRoomGroupEntity({
     required this.name,
     required this.boarding,
   });
 
-  const FavoriteRoomGroup.empty()
+  const FavoriteRoomGroupEntity.empty()
       : this(
           name: '',
           boarding: '',
@@ -117,15 +117,15 @@ class FavoriteRoomGroup extends Equatable {
       ];
 }
 
-class FavoriteRoomDetails extends Equatable {
-  const FavoriteRoomDetails({
+class FavoriteRoomDetailsEntity extends Equatable {
+  const FavoriteRoomDetailsEntity({
     required this.name,
     required this.boarding,
     required this.adultCount,
     required this.childrenCount,
   });
 
-  const FavoriteRoomDetails.empty()
+  const FavoriteRoomDetailsEntity.empty()
       : this(
           name: '',
           boarding: '',
@@ -147,13 +147,13 @@ class FavoriteRoomDetails extends Equatable {
       ];
 }
 
-class FavoriteTravelDate extends Equatable {
-  const FavoriteTravelDate({
+class FavoriteTravelDateEntity extends Equatable {
+  const FavoriteTravelDateEntity({
     required this.days,
     required this.nights,
   });
 
-  const FavoriteTravelDate.empty()
+  const FavoriteTravelDateEntity.empty()
       : this(
           days: 0,
           nights: 0,
@@ -169,14 +169,14 @@ class FavoriteTravelDate extends Equatable {
       ];
 }
 
-class FavoriteRatingInfo extends Equatable {
-  const FavoriteRatingInfo({
+class FavoriteRatingInfoEntity extends Equatable {
+  const FavoriteRatingInfoEntity({
     required this.score,
     required this.scoreDescription,
     required this.reviewsCount,
   });
 
-  const FavoriteRatingInfo.empty()
+  const FavoriteRatingInfoEntity.empty()
       : this(
           score: 0,
           scoreDescription: '',
@@ -191,16 +191,16 @@ class FavoriteRatingInfo extends Equatable {
   List<Object?> get props => [score, scoreDescription, reviewsCount];
 }
 
-extension FavoriteExtension on Favorite {
-  Hotel toHotel() {
-    return Hotel(
+extension FavoriteExtension on FavoriteEntity {
+  HotelEntity toHotel() {
+    return HotelEntity(
       isFavorite: isFavorite,
       id: id,
       name: name,
       category: category,
       destination: destination,
       images: images
-          .map((img) => HotelImage(large: img.large, small: img.small))
+          .map((img) => HotelImageEntity(large: img.large, small: img.small))
           .toList(),
       bestOffer: bestOffer.toHotelBestOffer(),
       ratingInfo: ratingInfo.toHotelRatingInfo(),
@@ -209,9 +209,9 @@ extension FavoriteExtension on Favorite {
   }
 }
 
-extension FavoriteBestOfferExtension on FavoriteBestOffer {
-  BestOffer toHotelBestOffer() {
-    return BestOffer(
+extension FavoriteBestOfferEntityExtension on FavoriteBestOfferEntity {
+  BestOfferEntity toHotelBestOffer() {
+    return BestOfferEntity(
       total: total,
       simplePricePerPerson: simplePricePerPerson,
       flightIncluded: flightIncluded,
@@ -222,18 +222,18 @@ extension FavoriteBestOfferExtension on FavoriteBestOffer {
   }
 }
 
-extension FavoriteRoomGroupExtension on FavoriteRoomGroup {
-  RoomGroup toHotelRoomGroup() {
-    return RoomGroup(
+extension FavoriteRoomGroupEntityExtension on FavoriteRoomGroupEntity {
+  RoomGroupEntity toHotelRoomGroup() {
+    return RoomGroupEntity(
       name: name,
       boarding: boarding,
     );
   }
 }
 
-extension FavoriteRoomDetailsExtension on FavoriteRoomDetails {
-  RoomDetails toHotelRoomDetails() {
-    return RoomDetails(
+extension FavoriteRoomDetailsEntityExtension on FavoriteRoomDetailsEntity {
+  RoomDetailsEntity toHotelRoomDetails() {
+    return RoomDetailsEntity(
       name: name,
       boarding: boarding,
       adultCount: adultCount,
@@ -242,18 +242,18 @@ extension FavoriteRoomDetailsExtension on FavoriteRoomDetails {
   }
 }
 
-extension FavoriteTravelDateExtension on FavoriteTravelDate {
-  TravelDate toHotelTravelDate() {
-    return TravelDate(
+extension FavoriteTravelDateEntityExtension on FavoriteTravelDateEntity {
+  TravelDateEntity toHotelTravelDate() {
+    return TravelDateEntity(
       days: days,
       nights: nights,
     );
   }
 }
 
-extension FavoriteRatingInfoExtension on FavoriteRatingInfo {
-  RatingInfo toHotelRatingInfo() {
-    return RatingInfo(
+extension FavoriteRatingInfoEntityExtension on FavoriteRatingInfoEntity {
+  RatingInfoEntity toHotelRatingInfo() {
+    return RatingInfoEntity(
       score: score,
       scoreDescription: scoreDescription,
       reviewsCount: reviewsCount,

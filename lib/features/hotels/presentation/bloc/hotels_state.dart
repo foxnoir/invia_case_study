@@ -18,7 +18,7 @@ class HotelsLoading extends HotelsState {
 class HotelsLoaded extends HotelsState {
   const HotelsLoaded({required this.hotels, required this.location});
 
-  final List<Hotel> hotels;
+  final List<HotelEntity> hotels;
   final String location;
 
   @override

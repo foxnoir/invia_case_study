@@ -1,7 +1,7 @@
 import 'package:invia_case_study/core/utils/type_defs.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 
-class FavoriteModel extends Hotel {
+class FavoriteModel extends HotelEntity {
   const FavoriteModel({
     required super.id,
     required super.name,
@@ -56,8 +56,8 @@ class FavoriteModel extends Hotel {
     };
   }
 
-  Hotel toEntity() {
-    return Hotel(
+  HotelEntity toEntity() {
+    return HotelEntity(
       id: id,
       name: name,
       category: category,
@@ -72,7 +72,7 @@ class FavoriteModel extends Hotel {
   }
 }
 
-class FavoriteBestOfferModel extends BestOffer {
+class FavoriteBestOfferModel extends BestOfferEntity {
   const FavoriteBestOfferModel({
     required super.total,
     required super.simplePricePerPerson,
@@ -123,8 +123,8 @@ class FavoriteBestOfferModel extends BestOffer {
     };
   }
 
-  BestOffer toEntity() {
-    return BestOffer(
+  BestOfferEntity toEntity() {
+    return BestOfferEntity(
       total: total,
       simplePricePerPerson: simplePricePerPerson,
       flightIncluded: flightIncluded,
@@ -138,7 +138,7 @@ class FavoriteBestOfferModel extends BestOffer {
   }
 }
 
-class FavoriteRoomGroupModel extends RoomGroup {
+class FavoriteRoomGroupModel extends RoomGroupEntity {
   const FavoriteRoomGroupModel({
     required super.name,
     required super.boarding,
@@ -164,15 +164,15 @@ class FavoriteRoomGroupModel extends RoomGroup {
     };
   }
 
-  RoomGroup toEntity() {
-    return RoomGroup(
+  RoomGroupEntity toEntity() {
+    return RoomGroupEntity(
       name: name,
       boarding: boarding,
     );
   }
 }
 
-class FavoriteRoomDetailsModel extends RoomDetails {
+class FavoriteRoomDetailsModel extends RoomDetailsEntity {
   const FavoriteRoomDetailsModel({
     required super.name,
     required super.boarding,
@@ -206,8 +206,8 @@ class FavoriteRoomDetailsModel extends RoomDetails {
     };
   }
 
-  RoomDetails toEntity() {
-    return RoomDetails(
+  RoomDetailsEntity toEntity() {
+    return RoomDetailsEntity(
       name: name,
       boarding: boarding,
       adultCount: adultCount,
@@ -216,7 +216,7 @@ class FavoriteRoomDetailsModel extends RoomDetails {
   }
 }
 
-class FavoriteTravelDateModel extends TravelDate {
+class FavoriteTravelDateModel extends TravelDateEntity {
   const FavoriteTravelDateModel({
     required super.days,
     required super.nights,
@@ -238,15 +238,15 @@ class FavoriteTravelDateModel extends TravelDate {
     };
   }
 
-  TravelDate toEntity() {
-    return TravelDate(
+  TravelDateEntity toEntity() {
+    return TravelDateEntity(
       days: days,
       nights: nights,
     );
   }
 }
 
-class FavoriteRatingInfoModel extends RatingInfo {
+class FavoriteRatingInfoModel extends RatingInfoEntity {
   const FavoriteRatingInfoModel({
     required super.score,
     required super.scoreDescription,
@@ -276,8 +276,8 @@ class FavoriteRatingInfoModel extends RatingInfo {
     };
   }
 
-  RatingInfo toEntity() {
-    return RatingInfo(
+  RatingInfoEntity toEntity() {
+    return RatingInfoEntity(
       score: score,
       scoreDescription: scoreDescription,
       reviewsCount: reviewsCount,
@@ -285,7 +285,7 @@ class FavoriteRatingInfoModel extends RatingInfo {
   }
 }
 
-class FavoriteImageModel extends HotelImage {
+class FavoriteImageModel extends HotelImageEntity {
   const FavoriteImageModel({
     required super.large,
     required super.small,
@@ -311,8 +311,8 @@ class FavoriteImageModel extends HotelImage {
     };
   }
 
-  HotelImage toEntity() {
-    return HotelImage(
+  HotelImageEntity toEntity() {
+    return HotelImageEntity(
       large: large,
       small: small,
     );

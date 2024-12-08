@@ -1,90 +1,105 @@
 <a name="readme-top"></a>
 
-<!-- Top Links Bar -->
-
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Twitter][twitter-shield]][twitter-url]
 [![Instagram][instagram-shield]][instagram-url]
 
-<!-- PROJECT LOGO -->
-<br />
+
 <div align="center">
   <img src="images/logo.png" alt="Logo" width="80" height="80">
   <h1 align="center">Invia Case Study</h1>
 
-<!-- PROJECT desc -->
   <p align="left">
-     Solution to the task set for 2 rounds.
+     Solution for the task set in 2 rounds.
   </p>
 
-  <!-- PROJECT link -->
   <p align="left">
     <a href="https://github.com/foxnoir/invia_case_study/tree/develop/lib"><strong>Explore the project »</strong></a>
     <br/>
   </p>
-  </p>
-    <br/>
-  </p>****
-
-
 
 </div>
 
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
-      <li>
-        <a href="#style-guide">Style Guide</a>
-      </li>
-      <li>
-        <a href="#App-Demonstration">App Demonstration</a>
-      </li>
-    <li>
-      <a href="#tech-stack">Tech Stack</a>
+    <li><a href="#app-demonstration">App Demonstration</a>
+      <ul>
+        <li><a href="#happy-case">Happy Case</a></li>
+        <li><a href="#error-handling">Error Handling</a></li>
+      </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#repository-cloning">Repository Cloning</a></li>
+        <li><a href="#installing-dependencies">Installing Dependencies</a></li>
+        <li><a href="#code-generation">Code Generation</a></li>
+        <li><a href="#running-the-app">Running the App</a></li>
+      </ul>
     </li>
+    <li><a href="#app-architecture-and-folder-structure">App Architecture and Folder Structure</a>
+      <ul>
+        <li><a href="#feature-first-approach">Feature-First Approach</a></li>
+        <li><a href="#explanation">Explanation</a>
+          <ul>
+            <li><a href="#data">Data</a></li>
+            <li><a href="#domain">Domain</a></li>
+            <li><a href="#presentation">Presentation</a></li>
+            <li><a href="#global-widgets">Global Widgets</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#packages-and-reasons-for-use">Packages and Reasons for Use</a></li>
     <li><a href="#changelog">Changelog</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
-</p>
-  <br/>
-</p>
+---
 
-## Style Guide
+## **App Demonstration**
 
+### **Happy Case**
+[View Video](https://github.com/user-attachments/assets/6b00962b-dac0-43fd-ba21-81d9613b0921)
 
-## App Demonstration
+### **Error Handling**
+[View Video](https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6)
 
-### Happy Case
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
-https://github.com/user-attachments/assets/6b00962b-dac0-43fd-ba21-81d9613b0921
+---
 
+## **Tech Stack**
 
-### Error Handling
+- **Language**: Dart  
+- **Framework**: Flutter  
+- **Local Storage**: Hive  
+- **Dependency Injection**: GetIt & Injectable  
+- **State Management**: Bloc & Flutter Bloc  
+- **Network**: Dio  
+- **Localization**: flutter_localizations & intl  
+- **Secure Storage**: flutter_secure_storage  
+- **Navigation**: Auto Route  
 
-https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
+---
 
+## **Getting Started**
 
-## Tech Stack
+### **Repository Cloning**
 
-
-## Getting Started
 
 - Download or clone this repo by using the link or the SSH URL below:
 
 ```
-https://github.com/foxnoir/group_chat
+https://github.com/foxnoir/invia_case_study.git
 ```
 
 ```
-git@github.com:foxnoir/group_chat.git
+git@github.com:foxnoir/invia_case_study.git
 ```
 
 - Go to project root and execute the following command in console to get the required dependencies:
@@ -93,77 +108,133 @@ git@github.com:foxnoir/group_chat.git
 flutter pub get
 ```
 
- <br/>
 ```
 flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-- Create a new Firebase project and connect the app with it. For clearer instructions go to: [Connect flutter with firebase »](https://firebase.google.com/docs/flutter/setup?platform=ios)
-
-- Enable Firebase authentication with email and password. For clearer instructions go to: [Firebase authentication »](https://firebase.google.com/docs/auth)
-
-- Create a Firestore Database. For clearer instructions go to: [Create a Firebase firestore database »](https://www.kodeco.com/26435435-firestore-tutorial-for-flutter-getting-started)
-
-- Create a Cloud Storage. For clearer instructions go to: [Create a Firebase cloud storage »](https://www.kodeco.com/26435435-firestore-tutorial-for-flutter-getting-started)
-
-- Open - [XCode Simulator](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device) and start 2 devices or start 1 on your iPhone via Xcode and 1 in the simulator. For clearer instructions go to: [Running your app in Simulator or on a device »](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device)
-
-- Register a new user on each device. (User A on device A, User B on device B).
-
-- Add user B as a new contact on device A using the email address you registered user B with and favorite this one under `All Contacts`.
-
-- Go to `Favorites` and click on the user's profile picture.
-
-- Start chatting.
+```
+flutter run
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## **App Architecture and Folder Structure**
 
+flutter-app/
+  ├── android
+  ├── assets/
+  │     ├── fonts/
+  │     ├── icons/
+  │     └── img/
+  ├── build/
+  ├── images/
+  ├── ios/
+  ├── lib/
+  │     ├── core/
+  │     │     ├── di/
+  │     │     ├── log/
+  │     │     ├── theme/
+  │     │     └── utils/
+  │     ├── features/
+  │     │     └── hotels/
+  │     │          ├── data/
+  │     │          │     ├── models/
+  │     │          │     ├── repositories/
+  │     │          │     └── data_sources/
+  │     │          ├── domain/
+  │     │          │     ├── entities/
+  │     │          │     ├── repositories/
+  │     │          │     └── use_cases/
+  │     │          └── presentation/
+  │     │                ├── screens/
+  │     │                ├── widgets/
+  │     │                └── blocs/
+  │     └── main.dart
+  ├── test/
+  ├── web/
+  └── pubspec.yaml
 
+---
 
+### **Feature-First Approach**
+The `features/` folder structure groups code by **feature domains** (e.g., `hotels/`), enabling better maintainability and scalability. Changes to one feature do not affect other modules.
 
-## Changelog
+---
 
-  <p align="left">
-    <a href="https://github.com/foxnoir/group_chat/blob/develop/CHANGELOG.md"><strong>Check changes »</strong></a>
-    <br/>
-  </p>
-  </p>
-    <br/>
-  </p>
+### **Explanation**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#### **Data**
+- **models/**: Defines **data models** that come from APIs, JSON, or local data sources.  
+  **Examples**: `hotel_model.dart`
 
-## License
+- **repositories/**: Contains **implementation of repository interfaces** from the domain layer.  
+  **Examples**: `hotel_repository_impl.dart`
 
+- **data_sources/**: Defines **remote or local data sources** that access the API (e.g., Dio) or a local database (e.g., Hive).  
+  **Examples**: `hotel_api_service.dart`, `local_hotel_data_source.dart`
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
 
-## Acknowledgments
+#### **Domain**
+- **entities/**: Defines **"pure" objects** that reflect business logic (independent of API).  
+  **Examples**: `hotel_entity.dart`
 
-- [Feature-first vs Layer-first 1](https://kodytechnolab.com/blog/layer-first-or-feature-first-flutter-project-structure/)
-- [Feature-first vs Layer-first 2](https://codewithandrea.com/articles/flutter-project-structure/)
-- [Connect flutter with firebase](https://firebase.google.com/docs/flutter/setup?platform=ios)
-- [Running your app in Simulator or on a device](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device)
+- **repositories/**: Defines **abstract interfaces** for the repositories implemented in the **data layer**.  
+  **Examples**: `hotel_repository.dart`
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
 
-<!-- Top Bar Links -->
+#### **Presentation**
+- **screens/**: Defines **main screens** displayed to the user.  
+  **Examples**: `hotel_list_screen.dart`, `hotel_detail_screen.dart`
 
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/tanja-polz-5636401a5/
-[twitter-shield]: https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white
-[twitter-url]: https://www.instagram.com/codeInCouture/
-[instagram-shield]: https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white
-[instagram-url]: https://www.instagram.com/codeInCouture/
+- **widgets/**: Contains **reusable widgets** used in multiple screens.  
+  **Examples**: `hotel_card.dart`, `loading_indicator.dart`
 
-<!-- Tech Stach Links-->
+- **blocs/**: Contains **Bloc files** to manage the **state of the UI**.  
+  **Examples**: `hotel_bloc.dart`, `hotel_event.dart`, `hotel_state.dart`
 
-[flutter]: https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white
-[flutter-url]: https://flutter.dev/
-[dart]: https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white
-[dart-url]: https://dart.dev/
-[flutter-url]: https://flutter.dev/
-[firebase]: https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white
-[firebase-url]: https://firebase.google.com/
+---
+
+#### **Global Widgets**
+  Contains **reusable widgets** that can be used across multiple screens.  
+  **Examples**: `app_card.dart`, `app_icon.dart`
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+
+---
+
+## **Packages and Reasons for Use**
+
+| **Package**         | **Reason** |
+|---------------------|----------------|
+| **GetIt**           | For Dependency Injection and access to services without direct initialization. |
+| **Injectable**      | Automatically generates DI configurations with `build_runner`, reducing boilerplate code. |
+| **Dartz**           | Provides "Functional Programming" concepts like `Either` for better error handling. |
+| **Equatable**       | Facilitates object comparison by automatically overriding `==` and `hashCode`. |
+| **Hive & Hive Flutter** | Fast, lightweight, NoSQL database storage for quick local data storage. |
+| **Dio**             | Robust HTTP client with simple error handling, interceptors, and request cancellation. |
+| **connectivity_plus** | Checks the network connection and provides real-time status updates. |
+| **flutter_localizations** | Supports multi-language localization and internationalization (l10n). |
+| **mocktail**        | Simple way to mock classes required for unit tests. |
+| **very_good_analysis** | Ensures a consistent code style and code quality through strict linter rules. |
+| **bloc_test**       | Tests Bloc logic, verifying the sequence of state changes. |
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+
+---
+
+## **Changelog**
+
+View changes and updates to the app [here](https://github.com/foxnoir/invia_case_study/blob/develop/CHANGELOG.md).  
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+
+---
+
+## **Acknowledgments**
+
+- [Feature-first vs Layer-first Structure (Kody TechnoLab)](https://kodytechnolab.com/blog/layer-first-or-feature-first-flutter-project-structure/)  
+- [Flutter Project Structure (Code with Andrea)](https://codewithandrea.com/articles/flutter-project-structure/)  
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 
 abstract class AppScaffoldState extends Equatable {
@@ -15,8 +15,8 @@ class AppScaffoldInitial extends AppScaffoldState {
 
 class AppScaffoldUpdated extends AppScaffoldState {
   const AppScaffoldUpdated({required this.hotel, required this.favorites});
-  final Hotel hotel;
-  final List<Hotel> favorites;
+  final HotelEntity hotel;
+  final List<HotelEntity> favorites;
 
   @override
   List<Object?> get props => [hotel, favorites];

@@ -4,7 +4,7 @@ import 'package:invia_case_study/features/favorites/data/data_sources/favorites_
 import 'package:invia_case_study/features/favorites/data/models/favorite_model.dart';
 import 'package:invia_case_study/features/favorites/data/repositories/favorites_repo_impl.dart';
 import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
@@ -126,7 +126,7 @@ void main() {
         expect(
           result,
           equals(
-            const Left<ApiFailure, List<Hotel>>(
+            const Left<ApiFailure, List<HotelEntity>>(
               ApiFailure(message: 'Bad Request', statusCode: 400),
             ),
           ),

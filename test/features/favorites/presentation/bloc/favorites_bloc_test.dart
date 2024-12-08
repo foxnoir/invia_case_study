@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
 import 'package:invia_case_study/features/favorites/presentation/bloc/favorites_bloc.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -35,8 +35,8 @@ void main() {
   });
 
   group('FavoritesBloc', () {
-    const _tHotel1 = Hotel.empty();
-    const tHtel2 = Hotel.empty();
+    const _tHotel1 = HotelEntity.empty();
+    const tHtel2 = HotelEntity.empty();
 
     final hotelsList = [_tHotel1, tHtel2];
 

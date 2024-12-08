@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/features/router/app_router.dart';
 import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_section.dart';
 import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_img_section.dart';
@@ -19,7 +19,7 @@ class AppCard extends StatelessWidget {
   final String imgUrl;
   final String buttonText;
   final VoidCallback onButtonPressed;
-  final Hotel hotel;
+  final HotelEntity hotel;
   final bool isFavoriteTab;
 
   @override

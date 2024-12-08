@@ -11,7 +11,7 @@ class ResetErrorEvent extends AppScaffoldEvent {}
 
 class AddFavoriteEvent extends AppScaffoldEvent {
   const AddFavoriteEvent(this.hotel);
-  final Hotel hotel;
+  final HotelEntity hotel;
 
   @override
   List<Object?> get props => [hotel];
@@ -19,7 +19,7 @@ class AddFavoriteEvent extends AppScaffoldEvent {
 
 class RemoveFavoriteEvent extends AppScaffoldEvent {
   const RemoveFavoriteEvent(this.hotel);
-  final Hotel hotel;
+  final HotelEntity hotel;
 
   @override
   List<Object?> get props => [hotel];

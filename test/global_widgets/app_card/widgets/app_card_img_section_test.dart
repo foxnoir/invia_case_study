@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_img_section.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
@@ -25,7 +25,7 @@ class TestHttpOverrides extends HttpOverrides {
 
 void main() {
   late MockAppScaffoldBloc _mockAppScaffoldBloc;
-  late Hotel _hotel;
+  late HotelEntity _hotel;
 
   setUpAll(() {
     registerFallbackValue(FakeRemoveFavoriteEvent());
@@ -34,11 +34,11 @@ void main() {
 
   setUp(() {
     _mockAppScaffoldBloc = MockAppScaffoldBloc();
-    _hotel = const Hotel.empty().copyWith(
+    _hotel = const HotelEntity.empty().copyWith(
       id: '1',
       name: 'Test Hotel',
       hotelId: 'hotel_1',
-      ratingInfo: const RatingInfo(
+      ratingInfo: const RatingInfoEntity(
         score: 4.5,
         reviewsCount: 120,
         scoreDescription: 'Ausgezeichnet',

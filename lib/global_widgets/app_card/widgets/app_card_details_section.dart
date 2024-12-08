@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
 import 'package:invia_case_study/core/theme/screen_size.dart';
 import 'package:invia_case_study/core/utils/formatter.dart';
-import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
+import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
 import 'package:invia_case_study/global_widgets/app_card/app_card_star_rating.dart';
 import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_text_row.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
@@ -18,7 +18,7 @@ class AppCardDetailsSection extends StatelessWidget {
     super.key,
   });
 
-  final Hotel hotel;
+  final HotelEntity hotel;
   final bool? isFavoriteTab;
 
   @override
