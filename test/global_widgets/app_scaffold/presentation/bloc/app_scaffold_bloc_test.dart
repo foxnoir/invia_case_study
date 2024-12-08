@@ -3,59 +3,58 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/favorites/domain/repositories/favorites_repository.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
-import 'package:invia_case_study/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockHotelsRepository extends Mock implements HotelsRepository {}
-
-class MockFavoritesRepository extends Mock implements FavoritesRepository {}
+import '../../../../features/favorites/presentation/bloc/favorites_bloc_test.dart';
+import '../../../../features/hotels/presentation/bloc/hotels_bloc_test.dart';
 
 void main() {
-  late AppScaffoldBloc appScaffoldBloc;
-  late MockHotelsRepository mockHotelsRepository;
-  late MockFavoritesRepository mockFavoritesRepository;
+  late AppScaffoldBloc _appScaffoldBloc;
+  late MockHotelsRepository _mockHotelsRepository;
+  late MockFavoritesRepository _mockFavoritesRepository;
 
   setUp(() {
-    mockHotelsRepository = MockHotelsRepository();
-    mockFavoritesRepository = MockFavoritesRepository();
-    appScaffoldBloc = AppScaffoldBloc(
-      hotelsRepository: mockHotelsRepository,
-      favoritesRepository: mockFavoritesRepository,
+    _mockHotelsRepository = MockHotelsRepository();
+    _mockFavoritesRepository = MockFavoritesRepository();
+    _appScaffoldBloc = AppScaffoldBloc(
+      hotelsRepository: _mockHotelsRepository,
+      favoritesRepository: _mockFavoritesRepository,
     );
   });
 
   tearDown(() async {
-    await appScaffoldBloc.close();
+    await _appScaffoldBloc.close();
   });
 
-  final testHotel = const Hotel.empty().copyWith(
+  final tes_tHotel = const Hotel.empty().copyWith(
     id: '1',
     name: 'Test Hotel',
     hotelId: 'hotel123',
     isFavorite: false,
   );
 
-  final updatedTestHotel = testHotel.copyWith(isFavorite: true);
-  final favoritesList = [testHotel];
+  final updatedTes_tHotel = tes_tHotel.copyWith(isFavorite: true);
+  final favoritesList = [tes_tHotel];
 
   group('AppScaffoldBloc', () {
     group('AddFavoriteEvent', () {
       blocTest<AppScaffoldBloc, AppScaffoldState>(
         'emits [AppScaffoldUpdated] when AddFavoriteEvent is successful',
         build: () {
-          when(() => mockHotelsRepository.addFavoriteHotel(hotel: testHotel))
+          when(() => _mockHotelsRepository.addFavoriteHotel(hotel: tes_tHotel))
               .thenAnswer((_) async => const Right(null));
 
-          when(() => mockFavoritesRepository.getFavorites())
+          when(() => _mockFavoritesRepository.getFavorites())
               .thenAnswer((_) async => Right(favoritesList));
 
-          return appScaffoldBloc;
+          return _appScaffoldBloc;
         },
-        act: (bloc) => bloc.add(AddFavoriteEvent(testHotel)),
+        act: (bloc) => bloc.add(AddFavoriteEvent(tes_tHotel)),
         expect: () => [
-          AppScaffoldUpdated(hotel: updatedTestHotel, favorites: favoritesList),
+          AppScaffoldUpdated(
+              hotel: updatedTes_tHotel, favorites: favoritesList),
         ],
       );
     });
@@ -65,20 +64,20 @@ void main() {
         'emits [AppScaffoldUpdated] when RemoveFavoriteEvent is successful',
         build: () {
           when(
-            () => mockHotelsRepository.removeFavoriteHotelId(
-              id: testHotel.hotelId,
+            () => _mockHotelsRepository.removeFavoriteHotelId(
+              id: tes_tHotel.hotelId,
             ),
           ).thenAnswer((_) async => const Right(null));
 
-          when(() => mockFavoritesRepository.getFavorites())
+          when(() => _mockFavoritesRepository.getFavorites())
               .thenAnswer((_) async => Right(favoritesList));
 
-          return appScaffoldBloc;
+          return _appScaffoldBloc;
         },
-        act: (bloc) => bloc.add(RemoveFavoriteEvent(testHotel)),
+        act: (bloc) => bloc.add(RemoveFavoriteEvent(tes_tHotel)),
         expect: () => [
           AppScaffoldUpdated(
-            hotel: testHotel.copyWith(isFavorite: false),
+            hotel: tes_tHotel.copyWith(isFavorite: false),
             favorites: favoritesList,
           ),
         ],
@@ -88,7 +87,7 @@ void main() {
     group('ResetErrorEvent', () {
       blocTest<AppScaffoldBloc, AppScaffoldState>(
         'emits [AppScaffoldInitial] when ResetErrorEvent is added',
-        build: () => appScaffoldBloc,
+        build: () => _appScaffoldBloc,
         act: (bloc) => bloc.add(ResetErrorEvent()),
         expect: () => [
           const AppScaffoldInitial(),

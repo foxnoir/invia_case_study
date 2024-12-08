@@ -21,9 +21,9 @@ class HotelRepoImpl implements HotelsRepository {
   late HotelsDataSource _hotelsDataSource;
 
   @override
-  ResultFuture<List<Hotel>> getHotels() async {
+  ResultFuture<List<Hotel>> ge_tHotels() async {
     try {
-      final hotelModels = await _hotelsDataSource.getHotels();
+      final hotelModels = await _hotelsDataSource.ge_tHotels();
       final hotels = hotelModels.map((model) => model.toEntity()).toList();
 
       final favoriteResult = getFavoriteHotelIds();

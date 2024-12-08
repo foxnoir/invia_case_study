@@ -22,7 +22,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     Emitter<HotelsState> emit,
   ) async {
     emit(const HotelsLoading());
-    final result = await _hotelsRepository.getHotels();
+    final result = await _hotelsRepository.ge_tHotels();
     result.fold(
       (failure) => emit(HotelsError(failure: failure)),
       (hotels) {

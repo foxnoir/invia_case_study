@@ -36,15 +36,15 @@ void main() {
   });
 
   group('HotelsBloc', () {
-    final tHotel1 = const Hotel.empty().copyWith(
+    final _tHotel1 = const Hotel.empty().copyWith(
       destination: 'City A, Country A',
     );
 
-    final tHotel2 = const Hotel.empty().copyWith(
+    final _tHotel2 = const Hotel.empty().copyWith(
       destination: 'City B, Country B',
     );
 
-    final hotelsList = [tHotel1, tHotel2];
+    final hotelsList = [_tHotel1, _tHotel2];
 
     test('initial state is HotelsInitial', () {
       expect(_hotelsBloc.state, const HotelsInitial());
@@ -54,7 +54,7 @@ void main() {
       'emits [HotelsLoading, HotelsLoaded] when '
       'FetchHotelsEvent is added and repository succeeds',
       build: () {
-        when(() => _mockHotelsRepository.getHotels())
+        when(() => _mockHotelsRepository.ge_tHotels())
             .thenAnswer((_) async => Right(hotelsList));
         return _hotelsBloc;
       },
@@ -67,7 +67,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        verify(() => _mockHotelsRepository.getHotels()).called(1);
+        verify(() => _mockHotelsRepository.ge_tHotels()).called(1);
       },
     );
 
@@ -75,7 +75,7 @@ void main() {
       'emits [HotelsLoading, HotelsError] '
       'when FetchHotelsEvent is added and repository fails',
       build: () {
-        when(() => _mockHotelsRepository.getHotels()).thenAnswer(
+        when(() => _mockHotelsRepository.ge_tHotels()).thenAnswer(
           (_) async =>
               const Left(ApiFailure(message: 'Error', statusCode: 500)),
         );
@@ -89,7 +89,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        verify(() => _mockHotelsRepository.getHotels()).called(1);
+        verify(() => _mockHotelsRepository.ge_tHotels()).called(1);
       },
     );
   });

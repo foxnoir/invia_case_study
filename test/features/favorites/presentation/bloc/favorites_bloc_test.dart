@@ -35,10 +35,10 @@ void main() {
   });
 
   group('FavoritesBloc', () {
-    const tHotel1 = Hotel.empty();
+    const _tHotel1 = Hotel.empty();
     const tHtel2 = Hotel.empty();
 
-    final hotelsList = [tHotel1, tHtel2];
+    final hotelsList = [_tHotel1, tHtel2];
 
     test('initial state is FavoritesInitial', () {
       expect(_favoritesBloc.state, const FavoritesInitial());

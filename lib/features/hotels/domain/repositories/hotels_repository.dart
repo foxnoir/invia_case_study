@@ -6,7 +6,7 @@ import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 abstract class HotelsRepository {
   const HotelsRepository();
 
-  ResultFuture<List<Hotel>> getHotels();
+  ResultFuture<List<Hotel>> ge_tHotels();
 
   ResultFuture<void> addFavoriteHotel({required Hotel hotel});
 

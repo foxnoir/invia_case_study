@@ -55,7 +55,7 @@ void main() {
         );
 
         // Act
-        final result = await _favoriteDataSource.getHotels();
+        final result = await _favoriteDataSource.ge_tHotels();
 
         // Assert
         expect(result, equals(tFavoriteHotels));
@@ -93,7 +93,7 @@ void main() {
         );
 
         // Act
-        final call = _favoriteDataSource.getHotels();
+        final call = _favoriteDataSource.ge_tHotels();
 
         // Assert
         expect(call, throwsA(isA<ApiException>()));

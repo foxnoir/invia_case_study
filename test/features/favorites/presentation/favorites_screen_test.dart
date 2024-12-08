@@ -16,8 +16,8 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../di/test_di.config.dart';
 import '../../../di/test_di.dart';
-
-class MockFavoritesRepository extends Mock implements FavoritesRepository {}
+import '../../../global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc_test.dart';
+import 'bloc/favorites_bloc_test.dart';
 
 class MockAppScaffoldBloc extends MockBloc<AppScaffoldEvent, AppScaffoldState>
     implements AppScaffoldBloc {}

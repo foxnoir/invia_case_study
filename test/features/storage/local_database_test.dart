@@ -22,7 +22,7 @@ void main() {
   });
 
   group('Local Database', () {
-    const tHotel = Hotel(
+    const _tHotel = Hotel(
       id: '123',
       name: 'Test Hotel',
       category: 5,
@@ -36,25 +36,25 @@ void main() {
       'should add a favorite hotel successfully and store '
       'when [HotelRepoImpl.addFavoriteHotel()] was called',
       () async {
-        final result = await _hotelRepoImpl.addFavoriteHotel(hotel: tHotel);
+        final result = await _hotelRepoImpl.addFavoriteHotel(hotel: _tHotel);
 
         expect(result, equals(const Right<Failure, void>(null)));
         final storedIds = _inMemoryLocalDatabase.getAllFavoriteHotelIds();
-        expect(storedIds, contains(tHotel.id));
+        expect(storedIds, contains(_tHotel.id));
       },
     );
 
     test(
       'should not add a duplicate favorite hotel ID',
       () async {
-        await _hotelRepoImpl.addFavoriteHotel(hotel: tHotel);
+        await _hotelRepoImpl.addFavoriteHotel(hotel: _tHotel);
 
-        final result = await _hotelRepoImpl.addFavoriteHotel(hotel: tHotel);
+        final result = await _hotelRepoImpl.addFavoriteHotel(hotel: _tHotel);
 
         expect(result, equals(const Right<Failure, void>(null)));
         final storedIds = _inMemoryLocalDatabase.getAllFavoriteHotelIds();
         expect(storedIds.length, equals(1));
-        expect(storedIds, contains(tHotel.id));
+        expect(storedIds, contains(_tHotel.id));
       },
     );
 
@@ -62,15 +62,16 @@ void main() {
       'should add a favorite hotel successfully and store '
       'when [HotelRepoImpl.removeFavoriteHotelId()] was called',
       () async {
-        const tHotelId = '123';
+        const _tHotelId = '123';
 
-        await _inMemoryLocalDatabase.addFavoriteHotelId(hotelId: tHotelId);
+        await _inMemoryLocalDatabase.addFavoriteHotelId(hotelId: _tHotelId);
 
-        final result = await _hotelRepoImpl.removeFavoriteHotelId(id: tHotelId);
+        final result =
+            await _hotelRepoImpl.removeFavoriteHotelId(id: _tHotelId);
 
         expect(result, equals(const Right<Failure, void>(null)));
         final storedIds = _inMemoryLocalDatabase.getAllFavoriteHotelIds();
-        expect(storedIds, isNot(contains(tHotelId)));
+        expect(storedIds, isNot(contains(_tHotelId)));
       },
     );
 

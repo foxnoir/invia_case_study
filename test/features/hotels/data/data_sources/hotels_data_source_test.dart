@@ -25,9 +25,9 @@ void main() {
   });
 
   group('HotalDataSource', () {
-    const tHotels = [HotelModel.empty()];
+    const _tHotels = [HotelModel.empty()];
     final tResponseData = {
-      'hotels': tHotels.map((hotel) => hotel.toMap()).toList(),
+      'hotels': _tHotels.map((hotel) => hotel.toMap()).toList(),
     };
 
     test('should be a subclass of [HotelsDataSource]', () {
@@ -52,9 +52,9 @@ void main() {
           ),
         );
 
-        final result = await _hotelDataSource.getHotels();
+        final result = await _hotelDataSource.ge_tHotels();
 
-        expect(result, equals(tHotels));
+        expect(result, equals(_tHotels));
 
         verify(
           () => _mockDioClient.get<Map<String, dynamic>>(
@@ -88,7 +88,7 @@ void main() {
           ),
         );
 
-        final call = _hotelDataSource.getHotels;
+        final call = _hotelDataSource.ge_tHotels;
 
         expect(call, throwsA(isA<ApiException>()));
 

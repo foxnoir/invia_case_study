@@ -32,7 +32,7 @@ void main() {
   group('FavoriteRepoImpl', () {
     const baseHotel = FavoriteModel.empty();
 
-    final tHotel1 = FavoriteModel(
+    final _tHotel1 = FavoriteModel(
       id: '1a',
       name: baseHotel.name,
       category: baseHotel.category,
@@ -42,7 +42,7 @@ void main() {
       hotelId: baseHotel.hotelId,
     );
 
-    final tHotel2 = FavoriteModel(
+    final _tHotel2 = FavoriteModel(
       id: '2b',
       name: baseHotel.name,
       category: baseHotel.category,
@@ -52,7 +52,7 @@ void main() {
       hotelId: baseHotel.hotelId,
     );
 
-    final tHotelModelsList = [tHotel1, tHotel2];
+    final _tHotelModelsList = [_tHotel1, _tHotel2];
 
     test('should be a subclass of [FavoritesRepository]', () {
       expect(_favoriteRepoImpl, isA<FavoritesRepository>());
@@ -63,21 +63,21 @@ void main() {
       'when the call to data source is successful',
       () async {
         final tFavoriteIds = ['1a', '2b', '3c'];
-        when(() => _favoritesDataSource.getHotels())
-            .thenAnswer((_) async => tHotelModelsList);
+        when(() => _favoritesDataSource.ge_tHotels())
+            .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
             .thenReturn(tFavoriteIds);
 
         final result = await _favoriteRepoImpl.getFavorites();
 
-        final expectedHotels = tHotelModelsList
+        final expectedHotels = _tHotelModelsList
             .where((hotel) => tFavoriteIds.contains(hotel.id))
             .map((model) => model.toEntity().copyWith(isFavorite: true))
             .toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _favoritesDataSource.getHotels()).called(1);
+        verify(() => _favoritesDataSource.ge_tHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_favoritesDataSource);
@@ -89,21 +89,21 @@ void main() {
       'when the call to data source is successful and there are no favorites ',
       () async {
         final tFavoriteIds = List<String>.empty();
-        when(() => _favoritesDataSource.getHotels())
-            .thenAnswer((_) async => tHotelModelsList);
+        when(() => _favoritesDataSource.ge_tHotels())
+            .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
             .thenReturn(tFavoriteIds);
 
         final result = await _favoriteRepoImpl.getFavorites();
 
-        final expectedHotels = tHotelModelsList
+        final expectedHotels = _tHotelModelsList
             .where((hotel) => tFavoriteIds.contains(hotel.id))
             .map((model) => model.toEntity().copyWith(isFavorite: true))
             .toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _favoritesDataSource.getHotels()).called(1);
+        verify(() => _favoritesDataSource.ge_tHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_favoritesDataSource);
@@ -114,7 +114,7 @@ void main() {
       'should return [ApiFailure] when '
       'an exception is thrown while fetching hotels from the API',
       () async {
-        when(() => _favoritesDataSource.getHotels()).thenThrow(
+        when(() => _favoritesDataSource.ge_tHotels()).thenThrow(
           const ApiException(
             message: 'Bad Request',
             statusCode: 400,
@@ -132,7 +132,7 @@ void main() {
           ),
         );
 
-        verify(() => _favoritesDataSource.getHotels()).called(1);
+        verify(() => _favoritesDataSource.ge_tHotels()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_favoritesDataSource);
       },

@@ -16,7 +16,7 @@ import 'package:mocktail/mocktail.dart';
 import '../../../di/test_di.config.dart';
 import '../../../di/test_di.dart';
 import '../../../global_widgets/app_scaffold/presentation/app_scaffold_test.dart';
-import '../../../global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc_test.dart';
+import 'bloc/hotels_bloc_test.dart';
 
 void main() {
   late HotelsBloc _hotelsBloc;
@@ -45,7 +45,7 @@ void main() {
       const Hotel.empty().copyWith(name: 'Hotel 2'),
     ];
 
-    when(() => _mockHotelsRepository.getHotels())
+    when(() => _mockHotelsRepository.ge_tHotels())
         .thenAnswer((_) async => Right(hotelsList));
   });
 

@@ -25,6 +25,7 @@ class AppCardDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final appLocalizations = AppLocalizations.of(context);
+    ScreenSize.init(context);
 
     final days = hotel.bestOffer.travelDate.days;
     final finalDays = days < 2

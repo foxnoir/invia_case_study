@@ -32,7 +32,7 @@ void main() {
   group('HotelRepoImpl', () {
     const baseHotel = HotelModel.empty();
 
-    final tHotel1 = HotelModel(
+    final _tHotel1 = HotelModel(
       id: '1a',
       name: baseHotel.name,
       category: baseHotel.category,
@@ -42,7 +42,7 @@ void main() {
       hotelId: baseHotel.hotelId,
     );
 
-    final tHotel2 = HotelModel(
+    final _tHotel2 = HotelModel(
       id: '2b',
       name: baseHotel.name,
       category: baseHotel.category,
@@ -52,7 +52,7 @@ void main() {
       hotelId: baseHotel.hotelId,
     );
 
-    final tHotelModelsList = [tHotel1, tHotel2];
+    final _tHotelModelsList = [_tHotel1, _tHotel2];
 
     test('should be a subclass of [HotelsRepository]', () {
       expect(_hotelRepoImpl, isA<HotelsRepository>());
@@ -63,21 +63,21 @@ void main() {
       'when the call to data source is successful',
       () async {
         final tFavoriteIds = ['1a', '2b', '3c'];
-        when(() => _mockHotelsDataSource.getHotels())
-            .thenAnswer((_) async => tHotelModelsList);
+        when(() => _mockHotelsDataSource.ge_tHotels())
+            .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
             .thenReturn(tFavoriteIds);
 
-        final result = await _hotelRepoImpl.getHotels();
+        final result = await _hotelRepoImpl.ge_tHotels();
 
-        final expectedHotels = tHotelModelsList.map((hotel) {
+        final expectedHotels = _tHotelModelsList.map((hotel) {
           final isFavorite = tFavoriteIds.contains(hotel.id);
           return hotel.toEntity().copyWith(isFavorite: isFavorite);
         }).toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _mockHotelsDataSource.getHotels()).called(1);
+        verify(() => _mockHotelsDataSource.ge_tHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_mockHotelsDataSource);
@@ -89,21 +89,21 @@ void main() {
       'when the call to data source is successful and there are no favorites',
       () async {
         final tFavoriteIds = List<String>.empty();
-        when(() => _mockHotelsDataSource.getHotels())
-            .thenAnswer((_) async => tHotelModelsList);
+        when(() => _mockHotelsDataSource.ge_tHotels())
+            .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
             .thenReturn(tFavoriteIds);
 
-        final result = await _hotelRepoImpl.getHotels();
+        final result = await _hotelRepoImpl.ge_tHotels();
 
-        final expectedHotels = tHotelModelsList.map((hotel) {
+        final expectedHotels = _tHotelModelsList.map((hotel) {
           final isFavorite = tFavoriteIds.contains(hotel.id);
           return hotel.toEntity().copyWith(isFavorite: isFavorite);
         }).toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _mockHotelsDataSource.getHotels()).called(1);
+        verify(() => _mockHotelsDataSource.ge_tHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_mockHotelsDataSource);
@@ -114,14 +114,14 @@ void main() {
       'should return [ApiFailure] when '
       'an exception is thrown while fetching hotels from the API',
       () async {
-        when(() => _mockHotelsDataSource.getHotels()).thenThrow(
+        when(() => _mockHotelsDataSource.ge_tHotels()).thenThrow(
           const ApiException(
             message: 'Bad Request',
             statusCode: 400,
           ),
         );
 
-        final result = await _hotelRepoImpl.getHotels();
+        final result = await _hotelRepoImpl.ge_tHotels();
 
         expect(
           result,
@@ -132,7 +132,7 @@ void main() {
           ),
         );
 
-        verify(() => _mockHotelsDataSource.getHotels()).called(1);
+        verify(() => _mockHotelsDataSource.ge_tHotels()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_mockHotelsDataSource);
       },
@@ -181,7 +181,7 @@ void main() {
     );
 
     group('addFavoriteHotel', () {
-      const tHotel = Hotel(
+      const _tHotel = Hotel(
         id: '123',
         name: 'Test Hotel',
         category: 5,
@@ -194,14 +194,14 @@ void main() {
       test(
         'should add a favorite hotel successfully and return Right(null)',
         () async {
-          when(() => _mockLocalDatabase.addFavoriteHotelId(hotelId: tHotel.id))
+          when(() => _mockLocalDatabase.addFavoriteHotelId(hotelId: _tHotel.id))
               .thenAnswer((_) async => Future.value());
 
-          final result = await _hotelRepoImpl.addFavoriteHotel(hotel: tHotel);
+          final result = await _hotelRepoImpl.addFavoriteHotel(hotel: _tHotel);
 
           expect(result, equals(const Right<Failure, void>(null)));
           verify(
-            () => _mockLocalDatabase.addFavoriteHotelId(hotelId: tHotel.id),
+            () => _mockLocalDatabase.addFavoriteHotelId(hotelId: _tHotel.id),
           ).called(1);
           verifyNoMoreInteractions(_mockLocalDatabase);
         },
@@ -210,10 +210,10 @@ void main() {
         'should return [DatabaseFailure] '
         'when an exception is thrown while adding a favorite hotel',
         () async {
-          when(() => _mockLocalDatabase.addFavoriteHotelId(hotelId: tHotel.id))
+          when(() => _mockLocalDatabase.addFavoriteHotelId(hotelId: _tHotel.id))
               .thenThrow(const DatabaseException(message: 'Database Error'));
 
-          final result = await _hotelRepoImpl.addFavoriteHotel(hotel: tHotel);
+          final result = await _hotelRepoImpl.addFavoriteHotel(hotel: _tHotel);
 
           expect(
             result,
@@ -228,7 +228,7 @@ void main() {
           );
 
           verify(
-            () => _mockLocalDatabase.addFavoriteHotelId(hotelId: tHotel.id),
+            () => _mockLocalDatabase.addFavoriteHotelId(hotelId: _tHotel.id),
           ).called(1);
           verifyNoMoreInteractions(_mockLocalDatabase);
         },
@@ -236,18 +236,19 @@ void main() {
     });
   });
   group('removeFavoriteHotelId', () {
-    const tHotelId = '123';
+    const _tHotelId = '123';
 
     test(
       'should remove a favorite hotel ID successfully and return Right(null)',
       () async {
-        when(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+        when(() => _mockLocalDatabase.removeFavoriteHotelId(id: _tHotelId))
             .thenAnswer((_) async => Future.value());
 
-        final result = await _hotelRepoImpl.removeFavoriteHotelId(id: tHotelId);
+        final result =
+            await _hotelRepoImpl.removeFavoriteHotelId(id: _tHotelId);
 
         expect(result, equals(const Right<Failure, void>(null)));
-        verify(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+        verify(() => _mockLocalDatabase.removeFavoriteHotelId(id: _tHotelId))
             .called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
       },
@@ -257,10 +258,11 @@ void main() {
       'should return [DatabaseFailure] '
       'when an exception is thrown while removing a favorite hotel ID',
       () async {
-        when(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+        when(() => _mockLocalDatabase.removeFavoriteHotelId(id: _tHotelId))
             .thenThrow(Exception('Some Database Error'));
 
-        final result = await _hotelRepoImpl.removeFavoriteHotelId(id: tHotelId);
+        final result =
+            await _hotelRepoImpl.removeFavoriteHotelId(id: _tHotelId);
 
         expect(
           result,
@@ -273,7 +275,7 @@ void main() {
             ),
           ),
         );
-        verify(() => _mockLocalDatabase.removeFavoriteHotelId(id: tHotelId))
+        verify(() => _mockLocalDatabase.removeFavoriteHotelId(id: _tHotelId))
             .called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
       },
