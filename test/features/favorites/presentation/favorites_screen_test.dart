@@ -7,7 +7,6 @@ import 'package:invia_case_study/features/favorites/domain/repositories/favorite
 import 'package:invia_case_study/features/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:invia_case_study/features/favorites/presentation/favorites_screen.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
-import 'package:invia_case_study/features/network/errors/failure.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/app_scaffold.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc.dart';
 import 'package:invia_case_study/global_widgets/app_scaffold/presentation/bloc/app_scaffold_state.dart';
@@ -16,7 +15,6 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../di/test_di.config.dart';
 import '../../../di/test_di.dart';
-import '../../../global_widgets/app_scaffold/presentation/bloc/app_scaffold_bloc_test.dart';
 import 'bloc/favorites_bloc_test.dart';
 
 class MockAppScaffoldBloc extends MockBloc<AppScaffoldEvent, AppScaffoldState>

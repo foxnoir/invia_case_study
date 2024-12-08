@@ -1,12 +1,11 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel.dart';
 import 'package:invia_case_study/global_widgets/app_card/widgets/app_card_details_section.dart';
-import 'package:invia_case_study/l10n/de_fallback.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TestHttpOverrides extends HttpOverrides {
   @override
@@ -138,9 +137,11 @@ void main() {
 
     testWidgets('does not render additional information if in favorite tab',
         (tester) async {
-      await tester.pumpWidget(createAppCardDetailsSectionTestWidget(
-        isFavoriteTab: true,
-      ));
+      await tester.pumpWidget(
+        createAppCardDetailsSectionTestWidget(
+          isFavoriteTab: true,
+        ),
+      );
 
       expect(find.textContaining('5 Tage'), findsNothing);
       expect(find.textContaining('4 Nächte'), findsNothing);

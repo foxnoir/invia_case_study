@@ -10,33 +10,23 @@
 <br />
 <div align="center">
   <img src="images/logo.png" alt="Logo" width="80" height="80">
-  <h1 align="center">TDD and clean architecture</h1>
+  <h1 align="center">Invia Case Study</h1>
 
 <!-- PROJECT desc -->
   <p align="left">
-      Just for practising a bit clean Architecture.
+     Solution to the task set for 2 rounds.
   </p>
 
   <!-- PROJECT link -->
   <p align="left">
-    <a href="https://github.com/foxnoir/group_chat"><strong>Explore the project »</strong></a>
+    <a href="https://github.com/foxnoir/invia_case_study/tree/develop/lib"><strong>Explore the project »</strong></a>
     <br/>
   </p>
   </p>
     <br/>
   </p>****
 
-  <p align="left">
-  group_chat supports only (iOS) mobile, clone the appropriate branches mentioned below:
-  </p>
 
-<!-- Get started link link -->
-  <p align="left">
-    <a href="#getting-started"><strong>Getting Started »</strong></a>
-    <br/>
-  </p>
-    <br/>
-  </p>
 
 </div>
 

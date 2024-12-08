@@ -54,7 +54,9 @@ void main() {
         act: (bloc) => bloc.add(AddFavoriteEvent(tes_tHotel)),
         expect: () => [
           AppScaffoldUpdated(
-              hotel: updatedTes_tHotel, favorites: favoritesList),
+            hotel: updatedTes_tHotel,
+            favorites: favoritesList,
+          ),
         ],
       );
     });
