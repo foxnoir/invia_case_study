@@ -9,10 +9,6 @@ abstract class AppScaffoldEvent extends Equatable {
 
 class ResetErrorEvent extends AppScaffoldEvent {}
 
-class FetchFavoritesEvent extends AppScaffoldEvent {
-  const FetchFavoritesEvent();
-}
-
 class AddFavoriteEvent extends AppScaffoldEvent {
   const AddFavoriteEvent(this.hotel);
   final Hotel hotel;

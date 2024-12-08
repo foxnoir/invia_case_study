@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,11 +42,18 @@ class AccountScreen extends StatelessWidget {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8),
-                        child: Image.asset(
-                          state.locale.languageCode == 'de'
-                              ? AppImg.en_flag
-                              : AppImg.de_flag,
+                        child: SizedBox(
+                          width: 25,
                           height: 25,
+                          child: state.locale.languageCode == 'de'
+                              ? Image.asset(
+                                  key: const ValueKey('en_flag'),
+                                  AppImg.en_flag,
+                                )
+                              : Image.asset(
+                                  key: const ValueKey('de_flag'),
+                                  AppImg.de_flag,
+                                ),
                         ),
                       ),
                     ),

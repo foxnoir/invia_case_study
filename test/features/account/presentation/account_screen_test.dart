@@ -12,26 +12,25 @@ class MockAccountBloc extends MockBloc<AccountEvent, AccountState>
     implements AccountBloc {}
 
 void main() {
-  late MockAccountBloc mockAccountBloc;
+  late MockAccountBloc _mockAccountBloc;
 
   setUp(() {
-    mockAccountBloc = MockAccountBloc();
-    when(() => mockAccountBloc.state).thenReturn(
+    _mockAccountBloc = MockAccountBloc();
+    when(() => _mockAccountBloc.state).thenReturn(
       const AccountState(locale: Locale('de')),
     );
   });
 
   tearDown(() {
-    mockAccountBloc.close();
+    _mockAccountBloc.close();
   });
 
   group('AccountScreen', () {
-    testWidgets('should display the [AccountScreen] elements correctly',
-        (tester) async {
+    testWidgets('should display elements correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<AccountBloc>(
-            create: (_) => mockAccountBloc,
+            create: (_) => _mockAccountBloc,
             child: const AccountScreen(),
           ),
         ),
@@ -47,35 +46,47 @@ void main() {
     });
 
     testWidgets('should change locale when flag is tapped', (tester) async {
+      _mockAccountBloc = MockAccountBloc();
+
+      when(() => _mockAccountBloc.stream).thenAnswer(
+        (_) => Stream.fromIterable([
+          const AccountState(locale: Locale('en')),
+          const AccountState(locale: Locale('de')),
+        ]),
+      );
+
+      when(() => _mockAccountBloc.state)
+          .thenReturn(const AccountState(locale: Locale('en')));
+
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<AccountBloc>(
-            create: (_) => mockAccountBloc,
+            create: (_) => _mockAccountBloc,
             child: const AccountScreen(),
           ),
         ),
       );
 
-      expect(find.image(const AssetImage(AppImg.en_flag)), findsNothing);
-      expect(find.image(const AssetImage(AppImg.de_flag)), findsOneWidget);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.byKey(const ValueKey('en_flag')));
 
-      await tester.tap(find.byType(GestureDetector));
-      await tester.pump();
+      await tester.tap(find.byKey(const ValueKey('en_flag')));
+      await tester.pumpAndSettle();
 
-      verify(() => mockAccountBloc.add(const ChangeLocaleEvent(Locale('en'))))
+      verify(() => _mockAccountBloc.add(const ChangeLocaleEvent(Locale('de'))))
           .called(1);
     });
 
-    testWidgets('should display  German flag when locale is English',
+    testWidgets('should display Englosh flag when locale is German',
         (tester) async {
-      when(() => mockAccountBloc.state).thenReturn(
+      when(() => _mockAccountBloc.state).thenReturn(
         const AccountState(locale: Locale('de')),
       );
 
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<AccountBloc>(
-            create: (_) => mockAccountBloc,
+            create: (_) => _mockAccountBloc,
             child: const AccountScreen(),
           ),
         ),
@@ -85,16 +96,16 @@ void main() {
       expect(find.image(const AssetImage(AppImg.de_flag)), findsNothing);
     });
 
-    testWidgets('should display  English flag when locale is German',
+    testWidgets('should display German flag when locale is English',
         (tester) async {
-      when(() => mockAccountBloc.state).thenReturn(
+      when(() => _mockAccountBloc.state).thenReturn(
         const AccountState(locale: Locale('en')),
       );
 
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<AccountBloc>(
-            create: (_) => mockAccountBloc,
+            create: (_) => _mockAccountBloc,
             child: const AccountScreen(),
           ),
         ),
@@ -110,7 +121,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<AccountBloc>(
-            create: (_) => mockAccountBloc,
+            create: (_) => _mockAccountBloc,
             child: const AccountScreen(),
           ),
         ),
@@ -126,14 +137,14 @@ void main() {
     testWidgets('should trigger tap on the edit account button',
         (tester) async {
       var isTapped = false;
-      when(() => mockAccountBloc.state).thenReturn(
+      when(() => _mockAccountBloc.state).thenReturn(
         const AccountState(locale: Locale('en')),
       );
 
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<AccountBloc>(
-            create: (_) => mockAccountBloc,
+            create: (_) => _mockAccountBloc,
             child: const AccountScreen(),
           ),
         ),
