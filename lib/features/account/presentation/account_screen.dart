@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/core/theme/consts.dart';
+import 'package:invia_case_study/core/utils/app_test_consts.dart';
 import 'package:invia_case_study/features/account/presentation/bloc/account_bloc.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
@@ -17,7 +18,7 @@ class AccountScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final appLocalizations = AppLocalizations.of(context);
 
-    return Platform.environment.containsKey('FLUTTER_TEST')
+    return AppTestConsts.isRouteTesting
         ? Container()
         : BlocBuilder<AccountBloc, AccountState>(
             builder: (context, state) {
@@ -71,7 +72,9 @@ class AccountScreen extends StatelessWidget {
                         const Text(
                           'Fox Noir',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold,),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const Spacer(),
                         ElevatedButton(

@@ -1,12 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/core/di/di.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'account_event.dart';
 part 'account_state.dart';
 
+@LazySingleton()
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc({SharedPreferences? sharedPreferences})
       : _sharedPreferences = sharedPreferences ?? DI.getIt<SharedPreferences>(),

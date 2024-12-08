@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:invia_case_study/features/favorites/data/data_sources/favorites_data_source.dart';
+import 'package:invia_case_study/features/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:invia_case_study/features/storage/local_database.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -23,9 +24,6 @@ abstract class RegisterTestModule {
 
   @LazySingleton()
   MockHotelsDataSource get mockHotelsDataSource => MockHotelsDataSource();
-
-  @LazySingleton()
-  MockHotelsBloc get mockHotelsBloc => MockHotelsBloc();
 
   @LazySingleton()
   MockHotelsRepository get mockHotelsRepository => MockHotelsRepository();

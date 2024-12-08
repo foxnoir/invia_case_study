@@ -18,8 +18,6 @@ void main() {
 
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    await TestDI.getIt.reset();
-    TestDI.getIt.initTest();
   });
 
   setUp(() async {

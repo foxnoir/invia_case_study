@@ -1,30 +1,27 @@
 import 'dart:async';
 
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:invia_case_study/core/utils/app_test_consts.dart';
 import 'package:invia_case_study/features/account/presentation/account_screen.dart';
-import 'package:invia_case_study/features/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:invia_case_study/features/favorites/presentation/favorites_screen.dart';
 import 'package:invia_case_study/features/hotel_details/hotel_details_screen.dart';
-import 'package:invia_case_study/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:invia_case_study/features/hotels/presentation/hotels_screen.dart';
 import 'package:invia_case_study/features/initial_screen.dart';
 import 'package:invia_case_study/features/overview/overview_screen.dart';
 import 'package:invia_case_study/features/router/app_router.dart';
 import 'package:invia_case_study/features/router/app_router_paths.dart';
 
-class MockHotelsBloc extends MockBloc<HotelsEvent, HotelsState>
-    implements HotelsBloc {}
-
-class MockFavoritesBloc extends MockBloc<FavoritesEvent, FavoritesState>
-    implements FavoritesBloc {}
-
 void main() {
   late AppRouter appRouter;
 
   setUp(() {
     appRouter = AppRouter();
+    AppTestConsts.isRouteTesting = true;
+  });
+
+  tearDown(() {
+    AppTestConsts.isRouteTesting = false;
   });
 
   group('AppRouter', () {
