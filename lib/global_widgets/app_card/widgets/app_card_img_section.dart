@@ -73,14 +73,17 @@ class AppCardImgSection extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(2),
-                    child: AppIcon(
-                      assetPath: isFavorite
-                          ? SvgIcon.favoriteFilled
-                          : SvgIcon.favorite,
-                      color: isFavorite
-                          ? theme.colorScheme.surface
-                          : theme.colorScheme.tertiary,
-                    ),
+                    child: isFavorite
+                        ? AppIcon(
+                            key: const ValueKey('favorite_fillled'),
+                            assetPath: SvgIcon.favoriteFilled,
+                            color: theme.colorScheme.surface,
+                          )
+                        : AppIcon(
+                            key: const ValueKey('favorite'),
+                            assetPath: SvgIcon.favorite,
+                            color: theme.colorScheme.tertiary,
+                          ),
                   ),
                 ),
               ),
