@@ -63,11 +63,12 @@
 
 ### Happy Case
 
-https://github.com/user-attachments/assets/e66f8048-c9cb-4958-aee8-24a78bea51f0
+https://github.com/user-attachments/assets/6b00962b-dac0-43fd-ba21-81d9613b0921
+
 
 ### Error Handling
 
-Uploading Simulator_Screen_Recording_-_iPhone_15_Pro_Max_-_2024-12-08_at_23.29.03.mp4…
+https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6
 
 
 
