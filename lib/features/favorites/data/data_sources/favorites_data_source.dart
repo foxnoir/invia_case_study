@@ -10,7 +10,7 @@ import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/http_client.dart';
 
 abstract class FavoritesDataSource {
-  Future<List<FavoriteModel>> ge_tHotels();
+  Future<List<FavoriteModel>> getHotels();
 }
 
 class FavoritesDataSourceImpl implements FavoritesDataSource {
@@ -19,7 +19,7 @@ class FavoritesDataSourceImpl implements FavoritesDataSource {
   final HttpClient _httpClient;
 
   @override
-  Future<List<FavoriteModel>> ge_tHotels() async {
+  Future<List<FavoriteModel>> getHotels() async {
     try {
       final response = await _httpClient.dioClient.get<Map<String, dynamic>>(
         ApiEndpoints.baseURL + ApiEndpoints.hotels,

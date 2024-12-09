@@ -54,7 +54,7 @@ void main() {
       'emits [HotelsLoading, HotelsLoaded] when '
       'FetchHotelsEvent is added and repository succeeds',
       build: () {
-        when(() => _mockHotelsRepository.ge_tHotels())
+        when(() => _mockHotelsRepository.getHotels())
             .thenAnswer((_) async => Right(hotelsList));
         return _hotelsBloc;
       },
@@ -67,7 +67,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        verify(() => _mockHotelsRepository.ge_tHotels()).called(1);
+        verify(() => _mockHotelsRepository.getHotels()).called(1);
       },
     );
 
@@ -75,7 +75,7 @@ void main() {
       'emits [HotelsLoading, HotelsError] '
       'when FetchHotelsEvent is added and repository fails',
       build: () {
-        when(() => _mockHotelsRepository.ge_tHotels()).thenAnswer(
+        when(() => _mockHotelsRepository.getHotels()).thenAnswer(
           (_) async =>
               const Left(ApiFailure(message: 'Error', statusCode: 500)),
         );
@@ -89,7 +89,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        verify(() => _mockHotelsRepository.ge_tHotels()).called(1);
+        verify(() => _mockHotelsRepository.getHotels()).called(1);
       },
     );
   });

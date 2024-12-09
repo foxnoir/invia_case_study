@@ -63,13 +63,13 @@ void main() {
       'when the call to data source is successful',
       () async {
         final tFavoriteIds = ['1a', '2b', '3c'];
-        when(() => _mockHotelsDataSource.ge_tHotels())
+        when(() => _mockHotelsDataSource.getHotels())
             .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
             .thenReturn(tFavoriteIds);
 
-        final result = await _hotelRepoImpl.ge_tHotels();
+        final result = await _hotelRepoImpl.getHotels();
 
         final expectedHotels = _tHotelModelsList.map((hotel) {
           final isFavorite = tFavoriteIds.contains(hotel.id);
@@ -77,7 +77,7 @@ void main() {
         }).toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _mockHotelsDataSource.ge_tHotels()).called(1);
+        verify(() => _mockHotelsDataSource.getHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_mockHotelsDataSource);
@@ -89,13 +89,13 @@ void main() {
       'when the call to data source is successful and there are no favorites',
       () async {
         final tFavoriteIds = List<String>.empty();
-        when(() => _mockHotelsDataSource.ge_tHotels())
+        when(() => _mockHotelsDataSource.getHotels())
             .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
             .thenReturn(tFavoriteIds);
 
-        final result = await _hotelRepoImpl.ge_tHotels();
+        final result = await _hotelRepoImpl.getHotels();
 
         final expectedHotels = _tHotelModelsList.map((hotel) {
           final isFavorite = tFavoriteIds.contains(hotel.id);
@@ -103,7 +103,7 @@ void main() {
         }).toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _mockHotelsDataSource.ge_tHotels()).called(1);
+        verify(() => _mockHotelsDataSource.getHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_mockHotelsDataSource);
@@ -114,14 +114,14 @@ void main() {
       'should return [ApiFailure] when '
       'an exception is thrown while fetching hotels from the API',
       () async {
-        when(() => _mockHotelsDataSource.ge_tHotels()).thenThrow(
+        when(() => _mockHotelsDataSource.getHotels()).thenThrow(
           const ApiException(
             message: 'Bad Request',
             statusCode: 400,
           ),
         );
 
-        final result = await _hotelRepoImpl.ge_tHotels();
+        final result = await _hotelRepoImpl.getHotels();
 
         expect(
           result,
@@ -132,7 +132,7 @@ void main() {
           ),
         );
 
-        verify(() => _mockHotelsDataSource.ge_tHotels()).called(1);
+        verify(() => _mockHotelsDataSource.getHotels()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_mockHotelsDataSource);
       },

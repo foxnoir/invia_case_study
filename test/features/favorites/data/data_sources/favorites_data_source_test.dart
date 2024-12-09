@@ -52,7 +52,7 @@ void main() {
           ),
         );
 
-        final result = await _favoriteDataSource.ge_tHotels();
+        final result = await _favoriteDataSource.getHotels();
 
         expect(result, equals(tFavoriteHotels));
 
@@ -88,7 +88,7 @@ void main() {
           ),
         );
 
-        final call = _favoriteDataSource.ge_tHotels();
+        final call = _favoriteDataSource.getHotels();
 
         expect(call, throwsA(isA<ApiException>()));
 

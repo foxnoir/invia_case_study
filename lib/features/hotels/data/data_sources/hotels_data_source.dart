@@ -10,7 +10,7 @@ import 'package:invia_case_study/features/network/errors/exceptions.dart';
 import 'package:invia_case_study/features/network/http_client.dart';
 
 abstract class HotelsDataSource {
-  Future<List<HotelModel>> ge_tHotels();
+  Future<List<HotelModel>> getHotels();
 }
 
 class HotelsDataSourceImpl implements HotelsDataSource {
@@ -19,7 +19,7 @@ class HotelsDataSourceImpl implements HotelsDataSource {
   final HttpClient _httpClient;
 
   @override
-  Future<List<HotelModel>> ge_tHotels() async {
+  Future<List<HotelModel>> getHotels() async {
     try {
       final response = await _httpClient.dioClient.get<Map<String, dynamic>>(
         ApiEndpoints.baseURL + ApiEndpoints.hotels,

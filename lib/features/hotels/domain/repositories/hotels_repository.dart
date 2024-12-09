@@ -6,7 +6,7 @@ import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.da
 abstract class HotelsRepository {
   const HotelsRepository();
 
-  ResultFuture<List<HotelEntity>> ge_tHotels();
+  ResultFuture<List<HotelEntity>> getHotels();
 
   ResultFuture<void> addFavoriteHotel({required HotelEntity hotel});
 

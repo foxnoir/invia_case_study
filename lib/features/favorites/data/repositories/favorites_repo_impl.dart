@@ -24,7 +24,7 @@ class FavoriteRepoImpl implements FavoritesRepository {
   @override
   ResultFuture<List<HotelEntity>> getFavorites() async {
     try {
-      final hotelModels = await _favoritesDataSource.ge_tHotels();
+      final hotelModels = await _favoritesDataSource.getHotels();
       final favoriteIdsResult = getFavoriteHotelIds();
       final favoriteIds = favoriteIdsResult.getOrElse(() => []);
 

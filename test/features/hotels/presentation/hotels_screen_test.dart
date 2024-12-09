@@ -45,7 +45,7 @@ void main() {
       const HotelEntity.empty().copyWith(name: 'Hotel 2'),
     ];
 
-    when(() => _mockHotelsRepository.ge_tHotels())
+    when(() => _mockHotelsRepository.getHotels())
         .thenAnswer((_) async => Right(hotelsList));
   });
 

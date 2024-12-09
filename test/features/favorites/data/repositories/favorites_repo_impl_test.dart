@@ -63,7 +63,7 @@ void main() {
       'when the call to data source is successful',
       () async {
         final tFavoriteIds = ['1a', '2b', '3c'];
-        when(() => _favoritesDataSource.ge_tHotels())
+        when(() => _favoritesDataSource.getHotels())
             .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
@@ -77,7 +77,7 @@ void main() {
             .toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _favoritesDataSource.ge_tHotels()).called(1);
+        verify(() => _favoritesDataSource.getHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_favoritesDataSource);
@@ -89,7 +89,7 @@ void main() {
       'when the call to data source is successful and there are no favorites ',
       () async {
         final tFavoriteIds = List<String>.empty();
-        when(() => _favoritesDataSource.ge_tHotels())
+        when(() => _favoritesDataSource.getHotels())
             .thenAnswer((_) async => _tHotelModelsList);
 
         when(() => _mockLocalDatabase.getAllFavoriteHotelIds())
@@ -103,7 +103,7 @@ void main() {
             .toList();
 
         expect(result.getOrElse(() => []), equals(expectedHotels));
-        verify(() => _favoritesDataSource.ge_tHotels()).called(1);
+        verify(() => _favoritesDataSource.getHotels()).called(1);
         verify(() => _mockLocalDatabase.getAllFavoriteHotelIds()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_favoritesDataSource);
@@ -114,7 +114,7 @@ void main() {
       'should return [ApiFailure] when '
       'an exception is thrown while fetching hotels from the API',
       () async {
-        when(() => _favoritesDataSource.ge_tHotels()).thenThrow(
+        when(() => _favoritesDataSource.getHotels()).thenThrow(
           const ApiException(
             message: 'Bad Request',
             statusCode: 400,
@@ -132,7 +132,7 @@ void main() {
           ),
         );
 
-        verify(() => _favoritesDataSource.ge_tHotels()).called(1);
+        verify(() => _favoritesDataSource.getHotels()).called(1);
         verifyNoMoreInteractions(_mockLocalDatabase);
         verifyNoMoreInteractions(_favoritesDataSource);
       },
