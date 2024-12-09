@@ -62,11 +62,13 @@
 ## **App Demonstration**
 
 ### **Happy Case**
-[View Video]([https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6](https://github.com/user-attachments/assets/ec2e1f89-f568-41e2-a9c1-d85a5b5c585a))
+https://github.com/user-attachments/assets/8ad63ceb-fdec-482b-876e-4dff6b714b27
+
 
 
 ### **Error Handling**
-[View Video]([https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6](https://github.com/user-attachments/assets/b650af98-6f53-4988-9803-d11c0ea8f769))
+https://github.com/user-attachments/assets/42da9604-08cb-44b1-9aec-1f2ae04ae0be
+
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
