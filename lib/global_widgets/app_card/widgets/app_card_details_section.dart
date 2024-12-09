@@ -135,7 +135,7 @@ class AppCardDetailsSection extends StatelessWidget {
                               text:
                                   '${Formatter.formatPrice(priceInCents: hotel.bestOffer.total)} €',
                               style: theme.textTheme.headlineLarge?.copyWith(
-                                fontSize: ScreenSize.screenWidth <= 430
+                                fontSize: ScreenSize.screenWidth < 430
                                     ? AppFontSize.s18
                                     : AppFontSize.s23,
                               ),
