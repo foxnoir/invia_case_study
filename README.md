@@ -124,6 +124,7 @@ flutter run
 
 ## **App Architecture and Folder Structure**
 
+```
 flutter-app/
   ├── android
   ├── assets/
@@ -153,10 +154,12 @@ flutter-app/
   │     │                ├── screens/
   │     │                ├── widgets/
   │     │                └── blocs/
+  │     └── global_widgets
   │     └── main.dart
   ├── test/
   ├── web/
   └── pubspec.yaml
+```
 
 ---
 
@@ -239,6 +242,8 @@ View changes and updates to the app [here](https://github.com/foxnoir/invia_case
 ## **Acknowledgments**
 
 - [Feature-first vs Layer-first Structure (Kody TechnoLab)](https://kodytechnolab.com/blog/layer-first-or-feature-first-flutter-project-structure/)  
-- [Flutter Project Structure (Code with Andrea)](https://codewithandrea.com/articles/flutter-project-structure/)  
+- [Flutter Project Structure (Code with Andrea)](https://codewithandrea.com/articles/flutter-project-structure/)
+- [Dartz)](https://medium.com/@samra.sajjad0001/exploring-the-purpose-and-usage-of-the-dartz-package-in-flutter-7902509939e9)  
+
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
