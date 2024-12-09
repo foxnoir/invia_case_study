@@ -236,7 +236,7 @@ The `features/` folder structure groups code by **feature domains** (e.g., `hote
 ## **Testing Coverage**
 
 <div align="center">
-  <img src="images/testing.png" alt="Testing" width="700" style="height: auto;">
+  <img src="images/testing.png" alt="Testing" width="auto" style="height: auto;">
 </div>
 
 
