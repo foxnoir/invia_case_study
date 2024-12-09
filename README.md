@@ -51,7 +51,7 @@
       </ul>
     </li>
     <li><a href="#packages-and-reasons-for-use">Packages and Reasons for Use</a></li>
-    <li><a href="#testing-coverage">Testing Coverage</a></li>
+    <li><a href="#test-coverage">Test Coverage</a></li>
     <li><a href="#changelog">Changelog</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -233,14 +233,13 @@ The `features/` folder structure groups code by **feature domains** (e.g., `hote
 
 ---
 
-## **Testing Coverage**
+## **Test Coverage**
 
 <div align="center">
   <img src="images/testing.png" alt="Testing" width="auto" style="height: auto;">
 </div>
 
-
-To check the test coverage, lcov was used. Since I did not use direct function calls in my tests, but instead worked with mocks, the function coverage is shown as 0%.
+To check the test coverage, `lcov` was used. Since I did not use direct function calls in my tests, but instead worked with mocks, the function coverage is shown as 0%.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
