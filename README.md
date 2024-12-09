@@ -36,12 +36,6 @@
     </li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#repository-cloning">Repository Cloning</a></li>
-        <li><a href="#installing-dependencies">Installing Dependencies</a></li>
-        <li><a href="#code-generation">Code Generation</a></li>
-        <li><a href="#running-the-app">Running the App</a></li>
-      </ul>
     </li>
     <li><a href="#app-architecture-and-folder-structure">App Architecture and Folder Structure</a>
       <ul>
@@ -57,6 +51,7 @@
       </ul>
     </li>
     <li><a href="#packages-and-reasons-for-use">Packages and Reasons for Use</a></li>
+    <li><a href="#code-coverage">Changelog</a></li>
     <li><a href="#changelog">Changelog</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -233,6 +228,18 @@ The `features/` folder structure groups code by **feature domains** (e.g., `hote
 | **mocktail**        | Simple way to mock classes required for unit tests. |
 | **very_good_analysis** | Ensures a consistent code style and code quality through strict linter rules. |
 | **bloc_test**       | Tests Bloc logic, verifying the sequence of state changes. |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+## **Testing Coverage**
+
+<div align="center">
+  <img src="images/testing.png" alt="Testing" width="300" height="300">
+</div>
+
+To check the test coverage, lcov was used. Since I did not use direct function calls in my tests, but instead worked with mocks, the function coverage is shown as 0%.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
