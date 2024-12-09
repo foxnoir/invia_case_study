@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:invia_case_study/features/hotels/domain/entities/hotel_entity.dart';
+import 'package:invia_case_study/features/router/app_router.dart';
 import 'package:invia_case_study/global_widgets/app_card/app_card.dart';
 import 'package:invia_case_study/l10n/de_fallback.dart';
 
@@ -46,7 +48,13 @@ class AppSliverList extends StatelessWidget {
                 isFavoriteTab: isFavoriteTab,
                 hotel: hotel,
                 imgUrl: hotel.images.isNotEmpty ? hotel.images.first.large : '',
-                onButtonPressed: () {},
+                onButtonPressed: isFavoriteTab
+                    ? () {
+                        context.pushRoute(
+                          HotelDetailsRoute(hotelId: hotel.hotelId),
+                        );
+                      }
+                    : () {},
                 buttonText: buttonText,
               ),
             );

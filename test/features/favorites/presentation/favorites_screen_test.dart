@@ -78,7 +78,7 @@ void main() {
       );
 
       expect(find.byType(AppScaffold), findsOneWidget);
-      expect(find.text(FallBackString.hotels), findsOneWidget);
+      expect(find.text(FallBackString.favorites), findsOneWidget);
     });
   });
 }

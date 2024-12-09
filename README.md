@@ -1,8 +1,13 @@
 <a name="readme-top"></a>
 
+<!-- Top Links Bar -->
+
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Twitter][twitter-shield]][twitter-url]
 [![Instagram][instagram-shield]][instagram-url]
+
+<!-- PROJECT LOGO -->
+<br />
 
 
 <div align="center">
@@ -62,12 +67,16 @@
 ## **App Demonstration**
 
 ### **Happy Case**
-[View Video](https://github.com/user-attachments/assets/6b00962b-dac0-43fd-ba21-81d9613b0921)
+https://github.com/user-attachments/assets/8ad63ceb-fdec-482b-876e-4dff6b714b27
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### **Error Handling**
-[View Video](https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6)
+https://github.com/user-attachments/assets/42da9604-08cb-44b1-9aec-1f2ae04ae0be
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -122,6 +131,7 @@ flutter run
 
 ## **App Architecture and Folder Structure**
 
+```
 flutter-app/
   ├── android
   ├── assets/
@@ -151,10 +161,12 @@ flutter-app/
   │     │                ├── screens/
   │     │                ├── widgets/
   │     │                └── blocs/
+  │     └── global_widgets
   │     └── main.dart
   ├── test/
   ├── web/
   └── pubspec.yaml
+```
 
 ---
 
@@ -237,6 +249,18 @@ View changes and updates to the app [here](https://github.com/foxnoir/invia_case
 ## **Acknowledgments**
 
 - [Feature-first vs Layer-first Structure (Kody TechnoLab)](https://kodytechnolab.com/blog/layer-first-or-feature-first-flutter-project-structure/)  
-- [Flutter Project Structure (Code with Andrea)](https://codewithandrea.com/articles/flutter-project-structure/)  
+- [Flutter Project Structure (Code with Andrea)](https://codewithandrea.com/articles/flutter-project-structure/)
+- [Dartz](https://medium.com/@samra.sajjad0001/exploring-the-purpose-and-usage-of-the-dartz-package-in-flutter-7902509939e9)  
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/tanja-polz-5636401a5/
+[twitter-shield]: https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white
+[twitter-url]: https://twitter.com/_foxnoir_?lang=de
+[instagram-shield]: https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white
+[instagram-url]: https://www.instagram.com/_foxnoir_/
