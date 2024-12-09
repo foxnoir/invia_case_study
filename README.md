@@ -64,10 +64,12 @@
 ### **Happy Case**
 [View Video](https://github.com/user-attachments/assets/6b00962b-dac0-43fd-ba21-81d9613b0921)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### **Error Handling**
 [View Video](https://github.com/user-attachments/assets/9792d91c-faaa-4015-8ad8-ec74f39dece6)
 
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -83,7 +85,7 @@
 - **Secure Storage**: flutter_secure_storage  
 - **Navigation**: Auto Route  
 
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -200,7 +202,7 @@ The `features/` folder structure groups code by **feature domains** (e.g., `hote
   Contains **reusable widgets** that can be used across multiple screens.  
   **Examples**: `app_card.dart`, `app_icon.dart`
 
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -220,7 +222,7 @@ The `features/` folder structure groups code by **feature domains** (e.g., `hote
 | **very_good_analysis** | Ensures a consistent code style and code quality through strict linter rules. |
 | **bloc_test**       | Tests Bloc logic, verifying the sequence of state changes. |
 
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -228,7 +230,7 @@ The `features/` folder structure groups code by **feature domains** (e.g., `hote
 
 View changes and updates to the app [here](https://github.com/foxnoir/invia_case_study/blob/develop/CHANGELOG.md).  
 
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -237,4 +239,4 @@ View changes and updates to the app [here](https://github.com/foxnoir/invia_case
 - [Feature-first vs Layer-first Structure (Kody TechnoLab)](https://kodytechnolab.com/blog/layer-first-or-feature-first-flutter-project-structure/)  
 - [Flutter Project Structure (Code with Andrea)](https://codewithandrea.com/articles/flutter-project-structure/)  
 
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

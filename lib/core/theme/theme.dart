@@ -20,7 +20,7 @@ ThemeData _theme(ColorScheme colorScheme) {
     ),
     // app bar
     headlineSmall: TextStyle(
-      fontSize: AppFontSize.s17,
+      fontSize: AppFontSize.s19,
       fontWeight: AppFontWeight.bold,
       color: colorScheme.onPrimary,
     ),

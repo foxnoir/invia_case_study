@@ -62,6 +62,7 @@ class AppScaffold extends StatelessWidget {
                       floating: true,
                       pinned: true,
                       flexibleSpace: FlexibleSpaceBar(
+                        centerTitle: true,
                         title: Text(
                           title,
                           style: theme.appBarTheme.titleTextStyle,

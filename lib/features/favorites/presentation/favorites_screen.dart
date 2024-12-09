@@ -54,7 +54,7 @@ class FavoritesView extends StatelessWidget {
 
         return AppScaffold(
           isFavoriteTab: true,
-          title: localizations?.hotels ?? FallBackString.hotels,
+          title: localizations?.favorites ?? FallBackString.favorites,
           isLoading: isLoading,
           isLoaded: hasLoaded,
           hasError: hasError,
